@@ -149,11 +149,11 @@
     },
     {
       "path": "prompts/slide-outline.aiide-prompt",
-      "size": 1260,
+      "size": 1604,
       "format": 1,
       "type": "prompt",
       "id": "usagi.slide-outline",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "title": "簡報大綱",
       "summary": "把一份文件整理成可直接匯出成投影片的大綱：一頁一個訊息。",
       "author": "Usagi-Agent",
