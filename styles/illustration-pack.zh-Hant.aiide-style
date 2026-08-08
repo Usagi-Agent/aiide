@@ -1,10 +1,15 @@
 {
-  "appMinVersion": "1.15.0",
-  "author": "Usagi-Agent",
-  "count": 4,
   "format": 1,
+  "type": "style",
   "id": "usagi.illustration-pack",
+  "version": "1.0.0",
+  "title": "插圖風格四選一",
+  "summary": "四種自動插圖風格：工程圖、剪紙、粉筆、極簡線條。",
+  "author": "Usagi-Agent",
   "license": "CC BY 4.0",
+  "appMinVersion": "1.15.0",
+  "lang": "zh-Hant",
+  "count": 4,
   "styles": [
     {
       "body": "technical blueprint style, thin white lines on deep blue, precise geometry, annotation ticks, no lettering",
@@ -26,9 +31,5 @@
       "field": "illustration",
       "title": "極簡線條"
     }
-  ],
-  "summary": "四種自動插圖風格：工程圖、剪紙、粉筆、極簡線條。",
-  "title": "插圖風格四選一",
-  "type": "style",
-  "version": "1.0.0"
+  ]
 }

@@ -7,6 +7,7 @@ title: 文件校稿
 summary: 逐句校對錯字、標點、用語一致與病句，只改該改的，並列出修改清單。
 author: Usagi-Agent
 license: CC BY 4.0
+lang: zh-Hant
 appMinVersion: 1.15.0
 ---
 

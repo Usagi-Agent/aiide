@@ -96,6 +96,8 @@ title: 我的指令
 | `appMinVersion` | 建議 | 目前寫 `1.15.0` |
 | `id` | 建議 | `你的名字.項目名`，例如 `usagi.research-assistant`。**有 `id` 的項目，你之後把檔案搬到別的資料夾也還認得出來**；沒有的話搬家等於換了一個項目 |
 | `version` | **強烈建議** | 改內容時**一定要升**。見 §4.4 |
+| `lang` | 建議 | 這個項目**寫給人看的語言**：`zh-Hant` / `zh-Hans` / `en`。見 §4.5 |
+| `example` | 選填 | 使用教學／範例頁面的 **https** 網址。見 §4.6 |
 
 缺少 `title` / `author` / `license` 不會讓檔案被拒收——只有 `format` 與 `type` 是硬性的。
 
@@ -257,6 +259,39 @@ App 判斷「有沒有新版」時，只用掃描已經知道的東西——比�
 
 ---
 
+### 4.5 `lang`：同一個項目的多語版本
+
+一個項目要出三種語言，就發三個檔案，**用同一個 `id`、不同的 `lang`**：
+
+```
+prompts/
+├── slide-outline.zh-Hant.aiide-prompt   id: usagi.slide-outline   lang: zh-Hant
+├── slide-outline.zh-Hans.aiide-prompt   id: usagi.slide-outline   lang: zh-Hans
+└── slide-outline.en.aiide-prompt        id: usagi.slide-outline   lang: en
+```
+
+**共用 `id` 才是重點**——App 靠它知道這三個是同一個東西：清單上只佔一列，顯示讀者語言的那一版，其餘在詳情頁一鍵切換。三個不同的 `id` 就會變成三個互不相干的項目，而且清單長度直接乘三。
+
+| 規則 | |
+|---|---|
+| 代碼 | 只有 `zh-Hant`、`zh-Hans`、`en`。認得 `zh-TW` / `zh-CN` / `tc` / `sc` 等寫法並自動轉換，**但 `zh` 不行**——繁簡對讀者不能互換，猜錯不如不標 |
+| 沒標 `lang` | 對所有人顯示。不會被藏起來 |
+| 檔名後綴 | **給人看的慣例，不是判斷依據**。App 以 `lang` 為準（副檔名可以被改，§2）。`tools/aiide-index.py` 會在兩者不一致時報錯 |
+| 沒有讀者的語言時 | 顯示最接近的：繁中讀者拿到簡中版而不是英文版，反之亦然。**絕不會因為沒有他的語言就什麼都不給** |
+
+**`lang` 指的是「使用者會讀到的語言」，不是產出語言。** 官方的 `english-level-rewrite` 指令是中文寫的、產出英文，它是 `zh-Hant`；`illustration-pack` 的標題是中文、`body` 是英文（生圖模型吃英文比較穩），它也是 `zh-Hant`。用產出語言標會把兩者都放錯格。
+
+### 4.6 `example`：使用教學／範例網址
+
+```
+example: https://your-site.example/tutorials/slide-outline
+```
+
+指向一個「這東西怎麼用」的頁面——教學文、範例輸出、示範影片。App 在檢視畫面上放一個連結，**並且顯示網域**。
+
+- **只接受 https。** `http:`、`javascript:`、`file:` 一律忽略。
+- **App 絕不會自己去抓這個網址**，只有使用者按下去才開。§7 的「不得有會自動請求的外部 URL」對這個欄位一樣成立。
+
 ## 5. `aiide-index.json`（選用，但請放）
 
 放在 **repo 根目錄**。有它的話，App 掃描你的 repo **完全不花 GitHub 的查詢額度**（未登入的使用者每小時只有 60 次，而且回 304 也照樣計費）。沒有它也能運作——索引是最佳化，不是必要條件。
@@ -366,6 +401,7 @@ App 這一端對應的規則：一律不自動安裝、不自動更新、瀏覽�
 - [ ] 每個檔案的 `format` 是 `1`、`type` 正確
 - [ ] `license` 是你真的有權給的授權
 - [ ] `id` 用 `你的名字.項目名`；**改內容一定要升 `version`**（§4.4）
+- [ ] 多語版本共用同一個 `id`、各自標 `lang`（§4.5）
 - [ ] 跑過 `python3 tools/aiide-index.py <你的repo>`，沒有錯誤
 - [ ] 用 App 自己貼一次你的 repo 網址，確認看得到、裝得起來
 

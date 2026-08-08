@@ -7,6 +7,7 @@ title: L1–L10 分級英文改寫
 summary: 把中文文本改寫成 L1–L10（對應 CEFR A1–B2）的英文，並逐句附翻譯對照。
 author: Usagi-Agent
 license: CC BY 4.0
+lang: zh-Hant
 appMinVersion: 1.15.0
 ---
 

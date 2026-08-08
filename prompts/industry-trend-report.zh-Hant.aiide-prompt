@@ -1,12 +1,13 @@
 ---
 format: 1
 type: prompt
-id: usagi.industry-trend-report-en
+id: usagi.industry-trend-report
 version: 1.0.0
-title: Industry Trend Report (EN)
-summary: The English-output counterpart of 產業趨勢週報.
+title: 產業趨勢週報
+summary: 把搜尋結果整理成有引用來源的產業週報：頭條、摘要表、數據雷達、下週關注。
 author: Usagi-Agent
 license: CC BY 4.0
+lang: zh-Hant
 appMinVersion: 1.15.0
 ---
 

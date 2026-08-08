@@ -7,6 +7,7 @@ title: 考卷生成師
 summary: 結合領域知識與指定文法的雙效考卷：閱讀、克漏字、翻譯、改錯、配對。
 author: Usagi-Agent
 license: CC BY 4.0
+lang: zh-Hant
 appMinVersion: 1.15.0
 ---
 

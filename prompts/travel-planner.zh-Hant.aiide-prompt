@@ -7,6 +7,7 @@ title: 旅遊行程規劃師
 summary: 依地理動線排出逐日行程表，含交通、餐飲、花費估算與雨天備案。
 author: Usagi-Agent
 license: CC BY 4.0
+lang: zh-Hant
 appMinVersion: 1.15.0
 ---
 

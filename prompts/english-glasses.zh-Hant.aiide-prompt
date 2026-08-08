@@ -7,6 +7,7 @@ title: 英文眼鏡
 summary: 用指定的字庫與文法庫改寫中文文本，逐句中英對照，文末附句型與新字。
 author: Usagi-Agent
 license: CC BY 4.0
+lang: zh-Hant
 appMinVersion: 1.15.0
 ---
 

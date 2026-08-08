@@ -25,7 +25,34 @@ MAX_BYTES = {".aiide-prompt": 1 << 20, ".aiide-style": 1 << 20, ".aiide-kb": 10 
 EXTENSIONS = (".aiide-prompt", ".aiide-style", ".aiide-kb", ".aiide-brand",
               ".aiide-pdf", ".aiide-word", ".aiide-excel", ".aiide-slides")
 MANIFEST_KEYS = ("format", "type", "id", "version", "title",
-                 "summary", "author", "license", "appMinVersion")
+                 "summary", "author", "license", "appMinVersion", "lang", "example")
+
+# The codes the app speaks. BCP-47 rather than shorthand: a private
+# abbreviation needs a translation table forever and matches nothing else.
+LANGS = {
+    "zh-hant": "zh-Hant", "zh_hant": "zh-Hant", "zh-tw": "zh-Hant",
+    "zh-hk": "zh-Hant", "tc": "zh-Hant",
+    "zh-hans": "zh-Hans", "zh_hans": "zh-Hans", "zh-cn": "zh-Hans", "sc": "zh-Hans",
+    "en": "en", "en-us": "en", "en-gb": "en",
+}
+
+
+def normalize_lang(raw):
+    """None for anything unrecognised — an item tagged `lang: 中文` is better
+    treated as untagged (shown to everyone) than filed under a language nobody
+    can select. Bare `zh` is ambiguous and resolves to neither."""
+    if not raw:
+        return None
+    return LANGS.get(str(raw).strip().lower())
+
+
+def lang_from_filename(name):
+    """`slide-outline.zh-Hant.aiide-prompt` -> 'zh-Hant'. A convention for
+    humans reading the repo; the manifest is what the app believes."""
+    base = name.rsplit(".", 1)[0]
+    if "." not in base:
+        return None
+    return normalize_lang(base.rsplit(".", 1)[1])
 
 
 class Problem(Exception):
@@ -157,6 +184,33 @@ def read_kb(path):
 READERS = {".aiide-prompt": read_prompt, ".aiide-style": read_style, ".aiide-kb": read_kb}
 
 
+def check_language(manifest, path, rel, problems):
+    """The filename suffix and `lang:` must agree, because only one of them is
+    what the app believes — and a disagreement always means one of them is a
+    typo nobody would otherwise notice."""
+    declared = manifest.get("lang")
+    if declared is not None:
+        normalized = normalize_lang(declared)
+        if normalized is None:
+            problems.append(f"{rel}: lang 是 {declared!r}，不是 zh-Hant / zh-Hans / en")
+            return
+        manifest["lang"] = normalized
+    from_name = lang_from_filename(path.name)
+    if from_name and manifest.get("lang") and from_name != manifest["lang"]:
+        problems.append(f"{rel}: 檔名說是 {from_name}，但 lang 寫 {manifest['lang']}"
+                        "（以 lang 為準，改一邊）")
+    elif from_name and not manifest.get("lang"):
+        # Filling it in rather than nagging: the author already said it once.
+        manifest["lang"] = from_name
+        print(f"  ℹ️  {rel}: 從檔名補上 lang: {from_name}")
+
+
+def check_example(manifest, rel, problems):
+    url = manifest.get("example")
+    if url and not str(url).startswith("https://"):
+        problems.append(f"{rel}: example 必須是 https 網址，實際是 {url!r}")
+
+
 # ---------------------------------------------------------------------- main
 
 def main():
@@ -195,6 +249,8 @@ def main():
             continue
         try:
             manifest = reader(path)
+            check_language(manifest, path, rel, problems)
+            check_example(manifest, rel, problems)
         except Problem as e:
             problems.append(str(e))
             continue

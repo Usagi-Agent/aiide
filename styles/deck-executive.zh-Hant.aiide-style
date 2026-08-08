@@ -1,10 +1,15 @@
 {
-  "appMinVersion": "1.15.0",
-  "author": "Usagi-Agent",
-  "count": 2,
   "format": 1,
+  "type": "style",
   "id": "usagi.deck-executive",
+  "version": "1.0.0",
+  "title": "決策簡報組合",
+  "summary": "給主管看的：先講結論，一頁一個決策點，視覺克制。",
+  "author": "Usagi-Agent",
   "license": "CC BY 4.0",
+  "appMinVersion": "1.15.0",
+  "lang": "zh-Hant",
+  "count": 2,
   "styles": [
     {
       "body": "每頁標題就是結論本身，不是主題。每頁最多 3 條，每條先講「所以呢」再講依據。全份控制在 10 頁以內。沒有數據支撐的頁面直接刪掉，不要留下形容詞。",
@@ -16,9 +21,5 @@
       "field": "slideImage",
       "title": "克制的深色"
     }
-  ],
-  "summary": "給主管看的：先講結論，一頁一個決策點，視覺克制。",
-  "title": "決策簡報組合",
-  "type": "style",
-  "version": "1.0.0"
+  ]
 }

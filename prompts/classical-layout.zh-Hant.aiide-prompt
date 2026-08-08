@@ -7,6 +7,7 @@ title: 古典文學排版
 summary: 把硬斷行的古典文本整理成可讀的排版：接合段落、詩詞用引用區塊、統一回目。
 author: Usagi-Agent
 license: CC BY 4.0
+lang: zh-Hant
 appMinVersion: 1.15.0
 ---
 

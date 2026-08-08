@@ -1,10 +1,15 @@
 {
-  "appMinVersion": "1.15.0",
-  "author": "Usagi-Agent",
-  "count": 3,
   "format": 1,
+  "type": "style",
   "id": "usagi.deck-teaching",
+  "version": "1.0.0",
+  "title": "教學簡報組合",
+  "summary": "上課用：慢一點、例子多一點，配圖走溫暖的手繪感。",
+  "author": "Usagi-Agent",
   "license": "CC BY 4.0",
+  "appMinVersion": "1.15.0",
+  "lang": "zh-Hant",
+  "count": 3,
   "styles": [
     {
       "body": "每頁一個觀念，最多 4 條。每個抽象說法後面接一個具體例子。遇到專有名詞，第一次出現時用一句話解釋。頁數不限，寧可多一頁也不要一頁塞兩個觀念。",
@@ -21,9 +26,5 @@
       "field": "slideImage",
       "title": "紙質暖色"
     }
-  ],
-  "summary": "上課用：慢一點、例子多一點，配圖走溫暖的手繪感。",
-  "title": "教學簡報組合",
-  "type": "style",
-  "version": "1.0.0"
+  ]
 }
