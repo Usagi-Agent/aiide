@@ -313,6 +313,28 @@ python3 tools/aiide-index.py /path/to/your/repo
 
 ---
 
+## 6a. 一鍵安裝連結
+
+除了讓人加你的 repo 當來源，你也可以在部落格、教學文或 README 上直接放單一項目的安裝連結：
+
+```
+aiide://import?item=https://raw.githubusercontent.com/你的帳號/你的repo/main/prompts/x.aiide-prompt
+```
+
+Markdown 寫法：
+
+```markdown
+[在 AI-IDE 中安裝](aiide://import?item=https://raw.githubusercontent.com/你的帳號/你的repo/main/prompts/x.aiide-prompt)
+```
+
+幾點要知道：
+
+- **網址要用 raw 連結**（`raw.githubusercontent.com/...`），不是 GitHub 的網頁連結。
+- **只有 https 且副檔名是 `.aiide-*` 的網址通得過**。指向 `.md`、`.html`、`.sh` 的連結會被直接丟掉——這是設計，不是限制。
+- **連結不會安裝任何東西。** App 只會顯示檔名、型別與**你的網域**，使用者按下去才下載，然後看到完整內容再決定。你放的連結不能替使用者做決定。
+- 想一次放多個，用逗號或 JSON 陣列：`item=https://…/a.aiide-prompt,https://…/b.aiide-kb`。
+- 這條連結和 `datafiles=` / `prompts=` / `chat=` **不能混用**——帶了 `item=`，其他參數會被忽略。
+
 ## 7. 分享者請遵守的三件事
 
 這三條不是禮貌，是這個機制能不能繼續存在的前提。
