@@ -47,6 +47,20 @@
       "lang": "zh-Hant"
     },
     {
+      "path": "prompts/doc-proofread.en.aiide-prompt",
+      "size": 1421,
+      "format": 1,
+      "type": "prompt",
+      "id": "usagi.doc-proofread",
+      "version": "1.0.0",
+      "title": "Copy-edit",
+      "summary": "Fix typos, punctuation, inconsistent terms and broken sentences — and nothing else.",
+      "author": "Usagi-Agent",
+      "license": "CC BY 4.0",
+      "appMinVersion": "1.15.0",
+      "lang": "en"
+    },
+    {
       "path": "prompts/doc-proofread.zh-Hant.aiide-prompt",
       "size": 1361,
       "format": 1,
@@ -101,20 +115,6 @@
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
       "lang": "zh-Hant"
-    },
-    {
-      "path": "prompts/industry-trend-report.en.aiide-prompt",
-      "size": 1505,
-      "format": 1,
-      "type": "prompt",
-      "id": "usagi.industry-trend-report",
-      "version": "1.0.0",
-      "title": "Industry Trend Report",
-      "summary": "The English-output counterpart of 產業趨勢週報.",
-      "author": "Usagi-Agent",
-      "license": "CC BY 4.0",
-      "appMinVersion": "1.15.0",
-      "lang": "en"
     },
     {
       "path": "prompts/industry-trend-report.zh-Hant.aiide-prompt",
