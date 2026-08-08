@@ -1,0 +1,631 @@
+---
+format: 1
+type: prompt
+id: usagi.english-level-rewrite
+version: 1.0.0
+title: L1–L10 分級英文改寫
+summary: 把中文文本改寫成 L1–L10（對應 CEFR A1–B2）的英文，並逐句附翻譯對照。
+author: Usagi-Agent
+license: CC BY 4.0
+appMinVersion: 1.15.0
+---
+
+---
+name: english-level-rewrite
+description: 把中文（或其他語言）文章、故事、章節摘要或古典文本，改寫成指定英文難度等級（L1–L10，對應 CEFR A1–B2）的英文，並逐句附上指定語言的翻譯對照（照英文意思翻成簡單的目標語言，不是原文；目標語言預設中文，可指定日文、韓文、泰文、越南文等任何語言）。Use this whenever the user wants Chinese text turned into English at a controlled reading level — they mention 分級英文 / 英文分級改寫 / 簡化英文 / 中英對照 / 雙語閱讀材料 / graded reader / CEFR A1、A2、B1、B2，or they name a level like「L4」「用 L7 寫」。Also use it when they only say「翻成簡單一點的英文」「給國中生看的英文版」「這篇改成小學生能讀的英文」without naming a level, or when they're making leveled teaching handouts, reading practice sheets, or multi-version English rewrites of the same Chinese source.
+---
+# L1–L10 分級字彙庫
+
+這是**建議範圍**，不是白名單。用途是控制詞彙密度與難度，避免在低等級不自覺地用進太難的字。
+
+用法：每一級都繼承所有更低等級的詞彙，下面只列該級新增的詞群。需要超出建議範圍時，先問自己有沒有更簡單的同義詞可以替代；真的沒有（例如專有名詞、故事關鍵物件）就用，但同一段裡不要出現多個這樣的字。
+
+一個實用的密度規則：**低等級（L1–L4）每段最多引入一個新的難詞**，而且要靠上下文就能猜出意思。
+
+---
+
+## L1 — 最高頻具體詞
+
+- **人稱**　I, you, he, she, we, they, it
+- **人物**　man, woman, boy, girl, child, baby, people, mother, father, sister, brother, friend
+- **物件**　book, bag, pen, chair, table, door, house, car, water, food, box
+- **動作**　go, come, see, look, eat, drink, run, sit, stand, take, give, have, want, like
+- **形容**　big, small, good, bad, hot, cold, new, old, happy, sad
+- **顏色**　red, blue, yellow, black, white, green
+- **數字**　one, two, three, four, five, ten
+- **場所**　home, school, room, park, shop
+- **指示**　this, that, here, there
+
+**避免**　抽象名詞、情節推理詞、文學性形容詞、不必要的副詞。
+
+---
+
+## L2 — 基本敘事與感受
+
+- **動作**　say, tell, know, walk, sleep, play, work, help, open, close, find, put, make
+- **感受**　afraid, tired, hungry, angry, surprised, worried
+- **形容**　long, short, fast, slow, clean, dirty, young, strong
+- **時間**　now, today, night, day, morning
+- **連接**　and, but
+
+**避免**　抽象分析詞、書面語、長複合詞組。
+
+---
+
+## L3 — 時間、地點、日常活動
+
+- **動作**　study, talk, call, wait, carry, move, start, stop, buy, sell, live
+- **時間**　today, tomorrow, yesterday, later, soon, early, late, again, then
+- **地點**　town, city, village, street, road, market, river, field, mountain
+- **感受**　glad, sorry, sick, quiet, busy
+- **連接**　so, then, and, but
+
+**避免**　高抽象度詞彙、文學修辭、過長的名詞片語。
+
+---
+
+## L4 — 事件、順序與人物互動
+
+- **敘事動詞**　meet, leave, arrive, find, bring, ask, answer, show, follow, wait for
+- **事件詞**　story, problem, place, voice, answer, moment, idea, plan, news
+- **時序詞**　first, then, after, before, later, soon, again, finally
+- **描述詞**　large, heavy, light, weak, deep, rich, poor
+- **連接**　because, when
+
+**避免**　高度抽象的概念詞、罕見修辭詞、學術詞彙。
+
+---
+
+## L5 — 行動、關係與衝突
+
+- **行動**　decide, begin, continue, return, follow, protect, escape, join, lead, save
+- **關係**　enemy, leader, group, soldier, family, neighbour, master, servant
+- **場景**　hall, camp, gate, wall, forest, palace, temple, border
+- **衝突**　fight, danger, trouble, secret, power, loss, fear, war, battle
+- **理解**　understand, explain, remember, believe, notice, realize, forget
+- **連接**　after, before, if
+
+**避免**　過於艱深的抽象討論、密集的文學修飾、多層從句。
+
+---
+
+## L6 — 心理與互動
+
+- **心理**　trust, refuse, hope, doubt, worry, choose, regret, admire
+- **互動**　promise, support, betray, argue, agree, obey, warn, thank, blame
+- **事件**　capture, attack, defend, rescue, challenge, survive, defeat, escape
+- **抽象（少量）**　truth, reason, right, wrong, chance, hope
+- **轉折**　however, although, while, instead
+
+**避免**　過度學術化的詞、冷僻的古典用語、句內資訊過度壓縮。
+
+---
+
+## L7 — 判斷、動機與結果
+
+- **判斷**　compare, consider, judge, doubt, suspect, expect, accept, refuse
+- **心理**　calm, proud, ashamed, upset, serious, desperate, grateful, bitter
+- **衝突**　struggle, threat, result, consequence, conflict, revenge, sacrifice
+- **抽象**　justice, freedom, duty, honour, decision, purpose, respect
+- **轉折**　therefore, instead, meanwhile, in the end
+
+**避免**　太書面、太冷僻或過度學術的字；不必要的修飾與冗長句群。
+
+---
+
+## L8 — 氛圍與抽象概念
+
+- **氛圍**　dark, silent, tense, solemn, bitter, desperate, calm, uneasy, still
+- **動作**　witness, reveal, confront, abandon, endure, resist, betray, restore
+- **抽象**　meaning, value, identity, responsibility, destiny, ambition, hardship
+- **文學（少量）**　fate, mercy, grief, tension, courage, pride
+- **轉折**　although, however, therefore, nevertheless
+
+**避免**　過度華麗的文學修辭、難以理解的長句、離題的評論與過度延伸。
+
+---
+
+## L9 — 較廣泛的敘事與分析詞彙
+
+- **抽象**　justice, loyalty, fate, responsibility, identity, consequence, ambition, principle
+- **人性**　grief, mercy, tension, courage, desperation, conflict, humiliation, devotion
+- **敘事**　reveal, confront, surrender, witness, survive, abandon, endure, prevail
+- **描寫**　solemn, bitter, fragile, persistent, harsh, tense, relentless, hollow
+- **轉折**　whereas, nevertheless, nonetheless, on the contrary
+
+**避免**　過度炫技的文風、難以消化的長串從句、與原文主題無關的擴寫。
+
+---
+
+## L10 — 文學語感
+
+L10 不再限制詞彙範圍。可以使用意象詞、語氣詞、修辭性重複，也可以保留原文的文化質地與典故用語。
+
+唯一的限制仍然成立：**詞彙是為原文服務的**。如果一個華麗的字沒有對應到原文的任何東西，就不要用它。
+
+---
+
+## 依等級使用字彙庫的原則
+
+- **L1–L3**　只用生活詞與高頻動詞。抽象概念一律改寫成具體動作或場景。
+- **L4–L5**　加入故事詞、時間詞、事件詞，讓敘事有先後與因果。
+- **L6–L7**　加入心理詞、關係詞與少量抽象詞，人物開始有動機與內心。
+- **L8–L10**　逐步擴大詞彙範圍與敘事深度，加入氛圍、抽象與文學語感。
+
+若使用者要求更嚴格的難度控制，可以在改寫時額外設定：允許詞彙範圍、禁用詞彙、每段最大新詞數、是否允許抽象名詞、是否允許文學性詞彙。
+
+
+# L1–L10 詳細規格
+
+每一級**累積**所有更低等級的能力。L6 可以自由使用 L1–L5 的句型與詞彙；「新增能力」欄只列出該級相對前一級多出來的部分。
+
+「禁用」是真正會讓該級讀者卡住的東西，不是風格偏好——違反禁用清單通常表示這句話該拆了。
+
+## 目錄
+
+- [L1 — CEFR A1 入門](#l1--cefr-a1-入門)
+- [L2 — CEFR A1](#l2--cefr-a1)
+- [L3 — CEFR A1–A2](#l3--cefr-a1a2)
+- [L4 — CEFR A2](#l4--cefr-a2)
+- [L5 — CEFR A2–B1](#l5--cefr-a2b1)
+- [L6 — CEFR B1](#l6--cefr-b1)
+- [L7 — CEFR B1 上](#l7--cefr-b1-上)
+- [L8 — CEFR B1–B2](#l8--cefr-b1b2)
+- [L9 — CEFR B2](#l9--cefr-b2)
+- [L10 — CEFR B2 文學敘事版](#l10--cefr-b2-文學敘事版)
+
+---
+
+## L1 — CEFR A1 入門
+
+**目標讀者**　剛開始接觸英文閱讀的人。需要高度可預測、幾乎沒有意外的語言。
+
+**規格**　每句 3–6 字；每段 1–3 句；現在式為主（過去式僅限 was / were / went 這類最高頻形式）。
+
+**句型**　S + V。S + be + 名詞／形容詞。There is / There are。祈使句。
+
+**詞彙**　只用最高頻、最具體的詞：人、物、顏色、數字、動作、家庭、日常場所。每句只傳遞一個資訊點。
+
+**禁用**　任何從句。複合句。被動語態。抽象名詞（duty, justice, loyalty, fate）。副詞堆疊。比喻。
+
+**文化詞**　全部換成最簡單的具體說法。人名保留，但同一段內盡量重複使用同一個短名稱，不要用代稱變化。
+
+**可用寫法**
+```
+He went home.
+She saw a man.
+There is a horse.
+The box is big.
+```
+
+**禁用寫法**
+```
+He went home because he was tired.        ← 因果從句
+The horse was taken by the man.           ← 被動
+He felt a deep sense of duty.             ← 抽象名詞
+```
+
+---
+
+## L2 — CEFR A1
+
+**目標讀者**　國小低年級程度。能讀懂短句串成的簡單敘述。
+
+**規格**　每句 4–8 字；每段 1–3 句。
+
+**新增能力**　簡單過去式（went, saw, said, took, gave）。基本 yes-no 問句與 Wh- 問句。連接詞 and、but 可連接兩個短句。
+
+**詞彙**　高頻生活詞。基本情緒詞（happy, sad, afraid, tired）與基本形容詞（big, small, good, bad, hot, cold）。
+
+**禁用**　從句。被動語態。抽象評論。多層修飾。
+
+**文化詞**　同 L1，換成具體說法。
+
+**可用寫法**
+```
+He was very tired.
+He went home, and he slept.
+She saw a man, but she did not speak.
+Where is my bag?
+```
+
+**禁用寫法**
+```
+Because he was tired, he went home.       ← because 從句要到 L4
+He had already left.                      ← 完成式要到 L7
+```
+
+---
+
+## L3 — CEFR A1–A2
+
+**目標讀者**　國小中年級程度。可以讀短故事、簡單教材文本。
+
+**規格**　每句 5–10 字；每段 2–4 句，一段描述一個小事件，時間順序要清楚。
+
+**新增能力**　未來式（will / be going to）。連接詞 so、then。可出現兩個短子句串接，但不超過兩個。
+
+**詞彙**　日常活動、時間詞（today, tomorrow, yesterday, now, later, soon）、地點詞（town, city, street, market, river）、感受詞（hungry, tired, afraid, angry, worried, surprised）。
+
+**禁用**　複雜從句。長修飾語堆疊。多層原因分析。文學性比喻。
+
+**文化詞**　換成簡單具體說法，必要時用一個獨立短句解釋。
+
+**可用寫法**
+```
+He was very tired, so he went home.
+She met her friend, and they walked together.
+Then they went to the market.
+He will come back tomorrow.
+```
+
+**禁用寫法**
+```
+After she had met her friend, they walked together.   ← 完成式＋從句
+The tired man, who lived nearby, went home.           ← 關係子句要到 L6
+```
+
+---
+
+## L4 — CEFR A2
+
+**目標讀者**　國小高年級或初階閱讀者。能理解基本故事與簡單敘述。
+
+**規格**　每句 8–12 字；每段 2–4 句，一段講一個事件，注意事件先後順序。
+
+**新增能力**　because、when 引導的簡單從句。There was / There were。比較級（stronger than, more tired than）。
+
+**詞彙**　敘事常用動詞（meet, leave, arrive, find, take, give, bring, ask, answer）。事件詞（story, problem, place, voice, moment, idea）。時序詞（first, then, after, before, later, again）。
+
+**禁用**　關係子句。分詞構句。假設語氣。被動語態。長而複雜的修飾。
+
+**文化詞**　開始保留專有名詞，第一次出現時用最簡單的方式解釋，解釋本身也要符合 8–12 字的限制。
+
+**可用寫法**
+```
+He was hungry, so he ate some rice.
+There were many people in the room.
+When the rain started, they stopped walking.
+The man was stronger than before.
+```
+
+**禁用寫法**
+```
+The man who helped him was his friend.    ← 關係子句要到 L6
+Driven by fear, he left.                  ← 分詞構句要到 L8
+```
+
+---
+
+## L5 — CEFR A2–B1
+
+**目標讀者**　國中七年級程度。可以理解一般故事與基礎敘事。
+
+**規格**　每句 10–15 字；每段 3–5 句，一段可包含一個小情節與其結果。
+
+**新增能力**　after、before、if（真實條件）引導的從句。短附屬子句，但整句仍要保持簡潔。
+
+**詞彙**　國中核心詞彙。行動詞（decide, begin, continue, return, follow, protect, escape）。關係詞（brother, enemy, friend, leader, soldier）。衝突詞（fight, danger, trouble, secret, power, fear）。理解類動詞（understand, explain, remember, believe, notice, realize）。
+
+**禁用**　分詞構句。假設語氣。過長的複合句。多層從句巢狀。
+
+**文化詞**　保留專有名詞，用一句簡短的同位語或補充句說明。
+
+**可用寫法**
+```
+Because it was late, he decided to go home.
+After they spoke, they made a plan together.
+If the rain stops, they will leave in the morning.
+```
+
+**禁用寫法**
+```
+If he had known, he would have stayed.    ← 假設語氣要到 L9
+Having spoken, they made a plan.          ← 分詞構句要到 L8
+```
+
+---
+
+## L6 — CEFR B1
+
+**目標讀者**　國中八九年級程度。可讀較完整的敘事與簡單評論。
+
+**規格**　每句 12–18 字；每段 3–6 句，一段可包含事件、原因與結果。適合章節摘要與故事重寫。
+
+**新增能力**　although、while 引導的從句。關係子句入門（who / that，限制性、單層）。少量被動語態。轉折詞 however、instead。
+
+**詞彙**　中頻敘事詞。心理詞（trust, refuse, hope, fear, doubt, worry, choose）。互動詞（promise, support, betray, argue, agree, obey）。少量抽象詞，但不要密集出現。
+
+**禁用**　過多學術型表達。過密修辭。難以閱讀的長句鏈。多層巢狀從句。
+
+**文化詞**　保留專有名詞與大部分文化詞，用同位語解釋。
+
+**可用寫法**
+```
+Although he was afraid, he decided to stay.
+The man who helped him was his old friend.
+After they talked for a while, they made a plan.
+The city was destroyed, and many people left.
+```
+
+**禁用寫法**
+```
+Having realized that the friend whom he had trusted was gone, he left.
+                                          ← 多層從句 + 分詞構句
+```
+
+---
+
+## L7 — CEFR B1 上
+
+**目標讀者**　中級讀者。可理解一般敘事、人物發展與簡單論述。適合章節摘要、改寫故事、簡易評論。
+
+**規格**　每句 14–20 字；每段 3–6 句。章節型文本可有簡單的開頭句與收尾句。
+
+**新增能力**　完成式（have / had done）。關係子句可較自由使用（含 which、whose）。被動語態可正常使用。轉折詞 therefore、instead、meanwhile。
+
+**詞彙**　人物特質、心理狀態、動機與衝突描述。判斷類動詞（decide, notice, realize, explain, compare）。事件詞（capture, attack, defend, rescue, challenge, survive）。抽象詞可少量使用但要保持可理解。
+
+**禁用**　太書面、太冷僻或過度學術的字。不必要的修飾與冗長句群。密集的文學修辭。
+
+**文化詞**　保留，必要時用一句話補充歷史或文化背景。
+
+**可用寫法**
+```
+By the time they arrived, the enemy had already left the city.
+The friend who had once saved his life returned that same night.
+The plan was rejected, and therefore they had to think of another way.
+```
+
+**禁用寫法**
+```
+Had he but known the depth of his friend's betrayal...   ← 倒裝＋假設語氣
+```
+
+---
+
+## L8 — CEFR B1–B2
+
+**目標讀者**　高中讀者。可理解較成熟的敘事、背景與人物描寫。
+
+**規格**　每句 15–22 字；每段 4–7 句，可有較完整的情節發展，段落之間要有明確銜接。
+
+**新增能力**　分詞構句入門（Driven by fear, ... / Having finished, ...）。名詞子句。對比、補充說明與段落銜接句。
+
+**詞彙**　中高頻詞。較細膩的情緒與氛圍詞（tense, solemn, bitter, desperate, calm）。抽象概念（meaning, value, responsibility, consequence）。文學詞可少量使用（fate, ambition, hardship, mercy, grief）。
+
+**禁用**　過度炫技的比喻。難以閱讀的長句連鎖。離題的評論性擴寫。
+
+**文化詞**　可保留原詞與文化語感，用簡短插入語補充。
+
+**可用寫法**
+```
+Driven by fear and anger, he left the city before dawn.
+What he had seen that night changed the way he saw his own family.
+The friend who had once saved him returned, though no one had expected it.
+```
+
+**禁用寫法**
+```
+Like a leaf torn from a dying tree in the last autumn of an empire, he drifted.
+                                          ← 過密比喻，離題擴寫
+```
+
+---
+
+## L9 — CEFR B2
+
+**目標讀者**　中高級讀者。能讀較完整的敘事、分析與有風格的文本。適合文學改寫與深度摘要。
+
+**規格**　每句 15–25 字；每段 4–8 句。
+
+**新增能力**　假設語氣。多層從句與較複雜的結構。whereas、nevertheless 等較正式的轉折詞。
+
+**詞彙**　較廣泛的詞彙範圍。抽象概念（justice, loyalty, fate, identity, consequence, ambition）。人性詞（grief, mercy, courage, desperation, conflict）。敘事詞（reveal, confront, surrender, witness, abandon, endure）。
+
+**禁用**　過度炫技的文風。難以消化的長串從句。與原文主題無關的擴寫。
+
+**文化詞**　直接保留，可依原文語感處理典故，不必拆解成白話。
+
+**可用寫法**
+```
+Knowing the city had no grain left, he resolved to set out that very night.
+If he had stayed, he would have shared the fate of everyone inside those walls.
+The decision, whereas it saved his life, cost him the only friend he had.
+```
+
+---
+
+## L10 — CEFR B2 文學敘事版
+
+**目標讀者**　能讀文學性英文的讀者。目標是保留原文的敘事層次、語氣與文學質地，同時仍維持 B2 可讀性。
+
+**規格**　每句 15–28 字；每段 4–8 句。句長可以變化較大——用長短交錯製造節奏，這是與 L9 最明顯的差別。
+
+**新增能力**　全部句型開放，包含倒裝、強調句（It was ... that ...）、修辭性重複與意象。可保留原文的比喻與典故語感。
+
+**詞彙**　文學詞、意象詞、語氣詞皆可使用。可保留原文的文化質地。
+
+**禁用**　仍然禁止：離題的擴寫、原文沒有的情節與評論、為炫技而堆疊到讀者跟不上的長句。文學感是為原文服務的，不是拿來取代原文的。
+
+**文化詞**　完整保留，可用原文的意象直譯，讓英文讀者感受到原文的異質性。
+
+**可用寫法**
+```
+The granaries were empty; the wells had run dry. It was hunger, not the enemy,
+that finally drove him from the city. Beyond the mountain, an old friend was
+waiting — or so he told himself, riding through the dark.
+```
+
+**禁用寫法**
+```
+And so, as the ancient wheel of destiny turned once more upon its unforgiving
+axis, grinding the hopes of mortals into the fine dust of forgotten centuries...
+                                          ← 原文沒有的擴寫，純粹炫技
+```
+
+
+# 英文分級改寫（L1–L10）
+
+把原文改寫成指定等級的英文，並逐句附上指定語言的翻譯（照英文意思翻成簡單的目標語言，不是原文），讓讀者可以對照閱讀。**翻譯語言預設為中文**；使用者指定「翻成日文」「日文對照」「翻成韓文」等時，逐句對照改用該語言。
+
+這不是逐字翻譯。低等級時你必須主動**拆句、換詞、砍掉修飾**，讓句子真的落在該等級讀者能讀懂的範圍；高等級時才保留原文的語氣與文學感。判準永遠是「這一級的讀者讀不讀得懂」，不是「翻得像不像」。
+
+翻譯也是同一套精神：**翻譯的對象是改寫後的英文，不是原文**。原文是文言文或難句時，讀者看不懂原文才需要這份翻譯，所以翻譯要照英文的意思、用簡單的目標語言寫（中文讀者用簡單中文、日文讀者用簡單日文…），讓讀者能確認自己有沒有讀懂英文。
+
+---
+
+## 開始前
+
+需要三件事：**原文**、**目標等級**、**翻譯語言**。
+
+- **翻譯語言**（可選）：使用者說「翻成日文／日文對照」→ 日文；「翻成韓文」→ 韓文；沒指定 → 預設中文。
+
+- 使用者已指定等級（L1~L10、或「CEFR A2」、或「給國中生」）→ 直接開始，不要多問。
+- 沒指定等級 → 用一句話問，並附上建議。例如：「要哪一級？看內容我建議 L5（國中程度 / CEFR A2–B1）。」不要為了問等級而中斷整個流程，若使用者語氣是「快點給我」就直接選一級做，並在開頭註明選了哪一級。
+- 原文很長（超過約 800 字）→ 先按段落切分，逐段改寫，維持段落對應關係。
+
+如果使用者說「不用翻譯」或「只要英文」，就只輸出英文；預設是有翻譯對照的（語言依指定或預設中文）。
+
+---
+
+## 等級總表
+
+每一級都**累積**下一級以下的所有能力：L6 可以用 L1–L5 的所有句型與詞彙。
+
+| 等級 | CEFR / 讀者 | 每句字數 | 每段句數 | 主要句型 | 連接詞 |
+|---|---|---:|---:|---|---|
+| L1 | A1 入門 / 剛開始讀英文 | 3–6 | 1–3 | S+V、S+be、There is/are，現在式為主 | and |
+| L2 | A1 / 國小低年級 | 4–8 | 1–3 | ＋簡單過去式、yes-no 與 Wh- 問句 | and, but |
+| L3 | A1–A2 / 國小中年級 | 5–10 | 2–4 | ＋未來式（will / be going to）、so | and, but, so, then |
+| L4 | A2 / 國小高年級 | 8–12 | 2–4 | ＋because、when、There was/were、比較級 | and, but, because, then, when |
+| L5 | A2–B1 / 國中七年級 | 10–15 | 3–5 | ＋after、before、if（真實條件）、短附屬子句 | when, after, before, if, so |
+| L6 | B1 / 國中八九年級 | 12–18 | 3–6 | ＋although、while、關係子句入門（who/that）、少量被動 | however, so, while, although |
+| L7 | B1 上 / 中級讀者 | 14–20 | 3–6 | ＋完成式、較自由的關係子句、被動可正常使用 | therefore, instead, meanwhile |
+| L8 | B1–B2 / 高中 | 15–22 | 4–7 | ＋分詞構句入門、名詞子句、對比與補充說明 | although, however, therefore |
+| L9 | B2 / 中高級讀者 | 15–25 | 4–8 | ＋假設語氣、多層從句、較完整的敘事層次 | whereas, nevertheless |
+| L10 | B2 文學敘事版 | 15–28 | 4–8 | 全部句型開放，含倒裝與強調句，保留修辭 | 全部 |
+
+字數是**平均目標區間**，不是硬性上下限。偶爾一句短 1–2 字讓節奏好讀，比硬湊字數好；但整段的平均必須落在區間內，而且**不要出現明顯超出上限的長句**——那才是真正會讓讀者卡住的東西。
+
+各級的完整規格（目標讀者、允許／禁用句型、文化詞處理、可用與禁用寫法範例）在 「L1–L10 詳細規格」。**改寫 L1–L3 或 L8–L10 之前務必先讀該級的那一節**：低段的禁用句型很容易不小心違反，高段則容易寫得過於炫技而失去可讀性。中段（L4–L7）若你對規格有把握，可直接依總表進行。
+
+建議詞彙庫在 「L1–L10 分級字彙庫」，需要控制用詞密度或不確定某個字適不適合該級時再讀。
+
+---
+
+## 改寫流程
+
+**1. 抽骨架。** 先在心裡把原文拆成一串事件：誰、做了什麼、為什麼、結果如何。古典文本、文言文、章節摘要尤其要先做這一步，否則容易被原文句式牽著走，寫出中式英文。
+
+**2. 切句組。** 以**中文原句**為對照單位，逐句編號。這是輸出格式的骨架。
+
+**3. 逐句組改寫。** 一個中文句組可以對應多句英文——這正是低等級的核心手法：
+
+> 他知道城裡已經沒有糧食，於是決定連夜出發，去投靠住在山那邊的舊友。
+
+L2（4–8 字，禁從句）拆成五句：
+> The city had no food. He knew it. He wanted to leave. His old friend lived over the mountain. He left that night.
+
+L6（12–18 字，可用 because / who）：
+> He knew there was no food left in the city, so he decided to leave that same night. He went to find an old friend who lived beyond the mountain.
+
+L9（15–25 字，可用分詞構句）：
+> Knowing the city had no grain left, he resolved to set out that very night and seek shelter with an old friend beyond the mountain.
+
+同一組事件、同一組人物，只有語言複雜度在變。這是整個 skill 的核心：**內容守恆，難度可調。**
+
+每句英文都附一句**翻譯（照英文意思翻成目標語言）**，英文拆成幾句，翻譯就跟着拆成幾句。
+
+**4. 段落收束。** 檢查每段句數是否落在區間內，段與段之間的時間／因果銜接是否清楚。低等級靠 then / after that 這類明示的順序詞；高等級才用語意銜接。
+
+**5. 自我檢查**（見下方），有問題先改掉再輸出。
+
+---
+
+## 輸出格式
+
+預設格式：**先給完整英文，再給逐句對照（英文 + 目標語言翻譯）**。完整英文讓讀者能連貫地讀完一遍，對照區才是查閱用的。
+
+翻譯的規則是「**照英文意思翻**」：把改寫後的英文句子翻成簡單的目標語言（中文／日文／韓文…），**不要照抄原文**。原文是文言文或難句時，翻譯的是英文那句白話的意思；英文把一個概念拆成兩句，翻譯也要跟着拆。
+
+```markdown
+## English (L3)
+
+He knew the city had no food. He wanted to leave that night. His old friend lived over the mountain.
+
+## 逐句對照
+
+（以下範例以中文為目標語言；使用者指定日文／韓文等時，`>` 後改寫成該語言）
+
+**1.** He knew the city had no food. He wanted to leave that night. His old friend lived over the mountain.
+> 他知道城裡沒有食物了。他想當天晚上離開。他的老朋友住在山的那一邊。
+
+**2.** ...
+> ...
+```
+
+要點：
+
+- 編號的單位是**原文原句**，不是英文句。一組編號底下可以有好幾句英文，翻譯也跟着一句一句翻。
+- 翻譯**照英文意思翻，不是照原文翻**。例如原文「丞相」→ 英文 `the king's helper` → 中文翻譯寫「國王的助手」（日文寫「王の補佐役」、韓文寫「왕의 보좌관」），不要寫回「丞相」；原文「寧教我負天下人，休教天下人負我」→ 英文 `I will hurt others before they hurt me.` → 中文翻譯寫「我會在別人傷害我之前先傷害他們。」，不要照原文成語寫。
+- 翻譯要簡單、貼近英文句子的意思，用目標語言寫，讓讀者能確認自己有沒有讀懂英文；不要用比英文更難的目標語言。
+- 原文有分段就保留分段，段落之間用 `### 第 N 段` 之類的標題隔開（原文只有一段就不必）。
+- 使用者要求表格對照時改用兩欄表格（English / 翻譯）；要求「只要英文」時只輸出上半部。
+- 不要輸出規則說明、不要評論自己的改寫、不要加原文沒有的前言後記。使用者要的是成品。
+
+---
+
+## 核心規則
+
+**內容守恆。** 保留原文的核心事件、人物關係、事件順序與結果。不要新增原文沒有的情節、動機或評論——低等級最容易犯的錯是「為了讓句子好寫而自己補一段解釋」。要簡化的是語言，不是故事。
+
+**寧可易讀。** 規格衝突時（例如「這個字超出詞彙庫但換掉會失真」），一律選更容易讀的那個。失真一點點可以接受，讀不懂不行。
+
+**一段一事。** 每段只處理一個主要事件或概念，等級越低越要嚴格遵守。
+
+**具體優先。** 優先用高頻、具體、可視覺化的詞。避免不必要的抽象名詞化——`He decided to leave` 比 `His decision was to make a departure` 好，在任何等級都是。
+
+**文化詞與專有名詞。** 古典文本常有典故、官名、朝代、成語，依等級處理（原文非中文時同理，低等級一律換成目標讀者能懂的簡單說法）：
+
+- **L1–L3**：換成最簡單的具體說法。「丞相」→ `the king's helper`；「不共戴天之仇」→ `He hated the man very much`。人名保留但盡量少用、用最短的拼寫。
+- **L4–L7**：保留專有名詞，第一次出現時用同位語做一句話解釋——`Cao Cao, a powerful general,` ——解釋本身也要符合該級句長。
+- **L8–L10**：可直接保留原詞與文化語感，必要時用簡短的插入語補充，不必把典故拆解成白話。
+
+**翻譯貼英文。** 對照區的翻譯是「照英文意思翻」的翻譯，不是原文，也不是譯註。英文說 `the king's helper`，中文就寫「國王的助手」（日文寫「王の補佐役」），即使原文是「丞相」。翻譯的難度不要超過英文本身，讀者看不懂英文時要靠它確認意思。
+
+**不要注音、不要加英文以外的說明。**
+
+---
+
+## 自我檢查
+
+輸出前逐項確認，有問題自己修好再給：
+
+- 有沒有句子明顯超出該級字數上限？
+- 有沒有用到該級的禁用句型（低等級最常見：從句、被動、分詞構句偷跑進來）？
+- 核心事件、人物、順序、結果是否都在？
+- 有沒有加入原文沒有的重要內容？
+- 詞彙難度是否符合該級？有沒有混進抽象名詞或罕見字？
+- 翻譯是否**照英文意思**翻、有沒有漏句或翻錯？（不是照原文照抄；英文拆句後翻譯也要跟着拆，且語言與使用者指定一致）
+
+同一份原文要出多個等級版本時，額外檢查：各版本的**核心事件是否一致**，以及難度是否確實隨等級遞增——這是多版本輸出最容易出錯的地方。
+
+---
+
+## 與原始文件的等級對照
+
+本 skill 的 L1–L10 是一條單調遞增的階梯。原始 prompt 模板文件裡有兩套並行編號（L1–L6 一套、L7–L10 另一套，內容互相重疊），對應關係如下，需要追溯來源時參考：
+
+| 本 skill | 原文件出處 |
+|---|---|
+| L1、L2 | 原 L1 / 原 L7（CEFR A1） |
+| L3 | 原 L2 / 原 L8（A1–A2） |
+| L4 | 原 L3（A2） |
+| L5 | 原 L4（A2–B1） |
+| L6、L7 | 原 L5 / 原 L9（B1） |
+| L8 | 原 L6（B1–B2） |
+| L9 | 原 L10（B2） |
+| L10 | 原文件第 10 節「B2：文學敘事版」 |
+
+設計參考了台灣十二年國教英語文課綱的核心句型與文法句構、CEFR 分級描述，以及 DCEC 國小至高中英語診斷概念。
