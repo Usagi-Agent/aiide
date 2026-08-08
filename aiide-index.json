@@ -5,9 +5,6 @@
   "homepage": "https://github.com/Usagi-Agent/aiide",
   "items": [
     {
-      "path": "kb/aiide-guide.aiide-kb",
-      "size": 5185,
-      "format": 1,
       "type": "kb",
       "id": "usagi.aiide-guide",
       "version": "1.0.0",
@@ -15,12 +12,11 @@
       "summary": "把它加進 KB 庫，AI 就能回答「這個 App 怎麼用」。",
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
-      "appMinVersion": "1.15.0"
+      "appMinVersion": "1.15.0",
+      "path": "kb/aiide-guide.aiide-kb",
+      "size": 5185
     },
     {
-      "path": "kb/markdown-pptx-cheatsheet.aiide-kb",
-      "size": 1255,
-      "format": 1,
       "type": "kb",
       "id": "usagi.markdown-pptx-cheatsheet",
       "version": "1.0.0",
@@ -28,12 +24,11 @@
       "summary": "哪一種 Markdown 寫法會變成投影片的哪一個部分。",
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
-      "appMinVersion": "1.15.0"
+      "appMinVersion": "1.15.0",
+      "path": "kb/markdown-pptx-cheatsheet.aiide-kb",
+      "size": 1255
     },
     {
-      "path": "prompts/classical-layout.aiide-prompt",
-      "size": 724,
-      "format": 1,
       "type": "prompt",
       "id": "usagi.classical-layout",
       "version": "1.0.0",
@@ -41,12 +36,11 @@
       "summary": "把硬斷行的古典文本整理成可讀的排版：接合段落、詩詞用引用區塊、統一回目。",
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
-      "appMinVersion": "1.15.0"
+      "appMinVersion": "1.15.0",
+      "path": "prompts/classical-layout.aiide-prompt",
+      "size": 724
     },
     {
-      "path": "prompts/doc-proofread.aiide-prompt",
-      "size": 1347,
-      "format": 1,
       "type": "prompt",
       "id": "usagi.doc-proofread",
       "version": "1.0.0",
@@ -54,12 +48,11 @@
       "summary": "逐句校對錯字、標點、用語一致與病句，只改該改的，並列出修改清單。",
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
-      "appMinVersion": "1.15.0"
+      "appMinVersion": "1.15.0",
+      "path": "prompts/doc-proofread.aiide-prompt",
+      "size": 1347
     },
     {
-      "path": "prompts/english-glasses.aiide-prompt",
-      "size": 1361,
-      "format": 1,
       "type": "prompt",
       "id": "usagi.english-glasses",
       "version": "1.0.0",
@@ -67,12 +60,11 @@
       "summary": "用指定的字庫與文法庫改寫中文文本，逐句中英對照，文末附句型與新字。",
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
-      "appMinVersion": "1.15.0"
+      "appMinVersion": "1.15.0",
+      "path": "prompts/english-glasses.aiide-prompt",
+      "size": 1361
     },
     {
-      "path": "prompts/english-level-rewrite.aiide-prompt",
-      "size": 31013,
-      "format": 1,
       "type": "prompt",
       "id": "usagi.english-level-rewrite",
       "version": "1.0.0",
@@ -80,12 +72,11 @@
       "summary": "把中文文本改寫成 L1–L10（對應 CEFR A1–B2）的英文，並逐句附翻譯對照。",
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
-      "appMinVersion": "1.15.0"
+      "appMinVersion": "1.15.0",
+      "path": "prompts/english-level-rewrite.aiide-prompt",
+      "size": 31013
     },
     {
-      "path": "prompts/exam-generator.aiide-prompt",
-      "size": 1448,
-      "format": 1,
       "type": "prompt",
       "id": "usagi.exam-generator",
       "version": "1.0.0",
@@ -93,12 +84,11 @@
       "summary": "結合領域知識與指定文法的雙效考卷：閱讀、克漏字、翻譯、改錯、配對。",
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
-      "appMinVersion": "1.15.0"
+      "appMinVersion": "1.15.0",
+      "path": "prompts/exam-generator.aiide-prompt",
+      "size": 1448
     },
     {
-      "path": "prompts/industry-trend-report-en.aiide-prompt",
-      "size": 1504,
-      "format": 1,
       "type": "prompt",
       "id": "usagi.industry-trend-report-en",
       "version": "1.0.0",
@@ -106,12 +96,11 @@
       "summary": "The English-output counterpart of 產業趨勢週報.",
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
-      "appMinVersion": "1.15.0"
+      "appMinVersion": "1.15.0",
+      "path": "prompts/industry-trend-report-en.aiide-prompt",
+      "size": 1504
     },
     {
-      "path": "prompts/industry-trend-report.aiide-prompt",
-      "size": 1548,
-      "format": 1,
       "type": "prompt",
       "id": "usagi.industry-trend-report",
       "version": "1.0.0",
@@ -119,12 +108,11 @@
       "summary": "把搜尋結果整理成有引用來源的產業週報：頭條、摘要表、數據雷達、下週關注。",
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
-      "appMinVersion": "1.15.0"
+      "appMinVersion": "1.15.0",
+      "path": "prompts/industry-trend-report.aiide-prompt",
+      "size": 1548
     },
     {
-      "path": "prompts/meeting-summary.aiide-prompt",
-      "size": 889,
-      "format": 1,
       "type": "prompt",
       "id": "usagi.meeting-summary",
       "version": "1.0.0",
@@ -132,12 +120,11 @@
       "summary": "逐字稿整理成摘要、行動項目表、風險清單與下次議題。",
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
-      "appMinVersion": "1.15.0"
+      "appMinVersion": "1.15.0",
+      "path": "prompts/meeting-summary.aiide-prompt",
+      "size": 889
     },
     {
-      "path": "prompts/research-assistant.aiide-prompt",
-      "size": 1517,
-      "format": 1,
       "type": "prompt",
       "id": "usagi.research-assistant",
       "version": "1.0.0",
@@ -145,25 +132,23 @@
       "summary": "每個事實都要有來源；查不到就說查不到，不要推測。",
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
-      "appMinVersion": "1.15.0"
+      "appMinVersion": "1.15.0",
+      "path": "prompts/research-assistant.aiide-prompt",
+      "size": 1517
     },
     {
-      "path": "prompts/slide-outline.aiide-prompt",
-      "size": 1604,
-      "format": 1,
       "type": "prompt",
       "id": "usagi.slide-outline",
-      "version": "1.1.0",
+      "version": "1.0.0",
       "title": "簡報大綱",
       "summary": "把一份文件整理成可直接匯出成投影片的大綱：一頁一個訊息。",
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
-      "appMinVersion": "1.15.0"
+      "appMinVersion": "1.15.0",
+      "path": "prompts/slide-outline.aiide-prompt",
+      "size": 1260
     },
     {
-      "path": "prompts/translate-bilingual.aiide-prompt",
-      "size": 1159,
-      "format": 1,
       "type": "prompt",
       "id": "usagi.translate-bilingual",
       "version": "1.0.0",
@@ -171,12 +156,11 @@
       "summary": "逐段中英對照，保留原文結構與專有名詞，術語表附在文末。",
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
-      "appMinVersion": "1.15.0"
+      "appMinVersion": "1.15.0",
+      "path": "prompts/translate-bilingual.aiide-prompt",
+      "size": 1159
     },
     {
-      "path": "prompts/travel-planner.aiide-prompt",
-      "size": 1539,
-      "format": 1,
       "type": "prompt",
       "id": "usagi.travel-planner",
       "version": "1.0.0",
@@ -184,12 +168,11 @@
       "summary": "依地理動線排出逐日行程表，含交通、餐飲、花費估算與雨天備案。",
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
-      "appMinVersion": "1.15.0"
+      "appMinVersion": "1.15.0",
+      "path": "prompts/travel-planner.aiide-prompt",
+      "size": 1539
     },
     {
-      "path": "prompts/worksheet-generator.aiide-prompt",
-      "size": 1312,
-      "format": 1,
       "type": "prompt",
       "id": "usagi.worksheet-generator",
       "version": "1.0.0",
@@ -197,12 +180,11 @@
       "summary": "把領域知識設計成五個區塊的雙語學習單，含教師指引，適合 A4 列印。",
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
-      "appMinVersion": "1.15.0"
+      "appMinVersion": "1.15.0",
+      "path": "prompts/worksheet-generator.aiide-prompt",
+      "size": 1312
     },
     {
-      "path": "styles/deck-executive.aiide-style",
-      "size": 861,
-      "format": 1,
       "type": "style",
       "id": "usagi.deck-executive",
       "version": "1.0.0",
@@ -210,12 +192,11 @@
       "summary": "給主管看的：先講結論，一頁一個決策點，視覺克制。",
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
-      "appMinVersion": "1.15.0"
+      "appMinVersion": "1.15.0",
+      "path": "styles/deck-executive.aiide-style",
+      "size": 861
     },
     {
-      "path": "styles/deck-teaching.aiide-style",
-      "size": 1077,
-      "format": 1,
       "type": "style",
       "id": "usagi.deck-teaching",
       "version": "1.0.0",
@@ -223,12 +204,11 @@
       "summary": "上課用：慢一點、例子多一點，配圖走溫暖的手繪感。",
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
-      "appMinVersion": "1.15.0"
+      "appMinVersion": "1.15.0",
+      "path": "styles/deck-teaching.aiide-style",
+      "size": 1077
     },
     {
-      "path": "styles/illustration-pack.aiide-style",
-      "size": 1105,
-      "format": 1,
       "type": "style",
       "id": "usagi.illustration-pack",
       "version": "1.0.0",
@@ -236,7 +216,9 @@
       "summary": "四種自動插圖風格：工程圖、剪紙、粉筆、極簡線條。",
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
-      "appMinVersion": "1.15.0"
+      "appMinVersion": "1.15.0",
+      "path": "styles/illustration-pack.aiide-style",
+      "size": 1105
     }
   ]
 }
