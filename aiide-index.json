@@ -494,7 +494,7 @@
     },
     {
       "path": "prompts/refine-core.zh-Hant.aiide-prompt",
-      "size": 2164,
+      "size": 2220,
       "format": 1,
       "type": "prompt",
       "id": "usagi.refine-core",
@@ -504,11 +504,12 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/189"
     },
     {
       "path": "prompts/refine-deck-health.zh-Hant.aiide-prompt",
-      "size": 1721,
+      "size": 1777,
       "format": 1,
       "type": "prompt",
       "id": "usagi.refine-deck-health",
@@ -518,11 +519,12 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/190"
     },
     {
       "path": "prompts/refine-deck-master.zh-Hant.aiide-prompt",
-      "size": 2183,
+      "size": 2239,
       "format": 1,
       "type": "prompt",
       "id": "usagi.refine-deck-master",
@@ -532,11 +534,12 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/195"
     },
     {
       "path": "prompts/refine-deck-notes.zh-Hant.aiide-prompt",
-      "size": 1305,
+      "size": 1361,
       "format": 1,
       "type": "prompt",
       "id": "usagi.refine-deck-notes",
@@ -546,11 +549,12 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/195"
     },
     {
       "path": "prompts/refine-deck-slides.zh-Hant.aiide-prompt",
-      "size": 1416,
+      "size": 1472,
       "format": 1,
       "type": "prompt",
       "id": "usagi.refine-deck-slides",
@@ -560,11 +564,12 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/191"
     },
     {
       "path": "prompts/refine-deck-structure.zh-Hant.aiide-prompt",
-      "size": 1626,
+      "size": 1682,
       "format": 1,
       "type": "prompt",
       "id": "usagi.refine-deck-structure",
@@ -574,11 +579,12 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/195"
     },
     {
       "path": "prompts/refine-deck-visual.zh-Hant.aiide-prompt",
-      "size": 1502,
+      "size": 1558,
       "format": 1,
       "type": "prompt",
       "id": "usagi.refine-deck-visual",
@@ -588,11 +594,12 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/195"
     },
     {
       "path": "prompts/refine-report-compress.zh-Hant.aiide-prompt",
-      "size": 1238,
+      "size": 1294,
       "format": 1,
       "type": "prompt",
       "id": "usagi.refine-report-compress",
@@ -602,11 +609,12 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/196"
     },
     {
       "path": "prompts/refine-report-execsum.zh-Hant.aiide-prompt",
-      "size": 1686,
+      "size": 1742,
       "format": 1,
       "type": "prompt",
       "id": "usagi.refine-report-execsum",
@@ -616,11 +624,12 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/192"
     },
     {
       "path": "prompts/refine-report-factcheck.zh-Hant.aiide-prompt",
-      "size": 1690,
+      "size": 1746,
       "format": 1,
       "type": "prompt",
       "id": "usagi.refine-report-factcheck",
@@ -630,11 +639,12 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/193"
     },
     {
       "path": "prompts/refine-report-logic.zh-Hant.aiide-prompt",
-      "size": 1714,
+      "size": 1770,
       "format": 1,
       "type": "prompt",
       "id": "usagi.refine-report-logic",
@@ -644,11 +654,12 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/196"
     },
     {
       "path": "prompts/refine-report-master.zh-Hant.aiide-prompt",
-      "size": 2253,
+      "size": 2309,
       "format": 1,
       "type": "prompt",
       "id": "usagi.refine-report-master",
@@ -658,11 +669,12 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/196"
     },
     {
       "path": "prompts/refine-report-tone.zh-Hant.aiide-prompt",
-      "size": 1120,
+      "size": 1176,
       "format": 1,
       "type": "prompt",
       "id": "usagi.refine-report-tone",
@@ -672,11 +684,12 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/196"
     },
     {
       "path": "prompts/refine-research-synthesis.zh-Hant.aiide-prompt",
-      "size": 3731,
+      "size": 3787,
       "format": 1,
       "type": "prompt",
       "id": "usagi.refine-research-synthesis",
@@ -686,7 +699,8 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/194"
     },
     {
       "path": "prompts/research-assistant.zh-Hant.aiide-prompt",
