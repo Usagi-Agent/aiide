@@ -33,6 +33,20 @@
       "lang": "zh-Hant"
     },
     {
+      "path": "kb/three-kingdoms.zh-Hant.aiide-kb",
+      "size": 1034231,
+      "format": 1,
+      "type": "kb",
+      "id": "usagi.three-kingdoms",
+      "version": "1.0.0",
+      "title": "古典小說.三國演義",
+      "summary": "羅貫中著，120 回三國歷史演義。東漢末年群雄割據，魏蜀吳三分天下。",
+      "author": "小兔",
+      "license": "CC BY 4.0",
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/185"
+    },
+    {
       "path": "prompts/classical-layout.zh-Hant.aiide-prompt",
       "size": 738,
       "format": 1,
