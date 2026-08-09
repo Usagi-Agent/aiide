@@ -108,7 +108,10 @@ def check_manifest(raw, expected_type, where):
 def read_prompt(path):
     data = path.read_bytes()
     try:
-        text = data.decode("utf-8")
+        # utf-8-sig, not utf-8: Foundation strips a leading BOM when it decodes,
+        # so the app opens such a file happily. Refusing it here would report a
+        # problem that does not exist.
+        text = data.decode("utf-8-sig")
     except UnicodeDecodeError:
         raise Problem(f"{path.name}: 不是 UTF-8 文字檔")
     fields, body = split_front_matter(text)
@@ -128,7 +131,7 @@ def read_prompt(path):
 
 def read_style(path):
     try:
-        raw = json.loads(path.read_text(encoding="utf-8"))
+        raw = json.loads(path.read_text(encoding="utf-8-sig"))
     except (UnicodeDecodeError, json.JSONDecodeError) as e:
         raise Problem(f"{path.name}: 不是合法的 JSON（{e}）")
     if not isinstance(raw, dict):
@@ -162,7 +165,7 @@ def read_kb(path):
         if "manifest.json" not in names:
             raise Problem(f"{path.name}: zip 裡沒有 manifest.json")
         try:
-            raw = json.loads(z.read("manifest.json").decode("utf-8"))
+            raw = json.loads(z.read("manifest.json").decode("utf-8-sig"))
         except (UnicodeDecodeError, json.JSONDecodeError) as e:
             raise Problem(f"{path.name}: manifest.json 不是合法的 JSON（{e}）")
         manifest = check_manifest(raw, "kb", path.name)
@@ -171,7 +174,7 @@ def read_kb(path):
             raise Problem(f"{path.name}: entries/ 底下沒有任何 .md 條目")
         usable = 0
         for name in entries:
-            _, body = split_front_matter(z.read(name).decode("utf-8", "replace"))
+            _, body = split_front_matter(z.read(name).decode("utf-8-sig", "replace"))
             if body.strip():
                 usable += 1
             else:
