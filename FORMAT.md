@@ -350,7 +350,7 @@ AI-IDE 一律寫作 AI-IDE，不寫成 AI IDE 或 AIIDE。
 |---|---|
 | 哪些算條目 | **只有 `entries/` 開頭、`.md` 結尾的檔案**。大小寫有意義（`.MD` 不算）。其他檔案（README、LICENSE、圖片）會被忽略 |
 | `manifest.json` | 從 repo 分享時**必須有**。沒有它，掃描器讀不出型別，這個檔案會被歸進「無法開啟」而不是列出來 |
-| 條目順序 | 依壓縮檔內的實際順序。檔名建議加流水號前綴（`001-`），順便讓同名條目不會互相覆蓋 |
+| 條目順序 | **依壓縮檔內的實際順序，不是檔名順序。** 檔名的流水號前綴（`001-`）只保證同名條目不會互相覆蓋、diff 讀起來有序；要讓顯示順序也對，打包時得**照順序把檔案一個個加進去**（見下方指令）——`zip -r entries` 用的是目錄的實際順序，出來常常是亂的 |
 | 沒有 front matter | 也能匯入，標題取內文開頭 |
 | 內文空的條目 | 略過；全部都空則整份拒收 |
 | 去重 | 匯入時以**內容雜湊**去重：同一個包傳兩次，第二次不會多出任何東西 |
@@ -365,8 +365,9 @@ AI-IDE 一律寫作 AI-IDE，不寫成 AI IDE 或 AIIDE。
 實務上這代表：
 
 ```bash
-# 正確：在包的資料夾「裡面」壓，manifest.json 才會在最上層
-cd my-pack && zip -X -r ../brand-terms.aiide-kb manifest.json entries
+# 在包的資料夾「裡面」壓，manifest.json 才會在最上層；
+# 用 entries/*.md 而不是 -r entries，條目順序才會照檔名
+cd my-pack && zip -qX ../brand-terms.aiide-kb manifest.json entries/*.md
 ```
 
 ```python
@@ -590,6 +591,7 @@ App 這一端對應的規則：一律不自動安裝、不自動更新、瀏覽�
 | 列表顯示了我已經刪掉的項目 | `aiide-index.json` 過期了。重新產生（§5） |
 | 索引明明放了卻好像沒生效 | 頂層 `format` 不是 `1`、`items` 是空的、或 JSON 語法錯誤——整份會被忽略且沒有訊息。跑 `--check` |
 | 列表少了很多項目 | 超過一次 200 個的上限，或 GitHub 回報 repo 太大（畫面上會明說少了幾個）。放索引可以解決 |
+| KB 條目的顯示順序和檔名對不上 | 用了 `zip -r entries`——那是目錄順序。改成 `zip … manifest.json entries/*.md`（§4.5） |
 | KB 包點進去說「不是有效的分享檔」 | 用 Finder 壓的（多一層資料夾）、或壓縮工具寫出了 data descriptor / zip64（§4.5） |
 | 風格包少了幾則 | 那幾則的 `field` 不是三個合法值之一，或 `body` 是空的（§4.4） |
 | 標題顯示成檔名或內文開頭 | manifest 沒有 `title` |
@@ -722,7 +724,7 @@ AI-IDE 一律寫作 AI-IDE，不寫成 AI IDE 或 AIIDE。
 打包：
 
 ```bash
-cd brand-terms && zip -X -r ../kb/brand-terms.zh-Hant.aiide-kb manifest.json entries
+cd brand-terms && zip -qX ../kb/brand-terms.zh-Hant.aiide-kb manifest.json entries/*.md
 ```
 
 ---
