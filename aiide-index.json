@@ -131,8 +131,38 @@
       "lang": "zh-Hant"
     },
     {
+      "path": "prompts/english-glasses.en.aiide-prompt",
+      "size": 1918,
+      "format": 1,
+      "type": "prompt",
+      "id": "usagi.english-glasses",
+      "version": "1.0.0",
+      "title": "English Glasses",
+      "summary": "Rewrites Chinese text using a specified vocabulary bank and grammar library, with sentence-by-sentence Chinese-English comparison and a summary of sentence patterns and new words at the end.",
+      "author": "Usagi-Agent",
+      "license": "CC BY 4.0",
+      "appMinVersion": "1.15.0",
+      "lang": "en",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/154"
+    },
+    {
+      "path": "prompts/english-glasses.zh-Hans.aiide-prompt",
+      "size": 1431,
+      "format": 1,
+      "type": "prompt",
+      "id": "usagi.english-glasses",
+      "version": "1.0.0",
+      "title": "英文眼镜",
+      "summary": "用指定的字库与文法库改写中文文本，逐句中英对照，文末附句型与新字。",
+      "author": "Usagi-Agent",
+      "license": "CC BY 4.0",
+      "appMinVersion": "1.15.0",
+      "lang": "zh-Hans",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/154"
+    },
+    {
       "path": "prompts/english-glasses.zh-Hant.aiide-prompt",
-      "size": 1375,
+      "size": 1431,
       "format": 1,
       "type": "prompt",
       "id": "usagi.english-glasses",
@@ -142,7 +172,8 @@
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/154"
     },
     {
       "path": "prompts/english-level-rewrite.zh-Hant.aiide-prompt",
@@ -159,8 +190,38 @@
       "lang": "zh-Hant"
     },
     {
+      "path": "prompts/exam-generator.en.aiide-prompt",
+      "size": 1895,
+      "format": 1,
+      "type": "prompt",
+      "id": "usagi.exam-generator",
+      "version": "1.0.0",
+      "title": "Quiz Generator",
+      "summary": "A dual-purpose exam combining domain knowledge with specified grammar: reading, cloze, translation, error correction, and matching.",
+      "author": "Usagi-Agent",
+      "license": "CC BY 4.0",
+      "appMinVersion": "1.15.0",
+      "lang": "en",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/33"
+    },
+    {
+      "path": "prompts/exam-generator.zh-Hans.aiide-prompt",
+      "size": 1520,
+      "format": 1,
+      "type": "prompt",
+      "id": "usagi.exam-generator",
+      "version": "1.0.0",
+      "title": "考卷生成师",
+      "summary": "结合领域知识与指定文法的双效考卷：阅读、克漏字、翻译、改错、配对。",
+      "author": "Usagi-Agent",
+      "license": "CC BY 4.0",
+      "appMinVersion": "1.15.0",
+      "lang": "zh-Hans",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/33"
+    },
+    {
       "path": "prompts/exam-generator.zh-Hant.aiide-prompt",
-      "size": 1462,
+      "size": 1517,
       "format": 1,
       "type": "prompt",
       "id": "usagi.exam-generator",
@@ -170,7 +231,8 @@
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/33"
     },
     {
       "path": "prompts/grammar-future-continuous.zh-Hant.aiide-prompt",
@@ -341,8 +403,38 @@
       "example": "https://www.lovelyduck.cc/usagiweb/article/35"
     },
     {
+      "path": "prompts/industry-trend-report.en.aiide-prompt",
+      "size": 1889,
+      "format": 1,
+      "type": "prompt",
+      "id": "usagi.industry-trend-report",
+      "version": "1.0.0",
+      "title": "Industry Trend Weekly",
+      "summary": "Organizes search results into an sourced industry weekly: headline, summary table, data radar, and next-week watch.",
+      "author": "Usagi-Agent",
+      "license": "CC BY 4.0",
+      "appMinVersion": "1.15.0",
+      "lang": "en",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/148"
+    },
+    {
+      "path": "prompts/industry-trend-report.zh-Hans.aiide-prompt",
+      "size": 1618,
+      "format": 1,
+      "type": "prompt",
+      "id": "usagi.industry-trend-report",
+      "version": "1.0.0",
+      "title": "产业趋势周报",
+      "summary": "把搜索结果整理成有引用来源的产业周报：头条、摘要表、数据雷达、下周关注。",
+      "author": "Usagi-Agent",
+      "license": "CC BY 4.0",
+      "appMinVersion": "1.15.0",
+      "lang": "zh-Hans",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/148"
+    },
+    {
       "path": "prompts/industry-trend-report.zh-Hant.aiide-prompt",
-      "size": 1562,
+      "size": 1618,
       "format": 1,
       "type": "prompt",
       "id": "usagi.industry-trend-report",
@@ -352,11 +444,42 @@
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/148"
+    },
+    {
+      "path": "prompts/meeting-summary.en.aiide-prompt",
+      "size": 1070,
+      "format": 1,
+      "type": "prompt",
+      "id": "usagi.meeting-summary",
+      "version": "1.0.0",
+      "title": "Meeting Summary Expert",
+      "summary": "Turns a transcript into a summary, action item table, risk list, and agenda for the next meeting.",
+      "author": "Usagi-Agent",
+      "license": "CC BY 4.0",
+      "appMinVersion": "1.15.0",
+      "lang": "en",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/24"
+    },
+    {
+      "path": "prompts/meeting-summary.zh-Hans.aiide-prompt",
+      "size": 961,
+      "format": 1,
+      "type": "prompt",
+      "id": "usagi.meeting-summary",
+      "version": "1.0.0",
+      "title": "会议摘要专家",
+      "summary": "把逐字稿整理成摘要、行动项目表、风险清单与下次议题。",
+      "author": "Usagi-Agent",
+      "license": "CC BY 4.0",
+      "appMinVersion": "1.15.0",
+      "lang": "zh-Hans",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/24"
     },
     {
       "path": "prompts/meeting-summary.zh-Hant.aiide-prompt",
-      "size": 903,
+      "size": 958,
       "format": 1,
       "type": "prompt",
       "id": "usagi.meeting-summary",
@@ -366,7 +489,8 @@
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/24"
     },
     {
       "path": "prompts/research-assistant.zh-Hant.aiide-prompt",
@@ -411,8 +535,38 @@
       "lang": "zh-Hant"
     },
     {
+      "path": "prompts/travel-planner.en.aiide-prompt",
+      "size": 1891,
+      "format": 1,
+      "type": "prompt",
+      "id": "usagi.travel-planner",
+      "version": "1.0.0",
+      "title": "Travel Itinerary Planner",
+      "summary": "Plans a day-by-day itinerary based on geographic routing, including transport, dining, cost estimates, and rainy-day alternatives.",
+      "author": "Usagi-Agent",
+      "license": "CC BY 4.0",
+      "appMinVersion": "1.15.0",
+      "lang": "en",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/57"
+    },
+    {
+      "path": "prompts/travel-planner.zh-Hans.aiide-prompt",
+      "size": 1608,
+      "format": 1,
+      "type": "prompt",
+      "id": "usagi.travel-planner",
+      "version": "1.0.0",
+      "title": "旅游行程规划师",
+      "summary": "依地理动线排出逐日行程表，含交通、餐饮、花费估算与雨天备案。",
+      "author": "Usagi-Agent",
+      "license": "CC BY 4.0",
+      "appMinVersion": "1.15.0",
+      "lang": "zh-Hans",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/57"
+    },
+    {
       "path": "prompts/travel-planner.zh-Hant.aiide-prompt",
-      "size": 1553,
+      "size": 1608,
       "format": 1,
       "type": "prompt",
       "id": "usagi.travel-planner",
@@ -422,11 +576,42 @@
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/57"
+    },
+    {
+      "path": "prompts/worksheet-generator.en.aiide-prompt",
+      "size": 1723,
+      "format": 1,
+      "type": "prompt",
+      "id": "usagi.worksheet-generator",
+      "version": "1.0.0",
+      "title": "Worksheet Generator",
+      "summary": "Designs domain knowledge into a bilingual worksheet with five sections, including a teacher's guide, suitable for A4 printing.",
+      "author": "Usagi-Agent",
+      "license": "CC BY 4.0",
+      "appMinVersion": "1.15.0",
+      "lang": "en",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/34"
+    },
+    {
+      "path": "prompts/worksheet-generator.zh-Hans.aiide-prompt",
+      "size": 1381,
+      "format": 1,
+      "type": "prompt",
+      "id": "usagi.worksheet-generator",
+      "version": "1.0.0",
+      "title": "学习单生成师",
+      "summary": "把领域知识设计成五个区块的双语学习单，含教师指引，适合 A4 打印。",
+      "author": "Usagi-Agent",
+      "license": "CC BY 4.0",
+      "appMinVersion": "1.15.0",
+      "lang": "zh-Hans",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/34"
     },
     {
       "path": "prompts/worksheet-generator.zh-Hant.aiide-prompt",
-      "size": 1326,
+      "size": 1381,
       "format": 1,
       "type": "prompt",
       "id": "usagi.worksheet-generator",
@@ -436,7 +621,8 @@
       "author": "Usagi-Agent",
       "license": "CC BY 4.0",
       "appMinVersion": "1.15.0",
-      "lang": "zh-Hant"
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/34"
     },
     {
       "path": "styles/deck-executive.zh-Hant.aiide-style",
