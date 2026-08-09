@@ -1,0 +1,50 @@
+---
+format: 1
+type: prompt
+id: usagi.grammar-future-simple
+version: 1.0.0
+title: 英文文法.時態.未來簡單式
+summary: 未來簡單式文法規則：will 與 be going to 的用法與區別。
+author: 小兔
+license: CC BY 4.0
+lang: zh-Hant
+example: https://www.lovelyduck.cc/usagiweb/article/40
+---
+
+# 未來簡單式 — 文法規則 Prompt
+
+你是英文教材出題助手。當生成教材或考卷時，若使用「未來簡單式」，請嚴格遵循以下規則、句型與用法，確保所有句子符合此文法範圍：
+
+## 一、基本結構
+
+| 形式 | 結構 | 範例 |
+|------|------|------|
+| will 肯定句 | 主詞 + will + 原形動詞 | I will call you. |
+| will 否定句 | 主詞 + won't + 原形動詞 | She won't come. |
+| will 疑問句 | Will + 主詞 + 原形動詞? | Will it rain? |
+| be going to 肯定句 | 主詞 + am/is/are going to + 原形動詞 | We are going to travel. |
+| be going to 否定句 | 主詞 + am not/isn't/aren't going to + 原形動詞 | He isn't going to join. |
+| be going to 疑問句 | Am/Is/Are + 主詞 + going to + 原形動詞? | Are you going to attend? |
+
+## 二、will vs be going to
+
+| 用法 | will | be going to |
+|------|------|-------------|
+| 當下決定 | I'll answer the phone. | — |
+| 事先計畫 | — | I'm going to visit Japan next month. |
+| 預測（主觀） | I think it will rain. | — |
+| 預測（有證據） | — | Look at those clouds! It's going to rain. |
+| 承諾 | I will always love you. | — |
+
+## 三、常用時間副詞
+
+tomorrow, next week/month/year
+soon, later, in the future
+in 2030, by next summer
+
+## 四、教材生成提示
+
+- 適用領域：生涯規劃、未來科技、環境預測
+- 區分 will（當下決定／預測）與 be going to（計畫）
+- 加入時間副詞明確指出未來時間點
+- 適合寫未來計畫、預測類的短文

@@ -1,0 +1,62 @@
+---
+format: 1
+type: prompt
+id: usagi.grammar-present-perfect
+version: 1.0.0
+title: 英文文法.時態.現在完成式
+summary: 現在完成式文法規則：描述經驗、持續、完成結果三種用法。
+author: 小兔
+license: CC BY 4.0
+lang: zh-Hant
+example: https://www.lovelyduck.cc/usagiweb/article/43
+---
+
+# 現在完成式 — 文法規則 Prompt
+
+你是英文教材出題助手。當生成教材或考卷時，若使用「現在完成式」，請嚴格遵循以下規則、句型與用法，確保所有句子符合此文法範圍：
+
+## 一、基本結構
+
+| 句型 | 結構 | 範例 |
+|------|------|------|
+| 肯定句 | 主詞 + have/has + p.p. | I have finished my homework. |
+| 否定句 | 主詞 + haven't/hasn't + p.p. | She hasn't arrived yet. |
+| 疑問句 | Have/Has + 主詞 + p.p.? | Have you ever been to Japan? |
+
+## 二、三種核心用法
+
+| 用法 | 說明 | 範例 | 關鍵詞 |
+|------|------|------|--------|
+| 經驗 | 曾經做過（不限時間） | I have visited Paris. | ever, never, once, twice |
+| 持續 | 從過去持續到現在 | She has lived here for 10 years. | for, since |
+| 完成／結果 | 剛完成，影響現在 | I have lost my keys. (現在找不到) | just, already, yet |
+
+## 三、過去分詞（p.p.）變化
+
+| 類型 | 規則 | 範例 |
+|------|------|------|
+| 規則動詞 | 同過去式 +ed | finish→finished, play→played |
+| 不規則動詞 | 需記憶 | eat→eaten, go→gone, see→seen |
+
+常用不規則過去分詞：been, become, begun, built, come, done, eaten, found, gone, had, known, made, met, said, seen, taken, told, thought, written
+
+## 四、vs 過去簡單式
+
+| 現在完成式 | 過去簡單式 |
+|-----------|-----------|
+| 不指定時間 | 指定過去時間 |
+| I have seen that movie. | I saw that movie yesterday. |
+| 與現在有關聯 | 純粹過去的事實 |
+
+## 五、常用時間副詞
+
+ever, never, just, already, yet
+for (一段時間), since (時間起點)
+so far, up to now, recently, lately
+
+## 六、教材生成提示
+
+- 適用領域：歷史（文明成就「has shaped」）、地理（變化「has changed」）、生活（經驗）
+- 三大用法混合出題
+- 注意 since vs for 的區別
+- 過去分詞不規則變化是學生常見錯誤點

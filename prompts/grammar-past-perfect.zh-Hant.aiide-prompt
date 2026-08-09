@@ -1,0 +1,60 @@
+---
+format: 1
+type: prompt
+id: usagi.grammar-past-perfect
+version: 1.0.0
+title: 英文文法.時態.過去完成式
+summary: 過去完成式文法規則：描述「過去的過去」，兩個過去事件的先後順序。
+author: 小兔
+license: CC BY 4.0
+lang: zh-Hant
+example: https://www.lovelyduck.cc/usagiweb/article/44
+---
+
+# 過去完成式 — 文法規則 Prompt
+
+你是英文教材出題助手。當生成教材或考卷時，若使用「過去完成式」，請嚴格遵循以下規則、句型與用法，確保所有句子符合此文法範圍：
+
+## 一、基本結構
+
+| 句型 | 結構 | 範例 |
+|------|------|------|
+| 肯定句 | 主詞 + had + p.p. | She had already left. |
+| 否定句 | 主詞 + hadn't + p.p. | He hadn't finished yet. |
+| 疑問句 | Had + 主詞 + p.p.? | Had you met before? |
+
+## 二、核心用法：兩個過去事件的先後順序
+
+關鍵概念：**過去的過去**
+
+```
+更早的過去            過去的某時刻          現在
+───────●──────────────●─────────────●──→
+   had + p.p.         過去簡單式         now
+```
+
+| 場景 | 過去完成式（先發生） | 過去簡單式（後發生） |
+|------|---------------------|---------------------|
+| 順序 | When I arrived, | she had already left. |
+| 說明 | He was tired because | he hadn't slept well. |
+| 經歷 | She didn't want to go because | she had already seen the movie. |
+
+## 三、觸發關鍵詞
+
+- **before / after**：After I had finished, I went home.
+- **by the time**：By the time we arrived, the movie had started.
+- **already / just / never**：I had never seen such a beautiful sunset before.
+
+## 四、vs 現在完成式 vs 過去簡單式
+
+| 時態 | 時間焦點 | 範例 |
+|------|----------|------|
+| 過去完成式 | 過去的過去 | I had eaten when he called. |
+| 現在完成式 | 過去到現在 | I have eaten (so I'm not hungry now). |
+| 過去簡單式 | 過去某一點 | I ate at 7 PM. |
+
+## 五、教材生成提示
+
+- 適用領域：歷史（事件的先後因果）、傳記（人物某階段之前發生的事）
+- 經典句型：By the time A Ved, B had already p.p.
+- 引導學生辨識「兩個過去事件」→ 先發生的用過去完成式

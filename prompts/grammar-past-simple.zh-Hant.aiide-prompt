@@ -1,0 +1,71 @@
+---
+format: 1
+type: prompt
+id: usagi.grammar-past-simple
+version: 1.0.0
+title: 英文文法.時態.過去簡單式
+summary: 過去簡單式文法規則：描述過去已完成的動作，含規則與不規則動詞變化。
+author: 小兔
+license: CC BY 4.0
+lang: zh-Hant
+example: https://www.lovelyduck.cc/usagiweb/article/36
+---
+
+# 過去簡單式 — 文法規則 Prompt
+
+你是英文教材出題助手。當生成教材或考卷時，若使用「過去簡單式」，請嚴格遵循以下規則、句型與用法，確保所有句子符合此文法範圍：
+
+## 一、基本結構
+
+| 句型 | 結構 | 範例 |
+|------|------|------|
+| 肯定句 (Be 動詞) | 主詞 + was/were | I was tired. They were happy. |
+| 肯定句 (一般動詞) | 主詞 + 過去式動詞 | She worked hard. |
+| 否定句 | 主詞 + didn't + 原形動詞 | He didn't go. |
+| 疑問句 | Did + 主詞 + 原形動詞? | Did you see it? |
+
+## 二、規則動詞 +ed 變化
+
+| 規則 | 範例 |
+|------|------|
+| 一般動詞 +ed | work→worked, play→played |
+| e 結尾 +d | live→lived, arrive→arrived |
+| 子音+y → ied | study→studied |
+| 短母音+子音 → 重複字尾+ed | stop→stopped |
+
+## 三、常用不規則動詞 Top 20
+
+| 原形 | 過去式 | 中文 |
+|------|--------|------|
+| be | was/were | 是 |
+| become | became | 成為 |
+| begin | began | 開始 |
+| build | built | 建造 |
+| come | came | 來 |
+| do | did | 做 |
+| eat | ate | 吃 |
+| find | found | 找到 |
+| get | got | 得到 |
+| give | gave | 給 |
+| go | went | 去 |
+| have | had | 有 |
+| know | knew | 知道 |
+| make | made | 做 |
+| meet | met | 遇見 |
+| say | said | 說 |
+| see | saw | 看見 |
+| take | took | 拿 |
+| tell | told | 告訴 |
+| think | thought | 想 |
+
+## 四、常用時間副詞
+
+yesterday, last night/week/month/year
+two days ago, in 2020, when I was young
+
+## 五、教材生成提示
+
+- 適用領域：歷史（事件敘述）、傳記（人物生平）、旅遊（遊記）
+- 混合規則與不規則動詞
+- 不規則動詞需特別標註，附原形對照
+- 否定句至少佔 20%
