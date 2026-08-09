@@ -19,6 +19,20 @@
       "lang": "zh-Hant"
     },
     {
+      "path": "kb/journey-to-the-west.zh-Hant.aiide-kb",
+      "size": 1089544,
+      "format": 1,
+      "type": "kb",
+      "id": "usagi.journey-to-the-west",
+      "version": "1.0.0",
+      "title": "古典小說.西遊記",
+      "summary": "吳承恩著，100 回神話小說。唐僧師徒四人西天取經，歷經九九八十一難。",
+      "author": "小兔",
+      "license": "CC BY 4.0",
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/187"
+    },
+    {
       "path": "kb/markdown-pptx-cheatsheet.zh-Hant.aiide-kb",
       "size": 1268,
       "format": 1,
