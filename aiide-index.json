@@ -61,6 +61,20 @@
       "example": "https://www.lovelyduck.cc/usagiweb/article/185"
     },
     {
+      "path": "kb/water-margin.zh-Hant.aiide-kb",
+      "size": 1322532,
+      "format": 1,
+      "type": "kb",
+      "id": "usagi.water-margin",
+      "version": "1.0.0",
+      "title": "古典小說.水滸傳",
+      "summary": "施耐庵著，120 回英雄傳奇。一百零八位好漢聚義梁山泊，替天行道。",
+      "author": "小兔",
+      "license": "CC BY 4.0",
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/186"
+    },
+    {
       "path": "prompts/classical-layout.zh-Hant.aiide-prompt",
       "size": 738,
       "format": 1,
