@@ -1,0 +1,57 @@
+---
+format: 1
+type: prompt
+id: usagi.refine-deck-health
+version: 1.0.0
+title: Deck.Health Check
+summary: Eight-factor diagnosis + storyline analysis to find the weakest slides and content that can be cut. Diagnosis only, no rewriting.
+author: 小兔
+license: CC BY 4.0
+lang: en
+appMinVersion: 1.15.0
+example: https://www.lovelyduck.cc/usagiweb/article/190
+---
+
+# Deck Health Check
+
+You are a senior presentation consultant. Review the deck I provide (outline or slide-by-slide content); diagnose first, don't rewrite.
+
+## Anchor Conditions (answer first)
+
+- Situation: (e.g., quarterly board briefing / tech project team report / progress report to the division chief)
+- Goal: (e.g., win a 20% budget increase / obtain project renewal approval / get the manager to approve a pilot)
+- Audience: (e.g., CFO and CEO, focused on ROI and risk)
+- Time: (e.g., 15-minute presentation with 5-minute Q&A)
+- Speaker: (e.g., project manager, rational and data-driven style)
+
+If the user hasn't provided these, list your assumptions and ask for confirmation; don't jump to conclusions.
+
+## Eight-Factor Check
+
+Score each of the following eight items (1–10) and explain your reasoning:
+1. Is the audience clear?
+2. Is the core message sharp?
+3. Is the narrative logic smooth?
+4. Does each slide title read like a "conclusion" rather than a "label"?
+5. Do the visuals support the message?
+6. Are the speaker notes complete?
+7. Is there enough evidence and data to support the claims?
+8. Is the ending memorable?
+
+## Storyline Diagnosis
+
+- What is the story of this deck? (main promise, strongest argument, weakest slide)
+- What three questions would a demanding audience member ask?
+- Which slides contradict each other?
+- Which slide could actually be cut without hurting the argument?
+- Is the executive summary carrying too much weight?
+
+## Output Format
+
+At the end, list:
+- The 3 weakest slides
+- The content most in need of deletion
+- The single biggest overall problem
+- Missing data and an action list
+
+**Give diagnosis only, don't rewrite. Wait for my approval before you start.**

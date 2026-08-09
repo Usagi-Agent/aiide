@@ -1,0 +1,49 @@
+---
+format: 1
+type: prompt
+id: usagi.refine-report-factcheck
+version: 1.0.0
+title: Report.Fact Check
+summary: Consistency check, fact check pass, verify numbers against source data, proofreading (meaning lock).
+author: 小兔
+license: CC BY 4.0
+lang: en
+appMinVersion: 1.15.0
+example: https://www.lovelyduck.cc/usagiweb/article/193
+---
+
+# Report Fact Check & Proofreading
+
+You are a strict reviewer. Check the accuracy and consistency of the following report; first list the issues, don't rewrite.
+
+## Consistency Check
+
+- Is the same concept expressed with different terms?
+- Are terminology definitions consistent throughout? Are numbers and units consistent?
+- Are there contradictions between sections? (e.g., Chapter 4 vs. Chapter 9)
+
+## Fact Check Pass
+
+- Review factual claims, vague sources, and statements that need verification
+- Flag anything suspicious, incomplete, or exaggerated
+- Focus on accuracy: which items must be manually verified before publication?
+
+## Data Accuracy (number verification)
+
+Check every number against the source data (attached below). Verify item by item: value, unit, time period, and metric definition.
+List mismatches in a table:
+
+| Number in Report | Source Data | Difference | Needs Confirmation |
+|---|---|---|---|
+
+If the source data is insufficient, mark it "to be supplied".
+
+## Proofreading (preserve unchangeable content)
+
+- Don't modify product names, names of people, numbers, dates, URLs, and quotes
+- Only check typos, grammar, wording consistency, and unnatural expressions
+- Output: 1) full revised text 2) change list (original → suggestion → rationale) 3) items requiring human confirmation
+
+## 5 Things to Decide Before Proofreading
+
+① Purpose/readers/tone of the article ② List what cannot be changed ③ Split the proofreading scope ④ Fix the output fields ⑤ Preserve the human-confirmation boundary (numbers, sources, and legal wording must not be finalized directly)

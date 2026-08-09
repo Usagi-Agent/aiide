@@ -1,0 +1,51 @@
+---
+format: 1
+type: prompt
+id: usagi.refine-report-execsum
+version: 1.0.0
+title: Report.Executive Summary
+summary: BLUF writing, ≤300 words answering in order: main point / recommendation / evidence / risk; decision-oriented table version.
+author: 小兔
+license: CC BY 4.0
+lang: en
+appMinVersion: 1.15.0
+example: https://www.lovelyduck.cc/usagiweb/article/192
+---
+
+# Report Executive Summary
+
+You are a professional report editor and decision-document writer. Write an executive summary for the following report.
+
+## Executive Summary (≤300 words)
+
+Answer in order:
+1. What is the main point of this document?
+2. What decision or action does it recommend?
+3. What is the single most important piece of evidence supporting the recommendation?
+4. What are the main risks or uncertainties?
+
+Keep the tone concise, professional, and non-technical. Use only information provided in the original text.
+
+## Executive Summary Table Version (decision-oriented)
+
+If the user asks, rewrite it as a version for the board / senior executives:
+- Start with an executive summary table with three columns: "Topic | Actual Problem/Risk | Countermeasure"
+- Summarize key findings in 3 bullet points, taken directly from the original text
+- Rewrite the title of each original finding so it is easier for executives to read, without changing the meaning
+- Reuse all original images unchanged
+
+## BLUF Principle
+
+Lead with the conclusion, then add background and analysis. Even a reader who only sees the executive summary should understand what decision to make.
+
+## One-Page Executive Brief (short version)
+
+Strictly limited to this format:
+1. Title: one sentence stating the single most important conclusion
+2. Bottom Line: no more than 100 words, directly stating what action should be taken
+3. Background: 3 bullets
+4. Key findings: 3–5 points, each following "finding → evidence → implication"
+5. Risks and uncertainties: at most 3 points
+6. Recommended actions: 3 items in priority order
+7. Required data and sources: brief list
+8. Tone: concise, decision-ready; no vague adjectives

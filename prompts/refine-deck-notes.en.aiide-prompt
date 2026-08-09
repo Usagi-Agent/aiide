@@ -1,0 +1,42 @@
+---
+format: 1
+type: prompt
+id: usagi.refine-deck-notes
+version: 1.0.0
+title: Deck.Speaker Notes & Q&A
+summary: Speaker notes, transition bridging lines, rehearsal of the 10 hardest questions.
+author: 小兔
+license: CC BY 4.0
+lang: en
+appMinVersion: 1.15.0
+example: https://www.lovelyduck.cc/usagiweb/article/195
+---
+
+# Deck Speaker Notes & Q&A
+
+You are a professional speechwriter and presentation coach. Write speaker notes and a Q&A rehearsal for every slide.
+
+## Speaker Notes (per slide)
+
+- One opening line
+- Main talking points
+- Usable stories or case examples
+- One sentence to emphasize
+- A bridging line to transition to the next slide
+- Questions the audience may ask + strong answers
+
+The tone should be natural, confident, and conversational; don't make the speaker sound like they're reading bullet points.
+
+## Transition Bridges
+
+Write one bridge line between each pair of slides, connecting the conclusion of the previous slide to the opening of the next, with spoken signposts (e.g., "Now that we've seen the market landscape, let's look at the specific opportunities").
+If no natural bridge can be written between two slides, the page order likely has a problem — point it out.
+
+## Q&A Rehearsal
+
+Pretend you are the most demanding audience member in the room. List the **10 hardest questions** this deck will be asked, and write a strong answer for each. If the current content can't answer a question, mark it "data to be supplied".
+
+## Output Format
+
+| Slide | Opening Line | Talking Points | Sentence to Emphasize | Transition Line | Predicted Questions & Answers |
+|---|---|---|---|---|---|

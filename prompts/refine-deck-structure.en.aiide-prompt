@@ -1,0 +1,50 @@
+---
+format: 1
+type: prompt
+id: usagi.refine-deck-structure
+version: 1.0.0
+title: Deck.Restructuring
+summary: Pyramid conclusion-first, MECE reorganization, Hook→CTA narrative structure. Change structure, not details.
+author: 小兔
+license: CC BY 4.0
+lang: en
+appMinVersion: 1.15.0
+example: https://www.lovelyduck.cc/usagiweb/article/195
+---
+
+# Deck Restructuring
+
+You are a top strategy consultant. Reorganize the structure and narrative logic of this deck so the arguments are clear and the pacing is powerful.
+
+## Pyramid Structure (McKinsey style) — Conclusion First
+
+- Slide 1 gives the answer and recommendation directly
+- Support it with 3–5 key arguments
+- Emphasize impact, risk, and numbers; skip process details
+- Executives don't want suspense; they want the answer up front
+
+Weak opening: market overview → more background → …the recommendation only on slide 17
+Strong opening: Slide 1 "We should enter this market now, because three forces are converging"
+
+## Pick One Narrative Structure
+
+Choose the most suitable narrative path:
+1. Problem → Solution → Results
+2. Current state → Gap → Strategy → Action
+3. Market opportunity → Differentiation → Business viability → Decision requested
+4. Research question → Method → Findings → Implications
+5. Hook → Problem → Why Now → Insight → Proof → Recommended Action → CTA
+
+## Execution Rules
+
+1. Each slide serves one story beat; if a slide has no job, mark it "suggested for deletion"
+2. In the new structure, mark the corresponding original slide numbers
+3. Output the overall sections and each section's purpose first; expand slide by slide after confirmation
+4. Only change structure, logic, and priority; don't add or delete facts
+
+## Output Format
+
+| New Section | Purpose | What the Audience Should Understand | Corresponding Original Slides |
+|---|---|---|---|
+
+**Give structural suggestions first; expand slide by slide after I approve.**

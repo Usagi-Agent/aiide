@@ -1,0 +1,46 @@
+---
+format: 1
+type: prompt
+id: usagi.refine-report-logic
+version: 1.0.0
+title: Report.Logic Strengthening
+summary: Argument premise check, findings→recommendations alignment, diagnostic commentary, self-audit loop.
+author: 小兔
+license: CC BY 4.0
+lang: en
+appMinVersion: 1.15.0
+example: https://www.lovelyduck.cc/usagiweb/article/196
+---
+
+# Report Logic Strengthening
+
+You are a strict editor and consultant analyst. Strengthen the quality of the argumentation in the following report.
+
+## Diagnostic (no rewriting)
+
+- Where does the argument lose focus?
+- Where is the same point made twice?
+- Where do claims appear without evidence?
+- Don't rewrite yet; give a diagnostic report with specific line numbers
+
+## Argument Premise Check
+
+- List every assumption the report's argument depends on
+- Tell me which assumptions are the weakest and why
+- Flag: which conclusions are unsupported by evidence, which are overstated
+
+## Consultant-Style Synthesis (findings → recommendations check)
+
+- Which recommendations are not supported by the findings?
+- Which recommendations are too vague, not actionable, or not linked to evidence?
+- Rewrite each recommendation so it includes: owner, concrete action, timeline, and link to evidence
+- Don't turn weak evidence into strong recommendations
+- Don't remove risks and open questions to make the report sound more confident
+- Use only the data provided; separate facts from interpretation; flag missing evidence
+
+## Self-Audit Loop
+
+As a strict Monitoring & Evaluation (M&E) reviewer, examine the content you just produced:
+① draft → ② find weaknesses (gaps, weak assumptions, missing evidence, risks, data-quality issues, ethical concerns, stakeholder blind spots, unsupported claims) → ③ suggest repairs → ④ revise the output → ⑤ state uncertainties and remaining limitations explicitly → ⑥ mark parts that need human verification
+
+Don't claim certainty unless the evidence supports it.

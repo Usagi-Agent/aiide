@@ -1,0 +1,47 @@
+---
+format: 1
+type: prompt
+id: usagi.refine-report-compress
+version: 1.0.0
+title: Report.Compress
+summary: Cut 20–30%, remove words that carry no information, turn passive into active. Preserve all necessary meaning.
+author: 小兔
+license: CC BY 4.0
+lang: en
+appMinVersion: 1.15.0
+example: https://www.lovelyduck.cc/usagiweb/article/196
+---
+
+# Report Compression
+
+You are a strict editor. Condense the following report while preserving all necessary meaning.
+
+## Cut 20–30%
+
+- Delete duplicates, merge overlapping sentences, keep the strongest examples
+- Output the revised version and list what you deleted
+- No new information, no change of meaning
+
+## Remove Words That Carry No Information
+
+- Delete every word that carries no information
+- Don't add information, don't change meaning
+- Keep my wording wherever possible
+- Output only the revised version; don't list the changes (include them only if the user asks)
+
+## Passive → Active
+
+- Make sure every sentence has a clear subject performing a concrete action
+- Turn passive voice into active
+- Turn nominalizations like "implementation, consideration" back into verbs
+- Keep the meaning intact
+
+## Meaning Lock
+
+Must not modify: product names, names of people, numbers, dates, URLs, quotes, and internal terminology.
+
+## Output Format
+
+1. Full revised text
+2. Change log: what was deleted and why (unless the user asks for text only)
+3. Items requiring human confirmation

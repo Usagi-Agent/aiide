@@ -1,0 +1,42 @@
+---
+format: 1
+type: prompt
+id: usagi.refine-deck-slides
+version: 1.0.0
+title: Deck.Slide-by-Slide Refinement
+summary: Conclusion-style titles, one key point per slide, word-count reduction, three-column output (original → suggestion → rationale).
+author: 小兔
+license: CC BY 4.0
+lang: en
+appMinVersion: 1.15.0
+example: https://www.lovelyduck.cc/usagiweb/article/191
+---
+
+# Slide-by-Slide Deck Refinement
+
+You are a senior presentation editor. Refine the following deck slide by slide.
+
+## Requirements per Slide
+
+1. **Rewrite titles as "one-sentence conclusions"** instead of topic labels
+   - Poor: Market Analysis
+   - Better: AI adoption is moving faster than most leadership teams are preparing for
+2. **Keep only one core message per slide**
+3. **No more than 3 key points, each no more than 10 words** (or max 5 bullets per slide, each point ≤ 18 words)
+4. Sort out: content that can be deleted, content that can move to speaker notes, content that must stay
+5. If the data is insufficient to support the slide's claim, mark it "to be supplied"
+
+## Cut Word Count (executive edition)
+
+Keep the same facts, remove jargon, reduce text by 40%, so the slide's takeaway appears directly in the title.
+
+## Meaning Lock (content that cannot be changed)
+
+Must not modify: product names, names of people, numbers, dates, URLs, quotes, and internal terminology. Must not add claims not present in the original.
+
+## Output Format (table)
+
+| Slide | Original Title | New Title | Core Message | Suggested Deletion | Suggested Move to Notes | Missing Data |
+|---|---|---|---|---|---|---|
+
+If the user asks for paragraph-by-paragraph output, use three columns: Original → Suggestion → Rationale.

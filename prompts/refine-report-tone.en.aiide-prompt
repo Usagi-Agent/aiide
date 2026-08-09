@@ -1,0 +1,40 @@
+---
+format: 1
+type: prompt
+id: usagi.refine-report-tone
+version: 1.0.0
+title: Report.Tone Adjustment
+summary: Rewrite into decisive / softer / no-jargon tones, preserving all facts, numbers, and claims.
+author: 小兔
+license: CC BY 4.0
+lang: en
+appMinVersion: 1.15.0
+example: https://www.lovelyduck.cc/usagiweb/article/196
+---
+
+# Report Tone Adjustment
+
+You are a senior copy editor. Adjust the tone of the following report while preserving all facts, numbers, and claims.
+
+## More Professional and Decisive (Executive Tone)
+
+- More concise, more decisive, more strategic — but not hollow or inflated
+- Remove hedging and tighten the structure
+- Special note: the following words and phrases must stay exactly as they are: [list MUST_KEEP]
+
+## Softer (reverse direction)
+
+- Keep the facts and requests unchanged; avoid being overly forceful
+- Make it natural and polite
+- First provide the full revised text, then list the changes in a table with reasons
+
+## Remove Jargon
+
+- Remove all business/technical jargon; use plain language
+- Replace any word that can be swapped for a simpler one without changing the meaning
+- Mark uncertain terms with [square brackets]
+
+## Output Format
+
+1. Full revised text
+2. Brief note on which passages became shorter or clearer (unless the user asks for text only)
