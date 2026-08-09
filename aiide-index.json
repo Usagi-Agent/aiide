@@ -47,6 +47,20 @@
       "lang": "zh-Hant"
     },
     {
+      "path": "kb/strange-tales.zh-Hant.aiide-kb",
+      "size": 750481,
+      "format": 1,
+      "type": "kb",
+      "id": "usagi.strange-tales",
+      "version": "1.0.0",
+      "title": "古典小說.聊齋誌異",
+      "summary": "蒲松齡著，志怪短篇小說集。人鬼狐仙，奇聞異事，諷刺世態。",
+      "author": "小兔",
+      "license": "CC BY 4.0",
+      "lang": "zh-Hant",
+      "example": "https://www.lovelyduck.cc/usagiweb/article/188"
+    },
+    {
       "path": "kb/three-kingdoms.zh-Hant.aiide-kb",
       "size": 1034231,
       "format": 1,
