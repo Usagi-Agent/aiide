@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "type": "style",
+  "id": "usagi.persona-researcher",
+  "version": "1.0.0",
+  "title": "研究員工作包",
+  "summary": "研究資料蒐集與彙整：文獻逐篇「方法/發現/局限」、學術圖表風插圖與研討會發表視覺。",
+  "author": "Usagi-Agent",
+  "license": "CC BY 4.0",
+  "appMinVersion": "1.15.0",
+  "lang": "zh-Hant",
+  "count": 4,
+  "styles": [
+    {
+      "field": "refine",
+      "title": "文獻彙整",
+      "body": "每頁一篇文獻，依「方法→發現→局限」三段呈現。篇名當標題，作者與年份放副標。比較多篇時用一頁總表對照，最後一頁給綜合結論與研究缺口。"
+    },
+    {
+      "field": "refine",
+      "title": "研究資料整理",
+      "body": "每頁一個主題，先給一句總述再列數據。每個數字附來源與日期。類別之間用表格對照，空白欄位明確標「無資料」而不是省略。"
+    },
+    {
+      "field": "illustration",
+      "title": "學術圖表",
+      "body": "clean academic data-viz style, precise grid lines, muted blue and grey palette, charts and diagrams only, no decorative elements, no text"
+    },
+    {
+      "field": "slideImage",
+      "title": "研討會發表",
+      "body": "Minimal white background, one data chart as the focal point, thin grid lines, muted academic palette, generous margins, caption area at the bottom, no text."
+    }
+  ]
+}

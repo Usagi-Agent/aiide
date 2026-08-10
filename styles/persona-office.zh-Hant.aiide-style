@@ -1,0 +1,45 @@
+{
+  "format": 1,
+  "type": "style",
+  "id": "usagi.persona-office",
+  "version": "1.0.0",
+  "title": "辦公室工作包",
+  "summary": "商業分析四件套：競品分析、產業調查、供應商分析、社群反應分析，配商務扁平插圖與提案視覺。",
+  "author": "Usagi-Agent",
+  "license": "CC BY 4.0",
+  "appMinVersion": "1.15.0",
+  "lang": "zh-Hant",
+  "count": 6,
+  "styles": [
+    {
+      "field": "refine",
+      "title": "競品分析",
+      "body": "每頁一個競品或一個比較維度。功能、價格、優劣勢用表格對照，每個結論附證據出處。最後一頁是決策建議：該跟進什麼、該避開什麼。"
+    },
+    {
+      "field": "refine",
+      "title": "產業調查",
+      "body": "依「市場規模→成長驅動→主要玩家→風險與趨勢」的順序。每頁一個主題，數據標年份與來源。結尾一頁總結：這個產業現在值得投入嗎。"
+    },
+    {
+      "field": "refine",
+      "title": "供應商分析",
+      "body": "每頁一家供應商，依「價格→品質→交期→風險」四維度評分。最後一頁放比較總表與建議名單，標明評分依據與更新日期。"
+    },
+    {
+      "field": "refine",
+      "title": "產品社群反應分析",
+      "body": "每頁一個話題或一個平台。正負面意見分開列，各附代表發言與大致比例。結尾一頁是行動建議：該回應什麼、該改什麼。"
+    },
+    {
+      "field": "illustration",
+      "title": "商務扁平",
+      "body": "flat corporate illustration, clean geometric shapes, navy and light grey palette with one accent colour, professional and neutral, no text"
+    },
+    {
+      "field": "slideImage",
+      "title": "提案簡報",
+      "body": "Clean corporate slide background, subtle gradient, one product or chart as the focal point, navy and white palette with a single accent colour, right half kept clear for text, no text."
+    }
+  ]
+}

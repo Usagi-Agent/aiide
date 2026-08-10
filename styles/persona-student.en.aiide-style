@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "type": "style",
+  "id": "usagi.persona-student",
+  "version": "1.0.0",
+  "title": "Student Pack",
+  "summary": "Academic search and note-taking: keyword→source→summary structure, doodle-note illustration and class-presentation visuals.",
+  "author": "Usagi-Agent",
+  "license": "CC BY 4.0",
+  "appMinVersion": "1.15.0",
+  "lang": "en",
+  "count": 4,
+  "styles": [
+    {
+      "field": "refine",
+      "title": "Academic Search Notes",
+      "body": "One topic per page, ordered keywords → what was found → summary → source. Tag every source with author, year and type (journal/book/website). End with a page of what is still missing, naming the gaps explicitly."
+    },
+    {
+      "field": "refine",
+      "title": "Note Organisation",
+      "body": "One subtopic per page: category first, then content. Use bullet points for key ideas and tables for details. End each section with one sentence answering “what question does this material address”."
+    },
+    {
+      "field": "illustration",
+      "title": "Doodle Notes",
+      "body": "hand-drawn doodle notes style, colourful pens on light paper, playful arrows and frames, friendly and energetic, no text"
+    },
+    {
+      "field": "slideImage",
+      "title": "Class Presentation",
+      "body": "Bright and friendly presentation background, colourful but soft palette, large simple graphics, generous white space, clear focal area on the right half, no text."
+    }
+  ]
+}

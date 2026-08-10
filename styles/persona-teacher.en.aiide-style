@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "type": "style",
+  "id": "usagi.persona-teacher",
+  "version": "1.0.0",
+  "title": "Teacher Pack",
+  "summary": "Lesson plans and course prep: objective-activity-assessment structure, textbook-style illustration and classroom projection visuals.",
+  "author": "Usagi-Agent",
+  "license": "CC BY 4.0",
+  "appMinVersion": "1.15.0",
+  "lang": "en",
+  "count": 4,
+  "styles": [
+    {
+      "field": "refine",
+      "title": "Lesson Structure",
+      "body": "One learning objective per page, ordered objective → activity → assessment. Follow every abstract statement with a concrete example. Explain any technical term in one sentence at first use. Put the time budget in a corner of each page; total time and page count must match."
+    },
+    {
+      "field": "refine",
+      "title": "Topic Recap",
+      "body": "One lesson per page, at most 5 key points. Present each point as heading + one sentence + one worked example. End with a page of common student misconceptions, pairing confusable ideas side by side."
+    },
+    {
+      "field": "illustration",
+      "title": "Textbook Illustration",
+      "body": "friendly textbook illustration, flat colours, rounded shapes, soft outlines, cheerful and calm, plenty of white space, no text"
+    },
+    {
+      "field": "slideImage",
+      "title": "Classroom Projection",
+      "body": "Bright and legible from the back of a classroom, large simple shapes, warm cheerful palette, high contrast, minimal detail, left half kept clear for text."
+    }
+  ]
+}

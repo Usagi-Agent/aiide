@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "type": "style",
+  "id": "usagi.persona-student",
+  "version": "1.0.0",
+  "title": "學生學習包",
+  "summary": "學術搜尋與資料整理：關鍵字→來源→摘要的彙整結構、筆記塗鴉風插圖與課堂報告視覺。",
+  "author": "Usagi-Agent",
+  "license": "CC BY 4.0",
+  "appMinVersion": "1.15.0",
+  "lang": "zh-Hant",
+  "count": 4,
+  "styles": [
+    {
+      "field": "refine",
+      "title": "學術搜尋彙整",
+      "body": "每頁一個主題，依「關鍵字→找到什麼→摘要→來源」的順序。每則來源標作者、年份與類型（期刊/書籍/網站）。結尾一頁列「還沒找到的」，明說缺口。"
+    },
+    {
+      "field": "refine",
+      "title": "資料整理",
+      "body": "每頁一個子題，先給分類再列內容。重點用條列，細節用表格。每段結尾用一句話寫「所以這則資料在回答什麼問題」。"
+    },
+    {
+      "field": "illustration",
+      "title": "筆記塗鴉",
+      "body": "hand-drawn doodle notes style, colourful pens on light paper, playful arrows and frames, friendly and energetic, no text"
+    },
+    {
+      "field": "slideImage",
+      "title": "課堂報告",
+      "body": "Bright and friendly presentation background, colourful but soft palette, large simple graphics, generous white space, clear focal area on the right half, no text."
+    }
+  ]
+}

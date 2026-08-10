@@ -1,0 +1,45 @@
+{
+  "format": 1,
+  "type": "style",
+  "id": "usagi.persona-office",
+  "version": "1.0.0",
+  "title": "Office Pack",
+  "summary": "Four business analyses: competitor analysis, industry research, supplier analysis and social-sentiment analysis, with flat corporate illustration and proposal visuals.",
+  "author": "Usagi-Agent",
+  "license": "CC BY 4.0",
+  "appMinVersion": "1.15.0",
+  "lang": "en",
+  "count": 6,
+  "styles": [
+    {
+      "field": "refine",
+      "title": "Competitor Analysis",
+      "body": "One competitor or one comparison dimension per page. Compare features, pricing and strengths/weaknesses in tables, and attach a source to every claim. End with a decision page: what to adopt and what to avoid."
+    },
+    {
+      "field": "refine",
+      "title": "Industry Research",
+      "body": "Ordered market size → growth drivers → key players → risks and trends. One topic per page, with the year and source for every figure. End with a one-page verdict: is this industry worth entering now."
+    },
+    {
+      "field": "refine",
+      "title": "Supplier Analysis",
+      "body": "One supplier per page, scored on price → quality → lead time → risk. End with a comparison table and a recommended shortlist, stating the scoring basis and the date of the assessment."
+    },
+    {
+      "field": "refine",
+      "title": "Social Sentiment Analysis",
+      "body": "One topic or platform per page. List positive and negative opinions separately, each with representative quotes and rough proportions. End with an action page: what to respond to and what to change."
+    },
+    {
+      "field": "illustration",
+      "title": "Flat Corporate",
+      "body": "flat corporate illustration, clean geometric shapes, navy and light grey palette with one accent colour, professional and neutral, no text"
+    },
+    {
+      "field": "slideImage",
+      "title": "Proposal Deck",
+      "body": "Clean corporate slide background, subtle gradient, one product or chart as the focal point, navy and white palette with a single accent colour, right half kept clear for text, no text."
+    }
+  ]
+}

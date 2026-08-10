@@ -1,0 +1,30 @@
+{
+  "format": 1,
+  "type": "style",
+  "id": "usagi.example-basic",
+  "version": "1.0.0",
+  "title": "Style Format Starter",
+  "summary": "Getting-started example: one file showing the minimal form of all three fields.",
+  "author": "Usagi-Agent",
+  "license": "CC BY 4.0",
+  "appMinVersion": "1.15.0",
+  "lang": "en",
+  "count": 3,
+  "styles": [
+    {
+      "field": "refine",
+      "title": "Conclusion First",
+      "body": "At most 3 bullets per page, conclusion before evidence; drop any sentence without supporting data."
+    },
+    {
+      "field": "illustration",
+      "title": "Minimal Flat",
+      "body": "minimal flat illustration, one accent colour, large empty space, no text"
+    },
+    {
+      "field": "slideImage",
+      "title": "Clean Whitespace",
+      "body": "Clean white background, single subject, generous empty space, soft natural light."
+    }
+  ]
+}

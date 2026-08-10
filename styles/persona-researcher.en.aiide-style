@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "type": "style",
+  "id": "usagi.persona-researcher",
+  "version": "1.0.0",
+  "title": "Researcher Pack",
+  "summary": "Collecting and synthesising research: per-paper method/finding/limitation structure, academic chart illustration and conference presentation visuals.",
+  "author": "Usagi-Agent",
+  "license": "CC BY 4.0",
+  "appMinVersion": "1.15.0",
+  "lang": "en",
+  "count": 4,
+  "styles": [
+    {
+      "field": "refine",
+      "title": "Literature Synthesis",
+      "body": "One paper per page, presented as method → finding → limitation. Use the paper title as the heading and author/year as the subtitle. When comparing several papers, use a one-page comparison table and end with an overall conclusion and research gaps."
+    },
+    {
+      "field": "refine",
+      "title": "Data Organisation",
+      "body": "One topic per page: one summary sentence first, then the data. Attach a source and date to every number. Compare categories in tables, and mark missing cells explicitly as “no data” instead of omitting them."
+    },
+    {
+      "field": "illustration",
+      "title": "Academic Charts",
+      "body": "clean academic data-viz style, precise grid lines, muted blue and grey palette, charts and diagrams only, no decorative elements, no text"
+    },
+    {
+      "field": "slideImage",
+      "title": "Conference Talk",
+      "body": "Minimal white background, one data chart as the focal point, thin grid lines, muted academic palette, generous margins, caption area at the bottom, no text."
+    }
+  ]
+}

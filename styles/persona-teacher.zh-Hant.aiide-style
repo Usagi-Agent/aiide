@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "type": "style",
+  "id": "usagi.persona-teacher",
+  "version": "1.0.0",
+  "title": "教師工作包",
+  "summary": "教案與課程準備：目標→活動→評量的教案結構、課本風插圖與教室投影視覺。",
+  "author": "Usagi-Agent",
+  "license": "CC BY 4.0",
+  "appMinVersion": "1.15.0",
+  "lang": "zh-Hant",
+  "count": 4,
+  "styles": [
+    {
+      "field": "refine",
+      "title": "教案結構",
+      "body": "每頁一個教學目標，依「目標→活動→評量」的順序。每個抽象說法後面接一個具體例子。遇到專有名詞，第一次出現時用一句話解釋。時間分配標在每頁角落，總時長與頁數相符。"
+    },
+    {
+      "field": "refine",
+      "title": "課程重點整理",
+      "body": "一課一頁，最多 5 個重點。每個重點用「標題＋一句話＋一個例題」呈現。結尾放一頁「學生常見誤解」，把容易搞混的兩兩對照。"
+    },
+    {
+      "field": "illustration",
+      "title": "課本插圖",
+      "body": "friendly textbook illustration, flat colours, rounded shapes, soft outlines, cheerful and calm, plenty of white space, no text"
+    },
+    {
+      "field": "slideImage",
+      "title": "教室投影",
+      "body": "Bright and legible from the back of a classroom, large simple shapes, warm cheerful palette, high contrast, minimal detail, left half kept clear for text."
+    }
+  ]
+}
