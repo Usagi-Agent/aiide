@@ -2,7 +2,7 @@
   "format": 1,
   "type": "style",
   "id": "usagi.persona-teacher",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "title": "Teacher Pack",
   "summary": "Lesson plans and course prep: objective-activity-assessment structure, textbook-style illustration and classroom projection visuals.",
   "author": "Usagi-Agent",
@@ -31,5 +31,6 @@
       "title": "Classroom Projection",
       "body": "Bright and legible from the back of a classroom, large simple shapes, warm cheerful palette, high contrast, minimal detail, left half kept clear for text."
     }
-  ]
+  ],
+  "example": "https://www.lovelyduck.cc/usagiweb/article/199"
 }

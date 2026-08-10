@@ -2,7 +2,7 @@
   "format": 1,
   "type": "style",
   "id": "usagi.persona-researcher",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "title": "研究員工作包",
   "summary": "研究資料蒐集與彙整：文獻逐篇「方法/發現/局限」、學術圖表風插圖與研討會發表視覺。",
   "author": "Usagi-Agent",
@@ -31,5 +31,6 @@
       "title": "研討會發表",
       "body": "Minimal white background, one data chart as the focal point, thin grid lines, muted academic palette, generous margins, caption area at the bottom, no text."
     }
-  ]
+  ],
+  "example": "https://www.lovelyduck.cc/usagiweb/article/200"
 }

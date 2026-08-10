@@ -2,7 +2,7 @@
   "format": 1,
   "type": "style",
   "id": "usagi.persona-researcher",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "title": "Researcher Pack",
   "summary": "Collecting and synthesising research: per-paper method/finding/limitation structure, academic chart illustration and conference presentation visuals.",
   "author": "Usagi-Agent",
@@ -31,5 +31,6 @@
       "title": "Conference Talk",
       "body": "Minimal white background, one data chart as the focal point, thin grid lines, muted academic palette, generous margins, caption area at the bottom, no text."
     }
-  ]
+  ],
+  "example": "https://www.lovelyduck.cc/usagiweb/article/200"
 }

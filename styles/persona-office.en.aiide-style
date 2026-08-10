@@ -2,7 +2,7 @@
   "format": 1,
   "type": "style",
   "id": "usagi.persona-office",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "title": "Office Pack",
   "summary": "Four business analyses: competitor analysis, industry research, supplier analysis and social-sentiment analysis, with flat corporate illustration and proposal visuals.",
   "author": "Usagi-Agent",
@@ -41,5 +41,6 @@
       "title": "Proposal Deck",
       "body": "Clean corporate slide background, subtle gradient, one product or chart as the focal point, navy and white palette with a single accent colour, right half kept clear for text, no text."
     }
-  ]
+  ],
+  "example": "https://www.lovelyduck.cc/usagiweb/article/201"
 }

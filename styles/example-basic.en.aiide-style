@@ -2,7 +2,7 @@
   "format": 1,
   "type": "style",
   "id": "usagi.example-basic",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "title": "Style Format Starter",
   "summary": "Getting-started example: one file showing the minimal form of all three fields.",
   "author": "Usagi-Agent",
@@ -26,5 +26,6 @@
       "title": "Clean Whitespace",
       "body": "Clean white background, single subject, generous empty space, soft natural light."
     }
-  ]
+  ],
+  "example": "https://www.lovelyduck.cc/usagiweb/article/198"
 }

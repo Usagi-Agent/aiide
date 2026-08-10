@@ -2,7 +2,7 @@
   "format": 1,
   "type": "style",
   "id": "usagi.persona-teacher",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "title": "教師工作包",
   "summary": "教案與課程準備：目標→活動→評量的教案結構、課本風插圖與教室投影視覺。",
   "author": "Usagi-Agent",
@@ -31,5 +31,6 @@
       "title": "教室投影",
       "body": "Bright and legible from the back of a classroom, large simple shapes, warm cheerful palette, high contrast, minimal detail, left half kept clear for text."
     }
-  ]
+  ],
+  "example": "https://www.lovelyduck.cc/usagiweb/article/199"
 }

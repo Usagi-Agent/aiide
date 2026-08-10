@@ -2,7 +2,7 @@
   "format": 1,
   "type": "style",
   "id": "usagi.persona-office",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "title": "辦公室工作包",
   "summary": "商業分析四件套：競品分析、產業調查、供應商分析、社群反應分析，配商務扁平插圖與提案視覺。",
   "author": "Usagi-Agent",
@@ -41,5 +41,6 @@
       "title": "提案簡報",
       "body": "Clean corporate slide background, subtle gradient, one product or chart as the focal point, navy and white palette with a single accent colour, right half kept clear for text, no text."
     }
-  ]
+  ],
+  "example": "https://www.lovelyduck.cc/usagiweb/article/201"
 }

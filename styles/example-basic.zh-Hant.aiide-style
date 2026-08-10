@@ -2,7 +2,7 @@
   "format": 1,
   "type": "style",
   "id": "usagi.example-basic",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "title": "風格入門範例",
   "summary": "入門用：一個檔案展示三種 field 的最小格式，照著改就能做出自己的風格。",
   "author": "Usagi-Agent",
@@ -26,5 +26,6 @@
       "title": "乾淨留白",
       "body": "Clean white background, single subject, generous empty space, soft natural light."
     }
-  ]
+  ],
+  "example": "https://www.lovelyduck.cc/usagiweb/article/198"
 }

@@ -2,7 +2,7 @@
   "format": 1,
   "type": "style",
   "id": "usagi.persona-student",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "title": "Student Pack",
   "summary": "Academic search and note-taking: keyword→source→summary structure, doodle-note illustration and class-presentation visuals.",
   "author": "Usagi-Agent",
@@ -31,5 +31,6 @@
       "title": "Class Presentation",
       "body": "Bright and friendly presentation background, colourful but soft palette, large simple graphics, generous white space, clear focal area on the right half, no text."
     }
-  ]
+  ],
+  "example": "https://www.lovelyduck.cc/usagiweb/article/202"
 }
