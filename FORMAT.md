@@ -497,6 +497,24 @@ python3 tools/aiide-index.py /path/to/your/repo --check
 
 ---
 
+## 5a. environments/ — 工作環境慣例（非格式）
+
+`environments/` 不是分享型別，而是一個**約定**：把一個工作所需的三種東西——**Prompt 指令（§4.3）+ 資料檔 + 預填對話**——打包成一條 `aiide://import` deep link，讓使用者一鍵載入。
+
+```
+environments/
+├── README.md              ← 環境總覽與自建教學
+└── 你的環境/
+    ├── README.md          ← 這個環境的說明與一鍵載入連結
+    └── data/              ← 資料檔（下載進使用者工作目錄，對話用 `@檔名` 引用）
+```
+
+- 掃描器不會把 `environments/` 底下的東西當成分享項目（副檔名不是 `.aiide-*`）；它存在的意義是給「人」看的。
+- 官方範例與完整自建教學見 [environments/README.md](environments/README.md)。
+- deep link 規格（`datafiles` / `prompts` / `chat`、URL 編碼、安全規則）見 App 專案 `doc/12-deeplink.md`。
+
+---
+
 ## 6. 網頁也可以當來源
 
 不想開 repo 也行：任何 HTML 頁面，只要裡面有指向 `.aiide-*` 檔案的 `<a href>` 連結，就能當成來源貼進 App。

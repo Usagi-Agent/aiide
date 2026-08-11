@@ -13,6 +13,7 @@
 | `prompts/` | Prompt 庫的指令 | `.aiide-prompt` |
 | `styles/` | 文件匯出風格範本 | `.aiide-style` |
 | `kb/` | KB 庫條目包 | `.aiide-kb` |
+| `environments/` | 工作環境範例（指令＋資料檔＋預填對話打包成一鍵載入連結） | Markdown |
 
 `aiide-index.json` 是選用的加速檔：有它，App 掃描這個 repo 時就不必逐檔抓 manifest。它不是必要條件——沒有索引的來源一樣掃得出來。
 
@@ -28,6 +29,10 @@
 
 **多語版本**：同一個 `id`、不同的 `lang`（`zh-Hant` / `zh-Hans` / `en`），檔名帶語言後綴當慣例。App 會把它們收成一列，顯示讀者語言的那一版。見 [FORMAT.md](FORMAT.md) §4.7。
 
+## 工作環境（environments/）
+
+「工作環境」是把 **Prompt 指令 + 資料檔 + 預填對話** 打包成一條 `aiide://import` deep link，讓使用者針對某種工作一鍵把 AI-IDE 變成對的狀態。`environments/` 裡是官方範例，每個環境的 README 都說明「由哪些零件組成、怎麼改成自己的」。自建方法見 [environments/README.md](environments/README.md)。
+
 ## 投稿
 
 歡迎 PR。請確認：
@@ -41,4 +46,4 @@ Prompt 的內文會進入使用者之後每一輪對話的最前面，所以 App
 
 ## 授權
 
-程式碼與索引依 [MIT](LICENSE)。各項目的授權以各自 manifest 的 `license` 欄位為準。
+程式碼與索引依 [MIT](LICENSE)。各項目的授權以各自 manifest 的 `license` 欄位為準；`environments/` 下的說明文件與範例資料檔依 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)。
