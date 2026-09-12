@@ -18,14 +18,27 @@ import sys
 import zipfile
 
 FORMAT = 1
-INSTALLABLE = {"prompt", "style", "kb"}
-RESERVED = {"brandKit", "pdfTemplate", "wordTemplate", "excelTemplate", "slidesTemplate"}
+INSTALLABLE = {"prompt", "style", "kb", "brand", "reading", "task", "script",
+               "pdfTemplate", "wordTemplate", "excelTemplate", "slidesTemplate"}
+# Types the app cannot install yet. They are still found and counted, so
+# publishing one is safe — the user is told "needs a newer AI-IDE". Empty since
+# 1.16.0: `task` and `script` both shipped.
+RESERVED: set[str] = set()
+# `brandKit` was reserved in FORMAT.md before the type existed; the app reads
+# it as `brand`, so this script must not call it an error either.
+TYPE_ALIASES = {"brandKit": "brand"}
 STYLE_FIELDS = {"refine", "illustration", "slideImage"}
-MAX_BYTES = {".aiide-prompt": 1 << 20, ".aiide-style": 1 << 20, ".aiide-kb": 10 << 20}
+MAX_BYTES = {".aiide-prompt": 1 << 20, ".aiide-style": 1 << 20, ".aiide-kb": 10 << 20,
+             ".aiide-reading": 1 << 20, ".aiide-brand": 10 << 20,
+             ".aiide-pdf": 10 << 20, ".aiide-word": 10 << 20,
+             ".aiide-excel": 10 << 20, ".aiide-slides": 40 << 20,
+             ".aiide-task": 10 << 20, ".aiide-script": 40 << 20}
 EXTENSIONS = (".aiide-prompt", ".aiide-style", ".aiide-kb", ".aiide-brand",
-              ".aiide-pdf", ".aiide-word", ".aiide-excel", ".aiide-slides")
+              ".aiide-pdf", ".aiide-word", ".aiide-excel", ".aiide-slides",
+              ".aiide-reading", ".aiide-task", ".aiide-script")
 MANIFEST_KEYS = ("format", "type", "id", "version", "title",
-                 "summary", "author", "license", "appMinVersion", "lang", "example")
+                 "summary", "author", "license", "appMinVersion", "lang", "example",
+                 "embeds")
 
 # The codes the app speaks. BCP-47 rather than shorthand: a private
 # abbreviation needs a translation table forever and matches nothing else.
@@ -98,11 +111,13 @@ def unquote(value):
 def check_manifest(raw, expected_type, where):
     if raw.get("format") != FORMAT:
         raise Problem(f"{where}: format 必須是 {FORMAT}，實際是 {raw.get('format')!r}")
-    found = raw.get("type")
+    found = TYPE_ALIASES.get(raw.get("type"), raw.get("type"))
     if found != expected_type:
         raise Problem(f"{where}: 副檔名說是 {expected_type}，但 type 是 {found!r}"
                       "（以 type 為準，App 會拒絕安裝）")
-    return {k: raw[k] for k in MANIFEST_KEYS if k in raw}
+    manifest = {k: raw[k] for k in MANIFEST_KEYS if k in raw}
+    manifest["type"] = found          # the spelling the app will use
+    return manifest
 
 
 def read_prompt(path):
@@ -184,7 +199,179 @@ def read_kb(path):
     return manifest
 
 
-READERS = {".aiide-prompt": read_prompt, ".aiide-style": read_style, ".aiide-kb": read_kb}
+def read_json_pack(path, expected_type, payload_key, payload_desc):
+    """The JSON types that are a manifest plus one object."""
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8-sig"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as e:
+        raise Problem(f"{path.name}: 不是合法的 JSON（{e}）")
+    if not isinstance(raw, dict):
+        raise Problem(f"{path.name}: 最外層必須是物件")
+    manifest = check_manifest(raw, expected_type, path.name)
+    if not isinstance(raw.get(payload_key), dict):
+        raise Problem(f"{path.name}: 缺少 {payload_key} 物件（{payload_desc}）")
+    return manifest, raw[payload_key]
+
+
+def read_reading(path):
+    manifest, appearance = read_json_pack(path, "reading", "appearance", "閱讀外觀的設定")
+    # Every field is optional, so there is nothing to require — but a colour
+    # given only for one scheme is invisible in the other, and that is the
+    # mistake nobody notices until someone switches to dark mode.
+    for key in ("text", "heading", "link", "background"):
+        value = appearance.get(key)
+        if isinstance(value, dict) and not ("light" in value and "dark" in value):
+            print(f"  ⚠️  {path.name}: {key} 只給了 "
+                  f"{sorted(value)}，淺色／深色要各給一個（§4.8）")
+    return manifest
+
+
+def read_excel_template(path):
+    return read_json_pack(path, "excelTemplate", "template", "樣板的設定")[0]
+
+
+def read_zip_pack(path, expected_type, required, checks=()):
+    """The zip types: a manifest at the top level plus named parts."""
+    if not zipfile.is_zipfile(path):
+        raise Problem(f"{path.name}: 不是 zip 檔")
+    with zipfile.ZipFile(path) as z:
+        names = set(z.namelist())
+        if "manifest.json" not in names:
+            raise Problem(f"{path.name}: zip 裡沒有 manifest.json")
+        try:
+            raw = json.loads(z.read("manifest.json").decode("utf-8-sig"))
+        except (UnicodeDecodeError, json.JSONDecodeError) as e:
+            raise Problem(f"{path.name}: manifest.json 不是合法的 JSON（{e}）")
+        manifest = check_manifest(raw, expected_type, path.name)
+        for part in required:
+            if part not in names:
+                raise Problem(f"{path.name}: zip 裡沒有 {part}")
+        # Macros are the one thing this format refuses outright (FORMAT.md §7).
+        for name in names:
+            if name.lower().endswith(".pptm"):
+                raise Problem(f"{path.name}: 內含 {name}——帶巨集的簡報一律拒收")
+        # `embeds` is what the install screen promises the reader BEFORE
+        # anything is written, so a wrong one is a promise broken on their
+        # device rather than a cosmetic slip here.
+        declared = set(manifest.get("embeds") or [])
+        actual = set()
+        if any(n.startswith("brand/") for n in names):
+            actual.add("brandkit")
+        if "deck.pptx" in names:
+            actual.add("pptx")
+        if any(n.startswith("prompts/") for n in names):
+            actual.add("prompts")
+        if any(n.startswith("kb/") and n.endswith(".md") for n in names):
+            actual.add("kb")
+        if any(n.startswith("files/") for n in names):
+            actual.add("files")
+        if declared != actual:
+            print(f"  ⚠️  {path.name}: embeds 寫 {sorted(declared) or '（沒寫）'}，"
+                  f"實際帶的是 {sorted(actual) or '（什麼都沒有）'}")
+        for check in checks:
+            check(path, names, manifest)
+    return manifest
+
+
+def _wants_brand(path, names, manifest):
+    """PDF and Word templates take colours and fonts entirely from a Brand Kit.
+    One that ships without gets the recipient's default brand — installable,
+    but not the design that was published."""
+    if "brand/brand.json" not in names:
+        print(f"  ⚠️  {path.name}: 沒有內嵌 brand/brand.json，"
+              "對方匯入後會套用他自己的預設品牌（§4.7）")
+
+
+def read_brand(path):
+    return read_zip_pack(path, "brand", ("brand.json",))
+
+
+def _task_references_resolve(path, names, manifest):
+    """A task points at its prompts and KB entries by TITLE, so one that ships
+    without them installs as a shell that resolves to nothing (FORMAT.md §4.9).
+    Not fatal — the app reports the gap and installs anyway — but it is almost
+    always an oversight in packing rather than a decision."""
+    import re
+    with zipfile.ZipFile(path) as z:
+        try:
+            task = json.loads(z.read("task.json").decode("utf-8-sig"))
+        except (KeyError, UnicodeDecodeError, json.JSONDecodeError):
+            return
+        if not isinstance(task, dict):
+            return
+        titles = set()
+        for name in names:
+            if not (name.startswith("prompts/") or name.startswith("kb/")):
+                continue
+            fields, _ = split_front_matter(z.read(name).decode("utf-8-sig", "replace"))
+            if fields.get("title"):
+                titles.add(fields["title"].strip())
+        wanted = [t for t in (task.get("promptTitles") or []) if isinstance(t, str)]
+        message = task.get("messageTemplate") or ""
+        wanted += re.findall(r"(?<!~)~\[([^\]\n]+)\]", message)
+        for title in wanted:
+            if title.strip() not in titles:
+                print(f"  ⚠️  {path.name}: 工作指向「{title}」，"
+                      f"但 prompts/ 與 kb/ 裡沒有同名的項目（§4.9）")
+
+
+def _script_carries_what_it_reads(path, names, manifest):
+    """A script names its fixtures by workspace-relative path, so one shipped
+    without them stops at its first `prompt file=` (FORMAT.md §4.10). Not fatal
+    — the app installs it and reports the gap — but it is nearly always a
+    packing oversight."""
+    import re
+    with zipfile.ZipFile(path) as z:
+        try:
+            script = z.read("script.aiide").decode("utf-8-sig")
+        except (KeyError, UnicodeDecodeError):
+            return
+    carried = {n[len("files/"):] for n in names if n.startswith("files/")}
+    # Only the unambiguous readers: enough to catch a forgotten fixture without
+    # re-implementing the app's own command table here.
+    wanted = []
+    for line in script.splitlines():
+        line = line.split("#", 1)[0].strip()
+        for pattern in (r'^(?:open|read|kb_add)\s+"?([^"\s]+)',
+                        r'\b(?:file|reply|outline|images_dir)=\"?([^\"\s]+)'):
+            for hit in re.findall(pattern, line):
+                if "$" not in hit:
+                    wanted.append(hit)
+    for want in wanted:
+        if want in carried:
+            continue
+        # A folder (`images_dir=`) is carried as its members.
+        if any(c.startswith(want.rstrip("/") + "/") for c in carried):
+            continue
+        print(f"  ⚠️  {path.name}: 腳本會讀取「{want}」，但 files/ 裡沒有（§4.10）")
+
+
+def read_script(path):
+    return read_zip_pack(path, "script", ("script.aiide",),
+                         (_script_carries_what_it_reads,))
+
+
+def read_task(path):
+    return read_zip_pack(path, "task", ("task.json",), (_task_references_resolve,))
+
+
+def read_pdf_template(path):
+    return read_zip_pack(path, "pdfTemplate", ("template.json",), (_wants_brand,))
+
+
+def read_word_template(path):
+    return read_zip_pack(path, "wordTemplate", ("template.json",), (_wants_brand,))
+
+
+def read_slides_template(path):
+    return read_zip_pack(path, "slidesTemplate", ("template.json",))
+
+
+READERS = {".aiide-prompt": read_prompt, ".aiide-style": read_style, ".aiide-kb": read_kb,
+           ".aiide-reading": read_reading, ".aiide-brand": read_brand,
+           ".aiide-pdf": read_pdf_template, ".aiide-word": read_word_template,
+           ".aiide-excel": read_excel_template, ".aiide-slides": read_slides_template,
+           ".aiide-task": read_task, ".aiide-script": read_script}
 
 
 def check_language(manifest, path, rel, problems):

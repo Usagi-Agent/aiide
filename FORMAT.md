@@ -1,6 +1,6 @@
 # AI-IDE 分享來源格式規格
 
-**格式版本：`format: 1`**　　對應 App 版本：1.15.0 以上
+**格式版本：`format: 1`**　　對應 App 版本：1.15.0 以上（品牌套件、四種匯出樣板、閱讀外觀需要 **1.16.0** 以上）
 
 把你的 repo 做成 AI-IDE 可以讀的分享來源。沒有註冊、沒有審核、沒有中央伺服器——使用者在 App 裡貼上你的 repo 網址就能看到你放的東西。
 
@@ -17,15 +17,16 @@
 | [§1](#1-最小可行範例) | 最小可行範例 |
 | [§2](#2-掃描器實際上怎麼找檔案) | 掃描器實際上怎麼找檔案（含快取、上限、可貼的網址形式） |
 | [§3](#3-建議的資料夾結構) | 建議的資料夾結構 |
-| [§4](#4-三種檔案格式) | manifest 與三種檔案格式（含編碼規則、YAML 子集、`version` / `lang` / `example`） |
+| [§4](#4-十一種檔案格式) | manifest 與十一種檔案格式（含編碼規則、YAML 子集、`version` / `lang` / `example`） |
 | [§5](#5-aiide-indexjson選用但請放) | `aiide-index.json` |
+| [§5a](#5a-environments--工作環境慣例非格式) | `environments/` 工作環境慣例 |
 | [§6](#6-網頁也可以當來源) | 網頁來源 |
 | [§6a](#6a-一鍵安裝連結) | 一鍵安裝連結 |
 | [§7](#7-分享者請遵守的三件事) | 分享者請遵守的三件事 |
 | [§8](#8-推上去前的檢查清單) | 檢查清單 |
 | [§9](#9-疑難排解) | 疑難排解 |
-| [§10](#10-相容性承諾) | 相容性承諾與保留型別 |
-| [附錄 A](#附錄-a三個可直接複製的完整範例) | 三個可直接複製的完整範例 |
+| [§10](#10-相容性承諾) | 相容性承諾 |
+| [附錄 A](#附錄-a可直接複製的完整範例) | 可直接複製的完整範例 |
 
 ---
 
@@ -99,15 +100,19 @@ owner/repo
 
 ### 2.3 副檔名
 
-| 副檔名 | 內容 | 現在可安裝 |
-|---|---|---|
-| `.aiide-prompt` | 一個 Prompt 指令 | ✅ |
-| `.aiide-style` | 一組文件匯出風格範本 | ✅ |
-| `.aiide-kb` | 一包 KB 條目 | ✅ |
-| `.aiide-brand` | 品牌套件 | 尚未 |
-| `.aiide-pdf` / `.aiide-word` / `.aiide-excel` / `.aiide-slides` | 匯出樣板 | 尚未 |
+| 副檔名 | 內容 | 可安裝 | 格式見 |
+|---|---|---|---|
+| `.aiide-prompt` | 一個 Prompt 指令 | ✅ | §4.3 |
+| `.aiide-style` | 一組文件匯出風格範本 | ✅ | §4.4 |
+| `.aiide-kb` | 一包 KB 條目 | ✅ | §4.5 |
+| `.aiide-brand` | 品牌套件（顏色、字體、標誌、封面底圖） | ✅ 1.16.0 起 | §4.6 |
+| `.aiide-pdf` / `.aiide-word` / `.aiide-slides` | 匯出樣板（**內嵌它用到的品牌套件**） | ✅ 1.16.0 起 | §4.7 |
+| `.aiide-excel` | Excel 匯出樣板（無相依） | ✅ 1.16.0 起 | §4.7 |
+| `.aiide-reading` | 閱讀外觀（預覽的字體、行距、顏色） | ✅ 1.16.0 起 | §4.8 |
+| `.aiide-task` | 工作（一組常用設定，**內嵌它用到的指令與 KB 條目**） | ✅ 1.16.0 起 | §4.9 |
+| `.aiide-script` | 腳本（**內嵌它讀取的檔案**） | ✅ 1.16.0 起 | §4.10 |
 
-後面五種現在還不能安裝，但**會被認出來並計數**——使用者看到的是「3 個項目需要更新 App」，不是「這個來源好像沒東西」。所以現在就放進去是安全的。
+**放進 repo 永遠是安全的，即使讀者的 App 還太舊。** 打不開的型別會被認出來並計數——使用者看到的是「3 個項目需要更新 App」，不是「這個來源好像沒東西」。掃描器認的是 `aiide-` 這個**前綴**，所以未來新增的型別同樣會被算進去，而不是被靜默丟掉。
 
 副檔名比對**不分大小寫**（`.AIIDE-PROMPT` 也讀得到），但請一律小寫。
 
@@ -129,17 +134,28 @@ owner/repo
 │   └── doc-proofread.zh-Hant.aiide-prompt
 ├── styles/
 │   └── deck-teaching.zh-Hant.aiide-style
-└── kb/
-    └── my-guide.zh-Hant.aiide-kb
+├── kb/
+│   └── my-guide.zh-Hant.aiide-kb
+├── brands/
+│   └── acme.zh-Hant.aiide-brand
+├── templates/
+│   ├── acme-report.zh-Hant.aiide-pdf
+│   └── acme-deck.zh-Hant.aiide-slides
+├── appearances/
+│   └── night-reading.zh-Hant.aiide-reading
+├── tasks/
+│   └── weekly-proofread.zh-Hant.aiide-task
+└── scripts/
+    └── weekly-proofread.zh-Hant.aiide-script
 ```
 
-檔名裡的 `.zh-Hant` 是給人看的慣例，見 §4.6。
+檔名裡的 `.zh-Hant` 是給人看的慣例，見 §4.12。
 
 ---
 
-## 4. 三種檔案格式
+## 4. 十一種檔案格式
 
-### 4.0 三種檔案共通的規則
+### 4.0 所有檔案共通的規則
 
 **編碼與行尾——這一條最容易踩到：**
 
@@ -157,24 +173,25 @@ owner/repo
 - `title` 也接受寫成 `name`（早期檔案的相容別名）。兩個都有時以 `title` 為準。
 - 檔案大小上限見各型別；超過就整份拒收，不會截斷。
 
-### 4.1 manifest 欄位（三種格式共用）
+### 4.1 manifest 欄位（所有格式共用）
 
-三種檔案都帶同一份 **manifest**，欄位完全一致，只是放的位置不同（front matter／JSON 頂層／`manifest.json`）。
+十一種檔案都帶同一份 **manifest**，欄位完全一致，只是放的位置不同（front matter／JSON 頂層／zip 裡的 `manifest.json`）。
 
 | 欄位 | 型別 | 必填 | 說明 |
 |---|---|---|---|
 | `format` | 整數 | **是** | 一定是 `1`。這是「讀不讀得懂」的判斷，不是語意版本。比對**相等**，不是大小——寫 `2` 的檔案今天的 App 一律拒收 |
-| `type` | 字串 | **是** | `prompt` / `style` / `kb`。必須和檔案實際內容相符 |
+| `type` | 字串 | **是** | `prompt` / `style` / `kb` / `brand` / `pdfTemplate` / `wordTemplate` / `excelTemplate` / `slidesTemplate` / `reading`。必須和檔案實際內容相符 |
 | `title` | 字串 | 建議 | 列表上顯示的名稱。缺了會退而求其次（見各型別） |
 | `summary` | 字串 | 建議 | 一行說明，列表與安裝畫面都會顯示 |
 | `author` | 字串 | 建議 | 你的名字。安裝畫面會顯示 |
 | `license` | 字串 | **強烈建議** | 見 §7。安裝畫面會顯示；App 內匯出時這一欄是必填的 |
 | `appMinVersion` | 字串 | 選填 | 目前寫 `1.15.0`。**目前只是記錄，App 不會據此擋下任何東西**；真正的相容判斷是 `format` |
-| `id` | 字串 | **強烈建議** | `你的名字.項目名`，例如 `usagi.research-assistant`。見 §4.5 |
-| `version` | 字串 | **強烈建議** | 改內容時**一定要升**。見 §4.5 |
+| `id` | 字串 | **強烈建議** | `你的名字.項目名`，例如 `usagi.research-assistant`。見 §4.11 |
+| `version` | 字串 | **強烈建議** | 改內容時**一定要升**。見 §4.11 |
 | `count` | 整數 | 選填 | 包內項目數（`style` / `kb`）。純資訊，App 以實際解析結果為準 |
-| `lang` | 字串 | 建議 | 這個項目**寫給人看的語言**：`zh-Hant` / `zh-Hans` / `en`。見 §4.6 |
-| `example` | 字串 | 選填 | 使用教學／範例頁面的 **https** 網址。見 §4.7 |
+| `embeds` | 陣列 | 選填 | 這個檔案**一併帶了什麼**：`brandkit`、`pptx`。安裝畫面靠它先說「這個樣板會一併加入一個品牌套件」。App 匯出時會自動寫上；手寫檔案時請照實填（見 §4.7） |
+| `lang` | 字串 | 建議 | 這個項目**寫給人看的語言**：`zh-Hant` / `zh-Hans` / `en`。見 §4.12 |
+| `example` | 字串 | 選填 | 使用教學／範例頁面的 **https** 網址。見 §4.13 |
 
 缺少 `title` / `author` / `license` 不會讓檔案被拒收——**只有 `format` 與 `type` 是硬性的**。
 
@@ -382,7 +399,275 @@ with zipfile.ZipFile("brand-terms.aiide-kb", "w", zipfile.ZIP_DEFLATED) as z:
 
 用 Markdown 而不是把文件塞進 JSON 字串，是為了讓這些檔案在 GitHub 上讀得下去、diff 得出來。
 
-### 4.6 更新：不升 `version`，使用者就收不到通知
+### 4.6 `.aiide-brand`（zip）
+
+一份品牌套件：顏色、字體，以及選填的標誌與封面底圖。**圖片放在檔案裡面**——一份指向別人裝置上某個 UUID 的品牌套件，在你這裡是壞的參照。
+
+```
+manifest.json          ← 必須在壓縮檔的最上層
+brand.json
+assets/logo            ← 選填，PNG / JPEG / GIF 的原始位元組（沒有副檔名）
+assets/background      ← 選填
+```
+
+`brand.json`：
+
+```json
+{
+  "id": "3F2A6C10-0000-0000-0000-000000000000",
+  "name": "ACME",
+  "primaryHex": "1C4E8F",
+  "secondaryHex": "5A6472",
+  "headingFont": "sans",
+  "bodyFont": "serif",
+  "headingFontCustom": "",
+  "bodyFontCustom": "",
+  "isBuiltIn": false
+}
+```
+
+| 欄位 | |
+|---|---|
+| `primaryHex` / `secondaryHex` | **六位十六進位，不含 `#`**。標題、封面色塊用 primary；分隔線與次要文字用 secondary |
+| `headingFont` / `bodyFont` | `sans` / `serif` / `rounded` 三選一 |
+| `headingFontCustom` / `bodyFontCustom` | 選填的字體**名稱**（字串）。**不含字型檔**，所以不會散布任何字型授權標的；對方沒有那個字體時自動退回上一欄的選擇 |
+| `id` | **可以省略**。匯入時一律重新產生——你放什麼都會被丟掉。寫它的唯一理由是讓樣板的 `brandKitID` 對得上（§4.7）|
+| `isBuiltIn` | **可以省略**，一律當成 `false`。檔案不能宣稱自己是 App 內建的資源 |
+| `headingFontCustom` / `bodyFontCustom` | 可以省略（等同空字串）|
+
+| | |
+|---|---|
+| 圖片格式 | PNG / JPEG / GIF。檔名就是 `assets/logo` 與 `assets/background`，沒有副檔名——型別是從位元組認的 |
+| 檔案上限 | **10 MB** |
+| 去重 | **內容相同的品牌套件不會重複安裝。** App 比對顏色、字體與圖片位元組（不比對 `id` 與名稱）；對得上就沿用讀者已經有的那一份。所以同一位作者的五個樣板帶同一份品牌套件，讀者那裡只會多出一份 |
+
+### 4.7 `.aiide-pdf` / `.aiide-word` / `.aiide-slides`（zip）與 `.aiide-excel`（JSON）
+
+四種匯出樣板。**PDF 與 Word 樣板一定要有品牌套件**（顏色與字體全部來自它），簡報樣板可有可無，Excel 樣板不需要。
+
+```
+manifest.json          ← type 是 pdfTemplate / wordTemplate / slidesTemplate
+template.json
+brand/brand.json       ← 內嵌的品牌套件，內容同 §4.6
+brand/assets/logo      ← 選填
+brand/assets/background← 選填
+deck.pptx              ← 只有 slidesTemplate 會有，選填
+```
+
+**內嵌的品牌套件不是選項，是這種檔案能不能用的前提**：`template.json` 裡的 `brandKitID` 是一個 UUID，在別人的裝置上什麼都指不到。所以：
+
+| 情況 | 讀者得到 |
+|---|---|
+| 有 `brand/brand.json` | 品牌套件一併安裝（或沿用他已經有的相同一份），樣板指向它 |
+| 沒有，而 `brandKitID` 是**內建套件的 id** | 直接沿用他的內建套件——內建 id 在每一台裝置上都一樣，這是唯一可以跨裝置的 id |
+| 沒有，`brandKitID` 是別的值 | 退回讀者自己的預設品牌。樣板裝得起來，但**長相不是你發佈的那一個** |
+
+`template.json` 的欄位依格式而異。**`id`、`isBuiltIn` 與 `brandKitID` 都可以省略**——匯入時一律重新產生並重接，寫了也會被丟掉（`brandKitID` 只在你要對應內嵌的 `brand/brand.json` 時才有意義）：
+
+| `type` | 欄位 |
+|---|---|
+| `pdfTemplate` | `name`、`brandKitID`、`coverStyle`（`none` / `band` / `minimal`）、`showsPageNumbers`、`justify`、`baseFontSize`（數字，pt）、`profile`（`reading` / `report` / `academic` / `manual`） |
+| `wordTemplate` | `name`、`brandKitID`、`coverStyle`、`justify`、`lineSpacing`（Word 單位：240 = 單行、360 = 1.5）、`profile` |
+| `slidesTemplate` | `name`、`accentHex`（六位十六進位，不含 `#`）、`headingFont`、`bodyFont`、`brandKitID`（選填）、`importedTemplateName`（選填） |
+| `excelTemplate` | `name`、`accentHex`、`headerFilled`、`cellBorders`、`banded` |
+
+`.aiide-excel` 沒有相依，所以它是**純 JSON**，形狀和 `.aiide-style` 一樣——manifest 在頂層，樣板在 `template` 底下：
+
+```json
+{
+  "format": 1,
+  "type": "excelTemplate",
+  "id": "yourname.acme-sheet",
+  "version": "1.0.0",
+  "title": "ACME 表格",
+  "license": "CC BY 4.0",
+  "template": {
+    "name": "ACME 表格",
+    "accentHex": "1C4E8F",
+    "headerFilled": true,
+    "cellBorders": true,
+    "banded": true
+  }
+}
+```
+
+| | |
+|---|---|
+| `deck.pptx` | 簡報樣板可以帶一份 `.pptx`，讀者的輸出會沿用它的母片、版面與佈景主題。**`.pptm`（含巨集）一律拒收**（§7）|
+| 沒帶 `deck.pptx` 卻寫了 `importedTemplateName` | 名稱會被清掉。一個指向不存在簡報檔的名字，讀起來像「這個樣板自帶版面設計」，而它沒有 |
+| 檔案上限 | 簡報樣板 **40 MB**（它可能帶一份簡報檔），其餘 **10 MB** |
+| `embeds` | 請照實填：帶了品牌套件寫 `["brandkit"]`，兩者都帶寫 `["brandkit", "pptx"]`。安裝畫面用它先告訴讀者「這個樣板會一併加入一個品牌套件」 |
+
+### 4.8 `.aiide-reading`（JSON）
+
+一份**閱讀外觀**：App 內預覽 Markdown 時的字體、字級、行距、閱讀寬度與顏色。**只影響預覽，不影響任何匯出的 PDF／Word。**
+
+十一種型別裡它最單純：沒有 zip、沒有內嵌、沒有相依。字體是**從清單裡挑的列舉值**，不是字體名稱字串，所以一份閱讀外觀永遠不含字型檔。
+
+```json
+{
+  "format": 1,
+  "type": "reading",
+  "id": "yourname.night-reading",
+  "version": "1.0.0",
+  "title": "夜讀",
+  "summary": "深色、寬行距、襯線",
+  "author": "yourname",
+  "license": "CC BY 4.0",
+  "lang": "zh-Hant",
+  "appearance": {
+    "name": "夜讀",
+    "summary": "深色、寬行距、襯線",
+    "fontFamily": "serif",
+    "baseFontSize": 18,
+    "lineHeight": 1.8,
+    "paragraphSpacing": 1.1,
+    "bodyWeight": 400,
+    "readingWidthCh": 62,
+    "pagePadding": 24,
+    "justified": false,
+    "text":    { "light": "#2B2622", "dark": "#E6DAC4" },
+    "heading": { "light": "#4A2E22", "dark": "#E0C089" },
+    "link":    { "light": "#7A2E2E", "dark": "#E0A87A" },
+    "headings": [
+      { "sizeDelta": 13, "weight": 600 },
+      { "sizeDelta": 8,  "weight": 600 },
+      { "sizeDelta": 4,  "weight": 600 }
+    ],
+    "h2Rule": false
+  }
+}
+```
+
+| 欄位 | |
+|---|---|
+| **每一個欄位都可以省略**，省略就用預設值 | 這是這一型最重要的規則：一份只寫 `{"lineHeight": 2.0}` 的 `appearance` 是完全合法的 |
+| `fontFamily` | `system` / `serif` / `rounded` / `monospace`。認不得的值退回 `system` |
+| 顏色 | 一律是 `{ "light": …, "dark": … }` **一對**。只給一半，深色模式要嘛沒生效、要嘛把文字塗成和頁面一樣的顏色。值是 `#` 加 3／4／6／8 位十六進位（8 位的最後兩位是透明度）；其他寫法退回預設，不會讓檔案失敗 |
+| `baseFontSize` | 省略＝沿用讀者自己的字級設定。這是體貼的預設：把字級調大的人多半是為了看得清楚 |
+| `readingWidthCh` | 省略＝ 65ch；寫 `null` ＝不限寬。兩者是不同的意思 |
+| `headings` | h1／h2／h3 三層，`sizeDelta` 是**加在內文字級上的增量**（px）。少於三層時缺的那幾層用預設 |
+| 選填的區塊樣式 | `quote` / `list` / `table` / `code` / `alerts` 五組，**沒寫就完全不動 App 的預設樣式**。寫了就要整組寫（例如 `code` 一旦出現，就該同時給底色與各種語法色，否則會做出看不見的程式碼） |
+| `builtInKey` | **寫了也會被丟掉。** 那是 App 用來認自己內建那五份外觀的鍵；一份自稱內建的複本既不能編輯、也不會隨版本更新 |
+| 一檔一份 | 一個檔案就是一份外觀。要分享三份就發三個檔案 |
+| 檔案上限 | **1 MB** |
+| 安裝後 | **不會自動套用。** 讀者要自己到「資源庫 → 閱讀外觀」選它——安裝一份外觀不等於同意畫面立刻改變 |
+
+### 4.9 `.aiide-task`（zip）
+
+一個**工作**：一組常用設定——要啟用哪些指令、用哪個模型、開哪些資料工具、還有一段起手訊息。讀者按一下就把桌面擺回那個樣子，然後自己開始做事。
+
+十一種型別裡，工作最特別的一點：**工作用「名稱」指向它要的東西**（指令標題、KB 條目標題），而名稱在一個沒有那些東西的庫裡什麼都不是。所以一個 `.aiide-task` **必須把它依賴的指令與 KB 條目一起帶走**，否則對方裝到的是一個看起來成功、用起來對不到任何東西的空殼。
+
+```
+weekly-proofread.zh-Hant.aiide-task   （其實是一個 zip）
+├── manifest.json
+├── task.json
+├── prompts/
+│   └── 001-校稿規範.aiide-prompt      ← 完整的 .aiide-prompt 檔（§4.3）
+└── kb/
+    └── 001-術語表.md                  ← 與 .aiide-kb 內部同一種格式（§4.5）
+```
+
+`manifest.json` 照 §4.1，`type` 是 `task`，並用 `embeds` 說出它多帶了什麼：
+
+```json
+{
+  "format": 1,
+  "type": "task",
+  "id": "yourname.weekly-proofread",
+  "version": "1.0.0",
+  "title": "每週校稿",
+  "summary": "用術語表校對這週的稿子",
+  "author": "yourname",
+  "license": "CC BY 4.0",
+  "lang": "zh-Hant",
+  "embeds": ["prompts", "kb"]
+}
+```
+
+`task.json`：
+
+```json
+{
+  "title": "每週校稿",
+  "summary": "用術語表校對這週的稿子",
+  "promptTitles": ["校稿規範"],
+  "profileName": "我的 OpenAI",
+  "modelId": "gpt-5.6-luna",
+  "toolCategories": [],
+  "scriptPath": "scripts/校稿.aiide",
+  "messageTemplate": "請依 ~[術語表] 校對 {{檔名}}"
+}
+```
+
+| 欄位 | |
+|---|---|
+| **只有 `title` 是必填**，其餘省略就是空的 | 一份只寫 `{"title": "校稿"}` 的 `task.json` 是合法的 |
+| `promptTitles` | 要啟用的指令**標題**，順序就是合併順序。每一個都應該在 `prompts/` 裡有對應的檔案 |
+| `messageTemplate` | 起手訊息。`{{名稱}}` 是安裝者套用時要填的空格；`~[標題]` 是 KB 條目引用，每一個都應該在 `kb/` 裡有對應的檔案 |
+| `profileName` / `modelId` | **只有名稱會旅行，金鑰不會。** 對方要自己有一個同名的 provider profile，否則 App 會把它列成缺項 |
+| `scriptPath` | 工作目錄的**相對路徑**。腳本檔本身不隨這個檔案走——它必須是對方工作目錄裡的同名檔案 |
+| `toolCategories` | 資料工具類別的識別字。這一版不認得的值會被略過 |
+| 一檔一份 | 一個檔案就是一個工作 |
+| 檔案上限 | **10 MB** |
+
+**匯入時 App 會重新對接**，你不需要（也無法）控制對方庫裡的命名：
+
+| 情況 | App 的做法 |
+|---|---|
+| 你帶的指令，對方已經有同名**且內容相同**的 | 沿用他的，不重複加入 |
+| 同名但**內容不同** | 他的留著原名，你的以「名稱 2」加入，而且**工作會指向你的那一份** |
+| KB 條目內容與他已有的相同（名稱不同） | 沿用他的，並把訊息裡的 `~` 引用改寫成他的名稱 |
+| 你沒帶、對方也沒有 | 列成缺口，仍可安裝 |
+
+所以：**`prompts/` 與 `kb/` 請放齊**。少放一個不會讓檔案失敗，只會讓對方安裝完之後看到一行「這台裝置上會找不到」。
+
+> 內嵌的指令是**完整的 `.aiide-prompt` 檔**，不是簡化過的子格式——照 §4.3 寫就對了，而且你可以把同一個檔案同時單獨發佈一份。
+
+### 4.10 `.aiide-script`（zip）
+
+一支 **`.aiide` 腳本**，連同它讀取的檔案。腳本的指令與語法見 App 內說明；這一節只講**打包**。
+
+腳本以工作目錄相對路徑指名檔案，所以一支單獨旅行的腳本會在第一個 `prompt file=` 或 `kb_add` 就停下來。
+
+```
+weekly-proofread.zh-Hant.aiide-script   （其實是一個 zip）
+├── manifest.json
+├── script.aiide
+└── files/
+    ├── fixtures/校稿規範.md        ← 路徑就是腳本裡寫的那個
+    └── 草稿.md
+```
+
+`manifest.json` 照 §4.1，`type` 是 `script`，帶檔案時 `embeds` 寫 `["files"]`。
+
+**哪些檔案該放進 `files/`**，這是這一型唯一需要判斷的事：
+
+| 腳本對這個路徑做什麼 | 例 | 放不放 |
+|---|---|---|
+| **讀取** | `prompt file=`、`kb_add`、`open`、`read`、`chat reply=`、`export` 的來源、`export outline=` / `images_dir=` | **放**。少了它，腳本執行到那一步就失敗 |
+| **產生** | `new_file`、`write`、`export out=`、`screenshot out=` | **不要放**。那是執行結果，放進去等於送出你上次跑的成品，而且會落在對方的資料夾裡 |
+| **執行時才決定** | 任何含 `$變數` 的路徑（`input_file` 當天才挑） | 不用放 |
+
+先產生、後讀取的檔案（`new_file 報告.md` … `export 報告.md`）算**產生**。
+
+| | |
+|---|---|
+| `files/` 底下的路徑 | **就是腳本裡寫的那個路徑**，原樣保留（含子資料夾）。不要重新命名 |
+| `..`、絕對路徑、`~` 開頭 | **會被忽略**。壓縮檔的成員不能決定自己落在磁碟的哪裡 |
+| 指令 | **不可擴充**。這個檔案不能定義新指令；用了讀取端沒有的指令，整個檔案會**連同行號一起被拒絕**，在寫入任何東西之前 |
+| 一檔一支 | 一個檔案就是一支腳本 |
+| 檔案上限 | **40 MB**（單一檔案不得超過一半） |
+
+**匯入時 App 會做兩件事**，你不需要配合：
+
+1. 整包寫進讀者工作目錄的一個**新資料夾** `scripts/<名稱>/`（名稱被占用就加序號）。**不會覆蓋他任何現有的檔案。**
+2. 腳本裡指向已帶入檔案的路徑，**每一處**都改寫到那個資料夾底下。你產生的檔案路徑**不會**被改寫——一支讓報告出現在 `報告.md` 的腳本，演的就是這件事。
+
+安裝**不會執行**腳本。讀者會先看到腳本全文與「執行後會在工作目錄產生哪些檔案」，再決定要不要裝。
+
+### 4.11 更新：不升 `version`，使用者就收不到通知
 
 App 判斷「有沒有新版」時，只用掃描已經知道的東西——比對內容意味著每次重新整理都要把使用者已安裝的每一個項目重新下載一遍。所以：
 
@@ -403,7 +688,7 @@ App 判斷「有沒有新版」時，只用掃描已經知道的東西——比�
 - **使用者改過的那一份不會被你覆蓋。** App 記得安裝當下寫進去的內容雜湊；對得上才會就地取代，對不上就只提示，並讓使用者自己選「另存為新的一份」或「仍要覆蓋」。
 - **更新 prompt 會保留它在使用者那邊的識別**，所以他原本啟用著的指令，更新後仍然是啟用的。
 
-### 4.7 `lang`：同一個項目的多語版本
+### 4.12 `lang`：同一個項目的多語版本
 
 一個項目要出三種語言，就發三個檔案，**用同一個 `id`、不同的 `lang`**：
 
@@ -431,7 +716,7 @@ prompts/
 >
 > 如果你想提供「中文介面、英文產出」和「中文介面、中文產出」兩個版本，那是**兩個不同的項目**（各自的 `id`），不是同一項目的兩個語言。
 
-### 4.8 `example`：使用教學／範例網址
+### 4.13 `example`：使用教學／範例網址
 
 ```
 example: https://your-site.example/tutorials/slide-outline
@@ -566,8 +851,9 @@ Markdown 寫法：
 
 ### 2. 不要放任何可執行的東西
 
-- 沒有腳本、沒有巨集（`.pptm` 一律拒收）
-- 沒有會自動請求的外部網址（`example` 也一樣，見 §4.8）
+- 沒有腳本、沒有巨集。**簡報樣板內嵌的 `deck.pptx` 也一樣**——`.pptm` 一律拒收（§4.7）
+- 沒有會自動請求的外部網址（`example` 也一樣，見 §4.13）
+- 品牌套件與樣板帶的是圖片與設定值，**不含字型檔**：字體只寫名稱（§4.6），所以不會散布任何字型授權標的
 
 寫進格式規格，不靠審查。
 
@@ -586,9 +872,15 @@ App 這一端對應的規則：一律不自動安裝、不自動更新、瀏覽�
 - [ ] 每個檔案的 `format` 是 `1`、`type` 和內容相符
 - [ ] `license` 是你真的有權給的授權
 - [ ] `id` 用 `你的名字.項目名`，而且沒有和你其他項目撞號
-- [ ] **改內容一定要升 `version`**（§4.6）
-- [ ] 多語版本共用同一個 `id`、各自標 `lang`，而且 `lang` 是**看過內容**決定的（§4.7）
+- [ ] **改內容一定要升 `version`**（§4.11）
+- [ ] 多語版本共用同一個 `id`、各自標 `lang`，而且 `lang` 是**看過內容**決定的（§4.12）
 - [ ] KB 包的 `manifest.json` 在壓縮檔最上層，條目在 `entries/*.md`（§4.5）
+- [ ] PDF／Word 樣板**內嵌了品牌套件**（`brand/brand.json`），否則對方看到的不是你發佈的長相（§4.7）
+- [ ] `embeds` 和實際內容相符（帶品牌套件寫 `["brandkit"]`）（§4.1）
+- [ ] 簡報樣板帶的是 `.pptx` 不是 `.pptm`（§7）
+- [ ] 閱讀外觀的每個顏色都給了 `light` 與 `dark` 兩個值（§4.8）
+- [ ] 工作的 `promptTitles` 與訊息裡的 `~[…]`，在 `prompts/` 與 `kb/` 裡都有對應的檔案（§4.9）
+- [ ] 腳本包的 `files/` 只放腳本**讀取**的檔案，沒有放它產生的（§4.10）
 - [ ] 跑過 `python3 tools/aiide-index.py <你的repo>`，沒有錯誤
 - [ ] 重新產生過 `aiide-index.json` 並一起推上去
 - [ ] **用 App 自己貼一次你的 repo 網址，確認看得到、裝得起來**
@@ -612,8 +904,13 @@ App 這一端對應的規則：一律不自動安裝、不自動更新、瀏覽�
 | KB 條目的顯示順序和檔名對不上 | 用了 `zip -r entries`——那是目錄順序。改成 `zip … manifest.json entries/*.md`（§4.5） |
 | KB 包點進去說「不是有效的分享檔」 | 用 Finder 壓的（多一層資料夾）、或壓縮工具寫出了 data descriptor / zip64（§4.5） |
 | 風格包少了幾則 | 那幾則的 `field` 不是三個合法值之一，或 `body` 是空的（§4.4） |
+| 樣板裝起來了，但顏色字體都不對 | 你沒有內嵌品牌套件，讀者套用的是他自己的預設品牌（§4.7） |
+| 讀者說「已經有一個相同的品牌套件」 | 這是正常的：內容相同就沿用他既有的那一份，不會重複安裝（§4.6） |
+| 簡報樣板的版面沒生效 | 沒有把 `deck.pptx` 放進 zip，或它其實是 `.pptm`（§4.7） |
+| 閱讀外觀在深色模式下看不見 | 某個顏色只給了 `light`（§4.8） |
+| 閱讀外觀裝了卻沒變 | 安裝**不會自動套用**，要到「資源庫 → 閱讀外觀」選它（§4.8） |
 | 標題顯示成檔名或內文開頭 | manifest 沒有 `title` |
-| 改了內容但使用者沒收到更新 | 沒升 `version`，而且檔案大小剛好沒變（§4.6） |
+| 改了內容但使用者沒收到更新 | 沒升 `version`，而且檔案大小剛好沒變（§4.11） |
 | 使用者說「已安裝」但他沒裝過 | 你把兩個不同的東西用了同一個 `id` |
 | 「GitHub 的查詢額度用完了」 | 未登入每小時 60 次，和你的 repo 無關。放索引能讓你的來源完全不佔額度 |
 
@@ -623,21 +920,15 @@ App 這一端對應的規則：一律不自動安裝、不自動更新、瀏覽�
 
 - **`format: 1` 的檔案會一直讀得到。** 需要不相容的改動時會升到 `format: 2`，而不是偷偷改變 `1` 的意思。
 - **不認得的欄位會被忽略，不是錯誤**，所以新欄位可以加在 `1` 裡（`lang` 和 `example` 就是這樣加的）。舊版 App 少顯示一個欄位，不會壞。
-- **不認得的 `type` 會被計數並顯示成「需要更新 App」**，所以下列尚未實作的型別現在就放進 repo 是安全的：
+- **不認得的 `type` 會被計數並顯示成「需要更新 App」**，而且掃描器認的是 `aiide-` 這個**前綴**而不是一份固定清單，所以下列尚未實作的型別現在就放進 repo 是安全的：
 
-| 副檔名 | 預定的 `type` |
-|---|---|
-| `.aiide-brand` | `brandKit` |
-| `.aiide-pdf` | `pdfTemplate` |
-| `.aiide-word` | `wordTemplate` |
-| `.aiide-excel` | `excelTemplate` |
-| `.aiide-slides` | `slidesTemplate` |
+目前**沒有**保留中的型別：這份文件曾經預告的 `.aiide-task` 與 `.aiide-script` 從 1.16.0 起都是正式型別（§4.9、§4.10）。前綴規則仍然成立，所以之後新增的型別放進 repo 一樣是安全的。
 
-這五種的內部結構尚未定案，這份文件會在定案時更新。在那之前請不要自行猜測它們的內容格式。
+> **`brandKit` 這個拼法。** 這份文件曾經預告 `.aiide-brand` 的 `type` 會是 `brandKit`，實作時定為 `brand`。**兩種寫法 App 都讀得懂**（`brandKit` 被當成 `brand`），照舊版文件做的檔案不會壞；新檔案請寫 `brand`。
 
 ---
 
-## 附錄 A：三個可直接複製的完整範例
+## 附錄 A：可直接複製的完整範例
 
 ### A.1 `prompts/meeting-summary.zh-Hant.aiide-prompt`
 
@@ -744,6 +1035,250 @@ AI-IDE 一律寫作 AI-IDE，不寫成 AI IDE 或 AIIDE。
 ```bash
 cd brand-terms && zip -qX ../kb/brand-terms.zh-Hant.aiide-kb manifest.json entries/*.md
 ```
+
+
+### A.4 `appearances/night-reading.zh-Hant.aiide-reading`
+
+```json
+{
+  "format": 1,
+  "type": "reading",
+  "id": "yourname.night-reading",
+  "version": "1.0.0",
+  "title": "夜讀",
+  "summary": "襯線、寬行距、暖色紙感。",
+  "author": "yourname",
+  "license": "CC BY 4.0",
+  "appMinVersion": "1.16.0",
+  "lang": "zh-Hant",
+  "appearance": {
+    "name": "夜讀",
+    "summary": "襯線、寬行距、暖色紙感。",
+    "fontFamily": "serif",
+    "baseFontSize": 18,
+    "lineHeight": 1.8,
+    "paragraphSpacing": 1.1,
+    "readingWidthCh": 62,
+    "pagePadding": 24,
+    "justified": true,
+    "text":       { "light": "#2B2622", "dark": "#E6DAC4" },
+    "heading":    { "light": "#4A2E22", "dark": "#E0C089" },
+    "link":       { "light": "#7A2E2E", "dark": "#E0A87A" },
+    "background": { "light": "#FBF6EC", "dark": "#1E1B17" },
+    "headings": [
+      { "sizeDelta": 13, "weight": 600 },
+      { "sizeDelta": 8,  "weight": 600 },
+      { "sizeDelta": 4,  "weight": 600 }
+    ],
+    "h2Rule": false
+  }
+}
+```
+
+### A.5 `templates/acme-report.zh-Hant.aiide-pdf`
+
+三個檔案壓成一個 zip：
+
+```
+manifest.json
+template.json
+brand/brand.json
+```
+
+`manifest.json`：
+
+```json
+{
+  "format": 1,
+  "type": "pdfTemplate",
+  "id": "yourname.acme-report",
+  "version": "1.0.0",
+  "title": "ACME 正式報告",
+  "summary": "封面色塊、頁碼、左右對齊。",
+  "author": "yourname",
+  "license": "Internal use only",
+  "appMinVersion": "1.16.0",
+  "lang": "zh-Hant",
+  "embeds": ["brandkit"]
+}
+```
+
+`template.json`：
+
+```json
+{
+  "name": "ACME 正式報告",
+  "brandKitID": "00000000-0000-0000-0000-000000000001",
+  "coverStyle": "band",
+  "showsPageNumbers": true,
+  "justify": true,
+  "baseFontSize": 15,
+  "profile": "report"
+}
+```
+
+`brand/brand.json`：
+
+```json
+{
+  "id": "00000000-0000-0000-0000-000000000001",
+  "name": "ACME",
+  "primaryHex": "1C4E8F",
+  "secondaryHex": "5A6472",
+  "headingFont": "sans",
+  "bodyFont": "sans"
+}
+```
+
+`template.json` 的 `brandKitID` 和 `brand/brand.json` 的 `id` 對得上就好——**兩個都會在匯入時重新產生**，App 只是照著這層對應把樣板接到它帶來的那份品牌套件上。兩個一起省略也可以：只有一份內嵌品牌套件時，樣板就是接它。
+
+打包：
+
+```bash
+cd acme-report && zip -qX ../templates/acme-report.zh-Hant.aiide-pdf \
+  manifest.json template.json brand/brand.json
+```
+
+### A.6 `tasks/weekly-proofread.zh-Hant.aiide-task`
+
+四個檔案壓成一個 zip：
+
+```
+manifest.json
+task.json
+prompts/001-校稿規範.aiide-prompt
+kb/001-術語表.md
+```
+
+`manifest.json`：
+
+```json
+{
+  "format": 1,
+  "type": "task",
+  "id": "yourname.weekly-proofread",
+  "version": "1.0.0",
+  "title": "每週校稿",
+  "summary": "用術語表校對這週的稿子。",
+  "author": "yourname",
+  "license": "CC BY 4.0",
+  "appMinVersion": "1.16.0",
+  "lang": "zh-Hant",
+  "embeds": ["prompts", "kb"]
+}
+```
+
+`task.json`：
+
+```json
+{
+  "title": "每週校稿",
+  "summary": "用術語表校對這週的稿子。",
+  "promptTitles": ["校稿規範"],
+  "toolCategories": [],
+  "messageTemplate": "請依 ~[術語表] 校對 {{檔名}}"
+}
+```
+
+`prompts/001-校稿規範.aiide-prompt`（就是一個完整的 §4.3 檔案）：
+
+```
+---
+format: 1
+type: prompt
+title: 校稿規範
+summary: 校稿時的基本規則
+author: yourname
+license: CC BY 4.0
+appMinVersion: 1.16.0
+lang: zh-Hant
+---
+
+一、不要改動引用的內容。
+二、保留原作者的用字習慣，只改錯字與明顯的語病。
+```
+
+`kb/001-術語表.md`：
+
+```
+---
+title: 術語表
+summary: 中英對照
+tags: [參考]
+---
+
+API：應用程式介面
+```
+
+打包：
+
+```bash
+cd weekly-proofread && zip -qX ../tasks/weekly-proofread.zh-Hant.aiide-task \
+  manifest.json task.json prompts/*.aiide-prompt kb/*.md
+```
+
+`promptTitles` 裡的每個標題，都要對得上 `prompts/` 裡某個檔案的 `title:`；`messageTemplate` 裡每個 `~[…]`，都要對得上 `kb/` 裡某個檔案的 `title:`。對不上不會讓檔案失敗，只會讓安裝者看到一行「這台裝置上會找不到」。
+
+### A.7 `scripts/weekly-proofread.zh-Hant.aiide-script`
+
+三個檔案壓成一個 zip：
+
+```
+manifest.json
+script.aiide
+files/fixtures/校稿規範.md
+```
+
+`manifest.json`：
+
+```json
+{
+  "format": 1,
+  "type": "script",
+  "id": "yourname.weekly-proofread-script",
+  "version": "1.0.0",
+  "title": "每週校稿（腳本）",
+  "summary": "挑一份稿子，依校稿規範校對後匯出 Word。",
+  "author": "yourname",
+  "license": "CC BY 4.0",
+  "appMinVersion": "1.16.0",
+  "lang": "zh-Hant",
+  "embeds": ["files"]
+}
+```
+
+`script.aiide`：
+
+```
+# 每週校稿
+prompt      "校稿規範" file="fixtures/校稿規範.md"
+use_prompts "校稿規範"
+input_file  "這次要校對哪一份？" ext=md -> doc
+open        "$doc"
+chat        "請依校稿規範校對 @$doc"
+approve_all
+export      "$doc" format=docx out="$doc.docx"
+```
+
+`files/fixtures/校稿規範.md`：
+
+```
+一、不要改動引用的內容。
+二、保留原作者的用字習慣，只改錯字與明顯的語病。
+```
+
+打包：
+
+```bash
+cd weekly-proofread && zip -qX ../scripts/weekly-proofread.zh-Hant.aiide-script \
+  manifest.json script.aiide files/fixtures/校稿規範.md
+```
+
+這個例子剛好把三種路徑都用上了：`fixtures/校稿規範.md` 會被讀取，所以放進 `files/`；`$doc` 與 `$doc.docx` 是執行時才決定的，不放；如果腳本裡還有 `new_file`，那個檔案是產生的，也不放。
+
+---
+
+> 最省事的做法：**在 App 裡做好再匯出**（資源庫 →〈型別〉→ 分享）。這幾種型別手寫得出來，但 App 匯出的檔案一定是對的。
 
 ---
 

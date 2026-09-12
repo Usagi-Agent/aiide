@@ -15,19 +15,23 @@
 | `kb/` | KB 庫條目包 | `.aiide-kb` |
 | `environments/` | 工作環境範例（指令＋資料檔＋預填對話打包成一鍵載入連結） | Markdown |
 
+App 1.16.0 起還多了幾種，這個 repo 目前還沒有放，但格式都已經定案（見 [FORMAT.md](FORMAT.md) §4.6–4.10）：品牌套件 `.aiide-brand`、匯出樣板 `.aiide-pdf` / `.aiide-word` / `.aiide-excel` / `.aiide-slides`、閱讀外觀 `.aiide-reading`、工作 `.aiide-task`（它會把自己用到的指令與 KB 條目一起帶走）、腳本 `.aiide-script`（它會把自己讀取的檔案一起帶走）。
+
 `aiide-index.json` 是選用的加速檔：有它，App 掃描這個 repo 時就不必逐檔抓 manifest。它不是必要條件——沒有索引的來源一樣掃得出來。
 
 ## 檔案格式
 
-三種都帶同一份 manifest（`format` / `type` / `id` / `version` / `title` / `summary` / `author` / `license` / `appMinVersion`）：
+每一種都帶同一份 manifest（`format` / `type` / `id` / `version` / `title` / `summary` / `author` / `license` / `appMinVersion`）。這個 repo 目前放的三種：
 
 - **`.aiide-prompt`** — Markdown。manifest 放在**第一個** `---` front matter 區塊，指令內文原封不動接在後面。因此一個自己就有 front matter 的 prompt（例如宣告 `requires:` 的）會成為第二個區塊而完好無損。**一個檔案恰好一個指令。**
 - **`.aiide-style`** — JSON，頂層是 manifest，`styles` 陣列裡每一則帶 `field`（`refine` / `illustration` / `slideImage`）、`title`、`body`。
 - **`.aiide-kb`** — zip，含 `manifest.json` 與 `entries/*.md`，每個條目一個 Markdown 檔（front matter 放 title / summary / tags / origin）。
 
+其餘六種（品牌套件、四種匯出樣板、閱讀外觀）的格式見 [FORMAT.md](FORMAT.md) §4.6–4.8。樣板類會**內嵌它用到的品牌套件**，因為 UUID 在別人的裝置上什麼都指不到。
+
 副檔名可以被改，所以判斷一律以檔案內容與 manifest 的 `type` 為準。
 
-**多語版本**：同一個 `id`、不同的 `lang`（`zh-Hant` / `zh-Hans` / `en`），檔名帶語言後綴當慣例。App 會把它們收成一列，顯示讀者語言的那一版。見 [FORMAT.md](FORMAT.md) §4.7。
+**多語版本**：同一個 `id`、不同的 `lang`（`zh-Hant` / `zh-Hans` / `en`），檔名帶語言後綴當慣例。App 會把它們收成一列，顯示讀者語言的那一版。見 [FORMAT.md](FORMAT.md) §4.12。
 
 ## 工作環境（environments/）
 
@@ -40,7 +44,7 @@
 1. **授權欄位是真的。** 從別處取得的書籍、報告、付費資料或公司內部文件**不能**放進來——KB 這一類尤其要小心。
 2. **沒有可執行內容**：沒有腳本、沒有巨集、沒有會自動請求的外部網址。
 3. `id` 用 `<你的名字>.<項目名>` 的形式，改內容時記得升 `version`。
-4. 如果你動了 `prompts/`、`styles/` 或 `kb/`，也更新 `aiide-index.json`。
+4. 如果你動了任何 `.aiide-*` 檔案，也更新 `aiide-index.json`（`python3 tools/aiide-index.py .`）。
 
 Prompt 的內文會進入使用者之後每一輪對話的最前面，所以 App 在安裝前一定會把全文顯示給使用者看，而且一次只裝一個。請假設每一個字都會被讀到。
 
