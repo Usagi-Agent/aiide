@@ -17,7 +17,7 @@
 | [§1](#1-最小可行範例) | 最小可行範例 |
 | [§2](#2-掃描器實際上怎麼找檔案) | 掃描器實際上怎麼找檔案（含快取、上限、可貼的網址形式） |
 | [§3](#3-建議的資料夾結構) | 建議的資料夾結構 |
-| [§4](#4-十一種檔案格式) | manifest 與十一種檔案格式（含編碼規則、YAML 子集、`version` / `lang` / `example`） |
+| [§4](#4-十二種檔案格式) | manifest 與十二種檔案格式（含編碼規則、YAML 子集、`version` / `lang` / `example`） |
 | [§5](#5-aiide-indexjson選用但請放) | `aiide-index.json` |
 | [§5a](#5a-environments--工作環境慣例非格式) | `environments/` 工作環境慣例 |
 | [§6](#6-網頁也可以當來源) | 網頁來源 |
@@ -153,7 +153,7 @@ owner/repo
 
 ---
 
-## 4. 十一種檔案格式
+## 4. 十二種檔案格式
 
 ### 4.0 所有檔案共通的規則
 
@@ -502,7 +502,7 @@ deck.pptx              ← 只有 slidesTemplate 會有，選填
 
 一份**閱讀外觀**：App 內預覽 Markdown 時的字體、字級、行距、閱讀寬度與顏色。**只影響預覽，不影響任何匯出的 PDF／Word。**
 
-十一種型別裡它最單純：沒有 zip、沒有內嵌、沒有相依。字體是**從清單裡挑的列舉值**，不是字體名稱字串，所以一份閱讀外觀永遠不含字型檔。
+十二種型別裡它最單純：沒有 zip、沒有內嵌、沒有相依。字體是**從清單裡挑的列舉值**，不是字體名稱字串，所以一份閱讀外觀永遠不含字型檔。
 
 ```json
 {
@@ -666,6 +666,56 @@ weekly-proofread.zh-Hant.aiide-script   （其實是一個 zip）
 2. 腳本裡指向已帶入檔案的路徑，**每一處**都改寫到那個資料夾底下。你產生的檔案路徑**不會**被改寫——一支讓報告出現在 `報告.md` 的腳本，演的就是這件事。
 
 安裝**不會執行**腳本。讀者會先看到腳本全文與「執行後會在工作目錄產生哪些檔案」，再決定要不要裝。
+
+### 4.10a `.aiide-profile`（JSON）
+
+一份 **Provider 設定**：App 連到某個 LLM 端點所需要的一切——除了憑證。
+
+**這一型和其他十一種在一件事上不一樣：它的風險不在讀的人那一端，而在你這一端。** 其他型別，讀的人可以先看過再決定裝不裝；一把金鑰一旦寫進檔案並推上 repo，等有人「審閱」時它已經公開了。所以下面兩條不是匯出時的選項，是**格式本身的規定**：
+
+| 絕對不會出現在這個檔案裡 | |
+|---|---|
+| **API 金鑰** | App 把金鑰存在系統 Keychain，根本不在可匯出的資料裡 |
+| **自訂標頭的值** | 只帶名稱。`Authorization` / `x-api-key` / `x-goog-api-key` 是 App 自己從 Keychain 帶的，所以 `customHeaders` 裡的東西一定是使用者手打的——而手打一個標頭的理由，通常就是另一組憑證。`anthropic-version: 2023-06-01` 和一個 bearer token 都只是字串，分不出來，猜錯一次就是洩漏一次 |
+
+如果你手動編輯這個檔案，**不要**把值塞進 `headerNames`（例如 `"X-Token: sk-…"`）。讀取端會把冒號後面的部分切掉，但那是防呆，不是通道。
+
+```json
+{
+  "format": 1,
+  "type": "profile",
+  "id": "yourname.openrouter-setup",
+  "version": "1.0.0",
+  "title": "OpenRouter（挑過的模型）",
+  "summary": "只留下值得用的 12 個模型",
+  "author": "yourname",
+  "license": "CC BY 4.0",
+  "profile": {
+    "name": "OpenRouter",
+    "kind": "openAICompatible",
+    "baseURL": "https://openrouter.ai/api/v1",
+    "defaultModelId": "anthropic/claude-fable-5",
+    "maxTokens": 8192,
+    "disableTools": false,
+    "headerNames": ["HTTP-Referer"],
+    "models": [
+      { "id": "anthropic/claude-fable-5", "displayName": "Claude Fable 5",
+        "capabilities": ["chat", "code"], "contextWindow": 200000, "isHidden": false }
+    ]
+  }
+}
+```
+
+| 欄位 | |
+|---|---|
+| `kind` | `openAICompatible` / `anthropic` / `gemini` / `ollama`。這決定用哪一種協定說話 |
+| `baseURL` | **必要。** 沒有可用的 URL，整個檔案會被拒絕——那是這個檔案唯一非給不可的東西 |
+| `headerNames` | 只有名稱。讀者匯入後會看到這幾列、值是空的，等他自己填 |
+| `models` | 快取清單，可以整個省略（讀者按「重新抓取模型」就有）。**值得帶的其實是 `isHidden`**：供應商回三百個模型時，挑出值得看的那十幾個才是花時間的部分 |
+| 一檔一份 | 一個檔案就是一個 Provider 設定 |
+| 檔案上限 | **1 MB** |
+| 安裝後 | **不會改變讀者目前在用的模型**，而且**還不能用**——要先填金鑰。App 的確認訊息會這樣講 |
+| 同名時 | 同名且設定完全相同＝不重複加入；同名但設定不同＝以「原名 2」另外加入，讀者原本那一個不動。注意：`.aiide-task` 與腳本的 `use_model` 都是**用名稱**找 Provider |
 
 ### 4.11 更新：不升 `version`，使用者就收不到通知
 
@@ -922,7 +972,7 @@ App 這一端對應的規則：一律不自動安裝、不自動更新、瀏覽�
 - **不認得的欄位會被忽略，不是錯誤**，所以新欄位可以加在 `1` 裡（`lang` 和 `example` 就是這樣加的）。舊版 App 少顯示一個欄位，不會壞。
 - **不認得的 `type` 會被計數並顯示成「需要更新 App」**，而且掃描器認的是 `aiide-` 這個**前綴**而不是一份固定清單，所以下列尚未實作的型別現在就放進 repo 是安全的：
 
-目前**沒有**保留中的型別：這份文件曾經預告的 `.aiide-task` 與 `.aiide-script` 從 1.16.0 起都是正式型別（§4.9、§4.10）。前綴規則仍然成立，所以之後新增的型別放進 repo 一樣是安全的。
+目前**沒有**保留中的型別：這份文件曾經預告的 `.aiide-task` 與 `.aiide-script` 從 1.16.0 起都是正式型別（§4.9、§4.10），`.aiide-profile` 是後來加的第十二種（§4.10a）。前綴規則仍然成立，所以之後新增的型別放進 repo 一樣是安全的——舊版 App 看到 `.aiide-profile` 會說「需要更新 App」，不會把它丟掉。
 
 > **`brandKit` 這個拼法。** 這份文件曾經預告 `.aiide-brand` 的 `type` 會是 `brandKit`，實作時定為 `brand`。**兩種寫法 App 都讀得懂**（`brandKit` 被當成 `brand`），照舊版文件做的檔案不會壞；新檔案請寫 `brand`。
 

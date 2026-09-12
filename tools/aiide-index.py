@@ -32,10 +32,12 @@ MAX_BYTES = {".aiide-prompt": 1 << 20, ".aiide-style": 1 << 20, ".aiide-kb": 10 
              ".aiide-reading": 1 << 20, ".aiide-brand": 10 << 20,
              ".aiide-pdf": 10 << 20, ".aiide-word": 10 << 20,
              ".aiide-excel": 10 << 20, ".aiide-slides": 40 << 20,
-             ".aiide-task": 10 << 20, ".aiide-script": 40 << 20}
+             ".aiide-task": 10 << 20, ".aiide-script": 40 << 20,
+             ".aiide-profile": 1 << 20}
 EXTENSIONS = (".aiide-prompt", ".aiide-style", ".aiide-kb", ".aiide-brand",
               ".aiide-pdf", ".aiide-word", ".aiide-excel", ".aiide-slides",
-              ".aiide-reading", ".aiide-task", ".aiide-script")
+              ".aiide-reading", ".aiide-task", ".aiide-script",
+              ".aiide-profile")
 MANIFEST_KEYS = ("format", "type", "id", "version", "title",
                  "summary", "author", "license", "appMinVersion", "lang", "example",
                  "embeds")
@@ -226,6 +228,23 @@ def read_reading(path):
     return manifest
 
 
+def read_profile(path):
+    manifest, profile = read_json_pack(path, "profile", "profile", "Provider 的連線設定")
+    if not profile.get("baseURL"):
+        raise Problem(f"{path.name}: profile 少了 baseURL（§4.10a）")
+    # The one check worth making on a publisher's machine: a header name that
+    # arrived carrying its value is how a credential gets published. The app
+    # trims it on read, but by then the file is already in the repo.
+    for name in profile.get("headerNames") or []:
+        if ":" in str(name):
+            raise Problem(f"{path.name}: headerNames 的 {name!r} 看起來夾了值進去。"
+                          f"只能放標頭名稱——值絕對不要推上來（§4.10a）")
+    for leaked in ("apiKey", "key", "customHeaders", "headers"):
+        if leaked in profile:
+            raise Problem(f"{path.name}: profile 不該有 {leaked!r} 這個欄位（§4.10a）")
+    return manifest
+
+
 def read_excel_template(path):
     return read_json_pack(path, "excelTemplate", "template", "樣板的設定")[0]
 
@@ -371,7 +390,8 @@ READERS = {".aiide-prompt": read_prompt, ".aiide-style": read_style, ".aiide-kb"
            ".aiide-reading": read_reading, ".aiide-brand": read_brand,
            ".aiide-pdf": read_pdf_template, ".aiide-word": read_word_template,
            ".aiide-excel": read_excel_template, ".aiide-slides": read_slides_template,
-           ".aiide-task": read_task, ".aiide-script": read_script}
+           ".aiide-task": read_task, ".aiide-script": read_script,
+           ".aiide-profile": read_profile}
 
 
 def check_language(manifest, path, rel, problems):
