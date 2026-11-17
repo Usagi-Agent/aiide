@@ -15,9 +15,9 @@
 | `kb/` | KB 庫條目包 | `.aiide-kb` |
 | `environments/` | 工作環境範例（指令＋資料檔＋預填對話打包成一鍵載入連結） | Markdown |
 
-App 1.16.0 起還多了幾種，這個 repo 目前還沒有放，但格式都已經定案（見 [FORMAT.md](FORMAT.md) §4.6–4.10）：品牌套件 `.aiide-brand`、匯出樣板 `.aiide-pdf` / `.aiide-word` / `.aiide-excel` / `.aiide-slides`、閱讀外觀 `.aiide-reading`、工作 `.aiide-task`（它會把自己用到的指令與 KB 條目一起帶走）、腳本 `.aiide-script`（它會把自己讀取的檔案一起帶走）。
+App 1.17.0 起還多了幾種，這個 repo 目前還沒有放，但格式都已經定案（見 [FORMAT.md](FORMAT.md) §4.6–4.10a）：品牌套件 `.aiide-brand`、匯出樣板 `.aiide-pdf` / `.aiide-word` / `.aiide-excel` / `.aiide-slides`、閱讀外觀 `.aiide-reading`、工作 `.aiide-task`（它會把自己用到的指令與 KB 條目一起帶走）、腳本 `.aiide-script`（它會把自己讀取的檔案一起帶走）、Provider 設定 `.aiide-profile`。1.21.0 再加簡報手冊 `.aiide-handbook`（§4.10b）。**每一種、每個風格欄位從哪一版開始，以及怎麼發佈才不影響舊版 App，見 FORMAT.md §2.4。**
 
-`aiide-index.json` 是選用的加速檔：有它，App 掃描這個 repo 時就不必逐檔抓 manifest。它不是必要條件——沒有索引的來源一樣掃得出來。
+`aiide-index.v2.json` 與 `aiide-index.json` 是索引：有它，App 掃描這個 repo 時就不必逐檔抓 manifest，**而且只看索引列出的項目**。1.21.0 起讀 `aiide-index.v2.json`（列全部），1.15–1.20 只讀 `aiide-index.json`（只列它們讀得懂的），這就是新舊版本互不影響的方式（FORMAT.md §2.4）。舊索引不能刪、不能是空的。
 
 ## 檔案格式
 
@@ -44,7 +44,7 @@ App 1.16.0 起還多了幾種，這個 repo 目前還沒有放，但格式都已
 1. **授權欄位是真的。** 從別處取得的書籍、報告、付費資料或公司內部文件**不能**放進來——KB 這一類尤其要小心。
 2. **沒有可執行內容**：沒有腳本、沒有巨集、沒有會自動請求的外部網址。
 3. `id` 用 `<你的名字>.<項目名>` 的形式，改內容時記得升 `version`。
-4. 如果你動了任何 `.aiide-*` 檔案，也更新 `aiide-index.json`（`python3 tools/aiide-index.py .`）。
+4. 如果你動了任何 `.aiide-*` 檔案，重新產生兩份索引（`python3 tools/aiide-index.py .`；新版上架後加 `--released <版本>`）。
 
 Prompt 的內文會進入使用者之後每一輪對話的最前面，所以 App 在安裝前一定會把全文顯示給使用者看，而且一次只裝一個。請假設每一個字都會被讀到。
 

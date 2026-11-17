@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
-"""Validate a share repo and (re)generate its aiide-index.json.
+"""Validate a share repo and (re)generate its two indexes.
 
     python3 tools/aiide-index.py /path/to/your/repo
     python3 tools/aiide-index.py /path/to/your/repo --check   # validate only
+    python3 tools/aiide-index.py /path/to/your/repo --released 1.21.0
+
+Writes `aiide-index.v2.json` (everything, read by AI-IDE 1.21 and later) and
+`aiide-index.json` (only what every release since 1.15 can read: builds up
+to 1.20 read nothing else, and never look at `appMinVersion`). See FORMAT.md
+§2.4.
 
 Reads every `.aiide-*` file the way AI-IDE reads it, so a file this script
 accepts is one the app can open. Nothing is written unless every file passed:
@@ -19,25 +25,43 @@ import zipfile
 
 FORMAT = 1
 INSTALLABLE = {"prompt", "style", "kb", "brand", "reading", "task", "script",
-               "pdfTemplate", "wordTemplate", "excelTemplate", "slidesTemplate"}
+               "pdfTemplate", "wordTemplate", "excelTemplate", "slidesTemplate",
+               "profile", "handbook"}
 # Types the app cannot install yet. They are still found and counted, so
-# publishing one is safe — the user is told "needs a newer AI-IDE". Empty since
-# 1.16.0: `task` and `script` both shipped.
+# publishing one is safe — the user is told "needs a newer AI-IDE".
 RESERVED: set[str] = set()
+
+# The AI-IDE release that first reads each type and each style field — the
+# same table as the app's `ShareCompatibility` (FORMAT.md §2.4).
+OLDEST = "1.15.0"                    # the first release with sharing at all
+LATEST_RELEASED = "1.20.0"           # on the App Store; override with --released
+LEGACY_LAST = "1.20.0"               # the last release that reads only aiide-index.json
+TYPE_SINCE = {"prompt": "1.15.0", "style": "1.15.0", "kb": "1.15.0",
+              "brand": "1.17.0", "reading": "1.17.0", "task": "1.17.0",
+              "script": "1.17.0", "profile": "1.17.0", "pdfTemplate": "1.17.0",
+              "wordTemplate": "1.17.0", "excelTemplate": "1.17.0",
+              "slidesTemplate": "1.17.0", "handbook": "1.21.0"}
+FIELD_SINCE = {"refine": "1.15.0", "illustration": "1.15.0", "slideImage": "1.15.0",
+               "reportRefine": "1.20.0", "organize": "1.20.0", "expand": "1.20.0",
+               "researchPlan": "1.20.0", "researchWrite": "1.20.0",
+               "refine.proofread": "1.21.0", "refine.tone.formal": "1.21.0",
+               "refine.tone.casual": "1.21.0", "refine.tone.executive": "1.21.0",
+               "refine.condense.report": "1.21.0", "refine.condense.deck": "1.21.0",
+               "refine.terms": "1.21.0"}
 # `brandKit` was reserved in FORMAT.md before the type existed; the app reads
 # it as `brand`, so this script must not call it an error either.
 TYPE_ALIASES = {"brandKit": "brand"}
-STYLE_FIELDS = {"refine", "illustration", "slideImage"}
+STYLE_FIELDS = set(FIELD_SINCE)
 MAX_BYTES = {".aiide-prompt": 1 << 20, ".aiide-style": 1 << 20, ".aiide-kb": 10 << 20,
              ".aiide-reading": 1 << 20, ".aiide-brand": 10 << 20,
              ".aiide-pdf": 10 << 20, ".aiide-word": 10 << 20,
              ".aiide-excel": 10 << 20, ".aiide-slides": 40 << 20,
              ".aiide-task": 10 << 20, ".aiide-script": 40 << 20,
-             ".aiide-profile": 1 << 20}
+             ".aiide-profile": 1 << 20, ".aiide-handbook": 2 << 20}
 EXTENSIONS = (".aiide-prompt", ".aiide-style", ".aiide-kb", ".aiide-brand",
               ".aiide-pdf", ".aiide-word", ".aiide-excel", ".aiide-slides",
               ".aiide-reading", ".aiide-task", ".aiide-script",
-              ".aiide-profile")
+              ".aiide-profile", ".aiide-handbook")
 MANIFEST_KEYS = ("format", "type", "id", "version", "title",
                  "summary", "author", "license", "appMinVersion", "lang", "example",
                  "embeds")
@@ -146,6 +170,20 @@ def read_prompt(path):
     return manifest
 
 
+def version_key(v):
+    try:
+        return tuple(int(x) for x in str(v).split("."))
+    except ValueError:
+        return None
+
+
+def newer(a, b):
+    """a > b as releases; 1.20 == 1.20.0."""
+    ka, kb = version_key(a) or (), version_key(b) or ()
+    n = max(len(ka), len(kb))
+    return ka + (0,) * (n - len(ka)) > kb + (0,) * (n - len(kb))
+
+
 def read_style(path):
     try:
         raw = json.loads(path.read_text(encoding="utf-8-sig"))
@@ -171,6 +209,15 @@ def read_style(path):
                   f"不在 {sorted(STYLE_FIELDS)} 之中，會被略過")
     if usable == 0:
         raise Problem(f"{path.name}: 沒有任何一則的 field 是可用的")
+    fields = [item.get("field") for item in styles if item.get("field") in FIELD_SINCE]
+    needs = OLDEST
+    for f in fields:
+        if newer(FIELD_SINCE[f], needs):
+            needs = FIELD_SINCE[f]
+    # Kept apart from the manifest the index lists: what the file NEEDS, and
+    # whether a build up to 1.20 would still find something in it.
+    manifest["_needs"] = needs
+    manifest["_legacy_ok"] = any(FIELD_SINCE[f] == OLDEST for f in fields)
     return manifest
 
 
@@ -242,6 +289,13 @@ def read_profile(path):
     for leaked in ("apiKey", "key", "customHeaders", "headers"):
         if leaked in profile:
             raise Problem(f"{path.name}: profile 不該有 {leaked!r} 這個欄位（§4.10a）")
+    return manifest
+
+
+def read_handbook(path):
+    manifest, handbook = read_json_pack(path, "handbook", "handbook", "一份簡報輸出手冊")
+    if not isinstance(handbook.get("layouts"), list) or not handbook["layouts"]:
+        raise Problem(f"{path.name}: handbook.layouts 必須是非空陣列")
     return manifest
 
 
@@ -391,7 +445,7 @@ READERS = {".aiide-prompt": read_prompt, ".aiide-style": read_style, ".aiide-kb"
            ".aiide-pdf": read_pdf_template, ".aiide-word": read_word_template,
            ".aiide-excel": read_excel_template, ".aiide-slides": read_slides_template,
            ".aiide-task": read_task, ".aiide-script": read_script,
-           ".aiide-profile": read_profile}
+           ".aiide-profile": read_profile, ".aiide-handbook": read_handbook}
 
 
 def check_language(manifest, path, rel, problems):
@@ -431,6 +485,9 @@ def main():
                         help="只驗證，不寫出 aiide-index.json")
     parser.add_argument("--name", default="", help="索引的 name 欄位")
     parser.add_argument("--summary", default="", help="索引的 summary 欄位")
+    parser.add_argument("--released", default=LATEST_RELEASED,
+                        help=f"App Store 上最新的 AI-IDE 版本（預設 {LATEST_RELEASED}）。"
+                             "需要更新版本的檔案會被擋下，不寫進索引")
     args = parser.parse_args()
 
     root = args.repo.resolve()
@@ -459,13 +516,17 @@ def main():
             continue
         try:
             manifest = reader(path)
+            if isinstance(manifest, tuple):
+                manifest = manifest[0]
             check_language(manifest, path, rel, problems)
             check_example(manifest, rel, problems)
+            needs, legacy_ok = check_versions(manifest, rel, args.released, problems)
         except Problem as e:
             problems.append(str(e))
             continue
-        items.append({"path": rel, "size": size, **manifest})
-        print(f"  ✅ {rel}  →  {manifest.get('title', '(無標題)')}")
+        items.append(({"path": rel, "size": size, **manifest}, legacy_ok))
+        mark = "" if not newer(needs, OLDEST) else f"（需要 {needs}）"
+        print(f"  ✅ {rel}  →  {manifest.get('title', '(無標題)')}{mark}")
 
     for rel in skipped:
         print(f"  ⏭️  {rel}：這個型別本腳本還不會讀，會原樣列在 repo 裡")
@@ -478,17 +539,59 @@ def main():
             print(f"  ❌ {p}", file=sys.stderr)
         sys.exit(f"\n{len(problems)} 個檔案有問題，沒有寫出索引。")
 
-    print(f"\n{len(items)} 個項目全部通過。")
+    legacy = [item for item, ok in items if ok]
+    every = [item for item, _ in items]
+    print(f"\n{len(every)} 個項目全部通過；舊索引（1.15–1.20 讀的）列 {len(legacy)} 個。")
+    if not legacy:
+        # An empty or missing aiide-index.json sends builds 1.17–1.20 walking
+        # the whole repo, where they would meet everything this split hides.
+        sys.exit("舊索引會是空的：至少要有一個 1.15 就能讀的項目，否則舊版 App 會改為掃描整個 repo。")
     if args.check:
         return
 
+    write_index(root / "aiide-index.v2.json", every, args)
+    write_index(root / "aiide-index.json", legacy, args)
+
+
+def check_versions(manifest, rel, released, problems):
+    """What the file needs, against what it claims and what has shipped.
+
+    Returns (needs, legacy_ok): legacy_ok is False for a file that builds up
+    to 1.20 would call broken rather than "needs a newer AI-IDE" — a style
+    pack with no field from 1.15 — so it stays out of aiide-index.json.
+    """
+    needs = manifest.pop("_needs", None) or TYPE_SINCE.get(manifest.get("type"), OLDEST)
+    legacy_ok = manifest.pop("_legacy_ok", True)
+    if newer(TYPE_SINCE.get(manifest.get("type"), OLDEST), needs):
+        needs = TYPE_SINCE[manifest["type"]]
+    # Builds up to 1.20 never see what needs more than they are.
+    legacy_ok = legacy_ok and not newer(needs, LEGACY_LAST)
+    if newer(needs, released):
+        problems.append(f"{rel}: 需要 AI-IDE {needs}，但 App Store 上最新是 {released}。"
+                        "等新版上架後再放（或用 --released 指定新版本）")
+    claimed = manifest.get("appMinVersion")
+    if not claimed:
+        manifest["appMinVersion"] = needs
+        if newer(needs, OLDEST):
+            print(f"  ⚠️  {rel}: 沒寫 appMinVersion，索引裡以 {needs} 列出；建議寫進檔案")
+    elif version_key(claimed) is None:
+        problems.append(f"{rel}: appMinVersion {claimed!r} 不是版本號（例如 1.17.0）")
+    elif newer(needs, claimed):
+        problems.append(f"{rel}: appMinVersion 寫 {claimed}，但這個檔案需要 {needs}")
+    if newer(needs, OLDEST) and needs not in str(manifest.get("summary", "")) \
+            and needs.rsplit(".0", 1)[0] not in str(manifest.get("summary", "")):
+        # 1.15–1.20 never read appMinVersion; the summary is what they show.
+        print(f"  ⚠️  {rel}: 需要 AI-IDE {needs}，建議在 summary 寫明，舊版使用者才看得到")
+    return needs, legacy_ok
+
+
+def write_index(out, items, args):
     index = {"format": FORMAT}
     if args.name:
         index["name"] = args.name
     if args.summary:
         index["summary"] = args.summary
     index["items"] = items
-    out = root / "aiide-index.json"
     existing = {}
     if out.exists():
         try:
@@ -502,7 +605,7 @@ def main():
     index = {k: index[k] for k in ("format", "name", "summary", "homepage", "items")
              if k in index}
     out.write_text(json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"已寫出 {out}")
+    print(f"已寫出 {out}（{len(items)} 個項目）")
 
 
 if __name__ == "__main__":

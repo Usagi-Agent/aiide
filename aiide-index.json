@@ -72,7 +72,8 @@
       "author": "吳承恩",
       "license": "CC BY 4.0",
       "lang": "zh-Hant",
-      "example": "https://www.lovelyduck.cc/usagiweb/article/187"
+      "example": "https://www.lovelyduck.cc/usagiweb/article/187",
+      "appMinVersion": "1.15.0"
     },
     {
       "path": "kb/markdown-pptx-cheatsheet.zh-Hant.aiide-kb",
@@ -100,7 +101,8 @@
       "author": "蒲松齡",
       "license": "CC BY 4.0",
       "lang": "zh-Hant",
-      "example": "https://www.lovelyduck.cc/usagiweb/article/188"
+      "example": "https://www.lovelyduck.cc/usagiweb/article/188",
+      "appMinVersion": "1.15.0"
     },
     {
       "path": "kb/three-kingdoms.zh-Hant.aiide-kb",
@@ -114,7 +116,8 @@
       "author": "羅貫中",
       "license": "CC BY 4.0",
       "lang": "zh-Hant",
-      "example": "https://www.lovelyduck.cc/usagiweb/article/185"
+      "example": "https://www.lovelyduck.cc/usagiweb/article/185",
+      "appMinVersion": "1.15.0"
     },
     {
       "path": "kb/water-margin.zh-Hant.aiide-kb",
@@ -128,7 +131,8 @@
       "author": "施耐庵",
       "license": "CC BY 4.0",
       "lang": "zh-Hant",
-      "example": "https://www.lovelyduck.cc/usagiweb/article/186"
+      "example": "https://www.lovelyduck.cc/usagiweb/article/186",
+      "appMinVersion": "1.15.0"
     },
     {
       "path": "prompts/classical-layout.zh-Hant.aiide-prompt",
@@ -288,7 +292,8 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "lang": "zh-Hant",
-      "example": "https://www.lovelyduck.cc/usagiweb/article/42"
+      "example": "https://www.lovelyduck.cc/usagiweb/article/42",
+      "appMinVersion": "1.15.0"
     },
     {
       "path": "prompts/grammar-future-perfect-continuous.zh-Hant.aiide-prompt",
@@ -302,7 +307,8 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "lang": "zh-Hant",
-      "example": "https://www.lovelyduck.cc/usagiweb/article/48"
+      "example": "https://www.lovelyduck.cc/usagiweb/article/48",
+      "appMinVersion": "1.15.0"
     },
     {
       "path": "prompts/grammar-future-perfect.zh-Hant.aiide-prompt",
@@ -316,7 +322,8 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "lang": "zh-Hant",
-      "example": "https://www.lovelyduck.cc/usagiweb/article/45"
+      "example": "https://www.lovelyduck.cc/usagiweb/article/45",
+      "appMinVersion": "1.15.0"
     },
     {
       "path": "prompts/grammar-future-simple.zh-Hant.aiide-prompt",
@@ -330,7 +337,8 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "lang": "zh-Hant",
-      "example": "https://www.lovelyduck.cc/usagiweb/article/40"
+      "example": "https://www.lovelyduck.cc/usagiweb/article/40",
+      "appMinVersion": "1.15.0"
     },
     {
       "path": "prompts/grammar-past-continuous.zh-Hant.aiide-prompt",
@@ -344,7 +352,8 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "lang": "zh-Hant",
-      "example": "https://www.lovelyduck.cc/usagiweb/article/37"
+      "example": "https://www.lovelyduck.cc/usagiweb/article/37",
+      "appMinVersion": "1.15.0"
     },
     {
       "path": "prompts/grammar-past-perfect-continuous.zh-Hant.aiide-prompt",
@@ -358,7 +367,8 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "lang": "zh-Hant",
-      "example": "https://www.lovelyduck.cc/usagiweb/article/47"
+      "example": "https://www.lovelyduck.cc/usagiweb/article/47",
+      "appMinVersion": "1.15.0"
     },
     {
       "path": "prompts/grammar-past-perfect.zh-Hant.aiide-prompt",
@@ -372,7 +382,8 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "lang": "zh-Hant",
-      "example": "https://www.lovelyduck.cc/usagiweb/article/44"
+      "example": "https://www.lovelyduck.cc/usagiweb/article/44",
+      "appMinVersion": "1.15.0"
     },
     {
       "path": "prompts/grammar-past-simple.zh-Hant.aiide-prompt",
@@ -386,7 +397,8 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "lang": "zh-Hant",
-      "example": "https://www.lovelyduck.cc/usagiweb/article/36"
+      "example": "https://www.lovelyduck.cc/usagiweb/article/36",
+      "appMinVersion": "1.15.0"
     },
     {
       "path": "prompts/grammar-present-continuous.zh-Hant.aiide-prompt",
@@ -400,7 +412,8 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "lang": "zh-Hant",
-      "example": "https://www.lovelyduck.cc/usagiweb/article/41"
+      "example": "https://www.lovelyduck.cc/usagiweb/article/41",
+      "appMinVersion": "1.15.0"
     },
     {
       "path": "prompts/grammar-present-perfect-continuous.zh-Hant.aiide-prompt",
@@ -414,7 +427,8 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "lang": "zh-Hant",
-      "example": "https://www.lovelyduck.cc/usagiweb/article/46"
+      "example": "https://www.lovelyduck.cc/usagiweb/article/46",
+      "appMinVersion": "1.15.0"
     },
     {
       "path": "prompts/grammar-present-perfect.zh-Hant.aiide-prompt",
@@ -428,7 +442,8 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "lang": "zh-Hant",
-      "example": "https://www.lovelyduck.cc/usagiweb/article/43"
+      "example": "https://www.lovelyduck.cc/usagiweb/article/43",
+      "appMinVersion": "1.15.0"
     },
     {
       "path": "prompts/grammar-present-simple.zh-Hant.aiide-prompt",
@@ -442,7 +457,8 @@
       "author": "小兔",
       "license": "CC BY 4.0",
       "lang": "zh-Hant",
-      "example": "https://www.lovelyduck.cc/usagiweb/article/35"
+      "example": "https://www.lovelyduck.cc/usagiweb/article/35",
+      "appMinVersion": "1.15.0"
     },
     {
       "path": "prompts/industry-trend-report.en.aiide-prompt",
